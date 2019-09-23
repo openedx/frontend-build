@@ -7,7 +7,7 @@ module.exports = (appDir, args = []) => {
   const configIsSupplied = args.filter(arg => arg.includes('--config')).length > 0;
 
   if (!configIsSupplied) {
-    const configFile = getProjectConfigFile(appDir, 'webpack-dev');
+    const configFile = getProjectConfigFile('webpack-dev');
     args.push(`--config=${configFile}`)
   }
 

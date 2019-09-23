@@ -1,21 +1,22 @@
 const path = require('path');
 const fs = require('fs');
 const { spawn } = require('child_process');
-const getProjectConfigFile = require('../lib/getProjectConfigFile.js');
 
-module.exports = (appDir, args = []) => {
+const getProjectConfigFile = require('../lib/getProjectConfigFile.js');
+const { APP_ROOT } = require('../lib/paths');
+
+module.exports = (args = []) => {
   const configIsSupplied = args.filter(arg => arg.includes('--config')).length > 0;
 
   if (!configIsSupplied) {
-    const configFile = getProjectConfigFile(appDir, 'eslint');
+    const configFile = getProjectConfigFile('eslint');
     args.push(`--config=${configFile}`)
   }
 
   spawn('eslint', [
     ...args,
-    appDir
+    APP_ROOT
   ], {
-    appDir,
     shell: true,
     stdio: 'inherit',
   });

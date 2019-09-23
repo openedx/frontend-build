@@ -3,7 +3,9 @@ const fs = require('fs');
 const dotenv = require('dotenv');
 require('babel-polyfill');
 
-const testEnvFile = path.resolve(process.cwd(), '.env.development');
+const { APP_ROOT } = require('../../lib/paths');
+
+const testEnvFile = path.resolve(APP_ROOT, '.env.development');
 
 if (fs.existsSync(testEnvFile)) {
   dotenv.config({ path: testEnvFile });
