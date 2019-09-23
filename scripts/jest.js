@@ -1,10 +1,10 @@
 const path = require('path');
 const fs = require('fs');
 const { spawn } = require('child_process');
-const getProjectConfig = require('../lib/getProjectConfig.js');
+const getProjectConfigFile = require('../lib/getProjectConfigFile.js');
 
 module.exports = (appDir, args = []) => {
-  getProjectConfig(appDir, 'jest');
+  getProjectConfigFile(appDir, 'jest');
 
   spawn('jest', [
     ...args,

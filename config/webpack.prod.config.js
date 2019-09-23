@@ -15,7 +15,7 @@ const PostCssRtlPlugin = require('postcss-rtl');
 const PostCssAutoprefixerPlugin = require('autoprefixer');
 const CssNano = require('cssnano');
 
-const getProjectConfig = require('../lib/getProjectConfig');
+const getProjectConfigFile = require('../lib/getProjectConfigFile');
 
 const appDir = process.cwd();
 
@@ -37,7 +37,7 @@ module.exports = Merge.smart(commonConfig, {
         use: {
           loader: 'babel-loader',
           options: {
-            configFile: getProjectConfig(appDir, 'babel'),
+            configFile: getProjectConfigFile(appDir, 'babel'),
           },
         },
       },
@@ -76,6 +76,7 @@ module.exports = Merge.smart(commonConfig, {
               ],
             },
           },
+          'resolve-url-loader',
           {
             loader: 'sass-loader', // compiles Sass to CSS
             options: {

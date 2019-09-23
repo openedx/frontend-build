@@ -10,7 +10,7 @@ const webpack = require('webpack');
 const PostCssRtlPlugin = require('postcss-rtl');
 
 const commonConfig = require('./webpack.common.config.js');
-const getProjectConfig = require('../lib/getProjectConfig');
+const getProjectConfigFile = require('../lib/getProjectConfigFile');
 
 const appDir = process.cwd();
 
@@ -38,7 +38,7 @@ module.exports = Merge.smart(commonConfig, {
         use: {
           loader: 'babel-loader',
           options: {
-            configFile: getProjectConfig(appDir, 'babel'),
+            configFile: getProjectConfigFile(appDir, 'babel'),
             // Caches result of loader to the filesystem. Future builds will attempt to read from the
             // cache to avoid needing to run the expensive recompilation process on each run.
             cacheDirectory: true,
@@ -64,6 +64,7 @@ module.exports = Merge.smart(commonConfig, {
               plugins: () => [PostCssRtlPlugin()],
             },
           },
+          'resolve-url-loader',
           {
             loader: 'sass-loader', // compiles Sass to CSS
             options: {

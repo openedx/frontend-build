@@ -1,5 +1,5 @@
 const path = require('path');
-const getProjectConfig = require('../lib/getProjectConfig');
+const getProjectConfigFile = require('../lib/getProjectConfigFile');
 
 module.exports = {
   "testURL": "http://localhost/",
@@ -26,7 +26,7 @@ module.exports = {
     "^.+\\.[t|j]sx?$": [
       "babel-jest",
       {
-        configFile: getProjectConfig(process.env.APP_DIR, 'babel'),
+        configFile: getProjectConfigFile(process.env.APP_DIR, 'babel'),
       },
     ],
   },

@@ -1,13 +1,13 @@
 const path = require('path');
 const fs = require('fs');
 const { spawn } = require('child_process');
-const getProjectConfig = require('../lib/getProjectConfig.js');
+const getProjectConfigFile = require('../lib/getProjectConfigFile.js');
 
 module.exports = (appDir, args = []) => {
   const configIsSupplied = args.filter(arg => arg.includes('--config-file')).length > 0;
 
   if (!configIsSupplied) {
-    const configFile = getProjectConfig(appDir, 'babel');
+    const configFile = getProjectConfigFile(appDir, 'babel');
     args.push(`--config-file=${configFile}`)
   }
 
