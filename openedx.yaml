@@ -1,0 +1,10 @@
+# openedx.yaml
+
+---
+owner: edx/fedx-team
+tags:
+  - library
+  - build
+  - react
+  - webpack
+  - babel
