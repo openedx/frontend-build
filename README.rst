@@ -3,8 +3,8 @@ frontend-build
 
 |Build Status| |npm_version| |Codecov| |license|
 
-The purpose of this package is to
-provide a common sense foundation and setup for frontend projects including:
+The purpose of this package is to provide a common sense foundation and
+setup for frontend projects including:
 
 - linting (eslint)
 - testing (jest)
