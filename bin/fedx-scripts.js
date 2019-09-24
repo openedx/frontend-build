@@ -1,9 +1,9 @@
 #!/usr/bin/env node
 
+process.env.APP_ROOT = process.cwd();
+
 const args = process.argv.slice(2);
 const command = args.shift();
-
-process.env.APP_ROOT = process.cwd();
 
 switch (command) {
   case 'babel':

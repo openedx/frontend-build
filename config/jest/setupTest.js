@@ -9,5 +9,6 @@ const testEnvFile = path.resolve(APP_ROOT, '.env.development');
 
 if (fs.existsSync(testEnvFile)) {
   dotenv.config({ path: testEnvFile });
+} else {
+  console.log(`No .env.development file found at ${testEnvFile}. No env vars will be loaded.`);
 }
-

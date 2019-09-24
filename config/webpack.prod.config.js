@@ -1,7 +1,6 @@
 // This is the prod Webpack config. All settings here should prefer smaller,
 // optimized bundles at the expense of a longer build time.
 const Merge = require('webpack-merge');
-const commonConfig = require('./webpack.common.config.js');
 const path = require('path');
 const Dotenv = require('dotenv-webpack');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
@@ -9,11 +8,12 @@ const HtmlWebpackNewRelicPlugin = require('html-webpack-new-relic-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const NewRelicSourceMapPlugin = require('new-relic-source-map-webpack-plugin');
-const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin; // eslint-disable-line prefer-destructuring
+const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 const PostCssRtlPlugin = require('postcss-rtl');
 const PostCssAutoprefixerPlugin = require('autoprefixer');
 const CssNano = require('cssnano');
 
+const commonConfig = require('./webpack.common.config.js');
 const getProjectConfigFile = require('../lib/getProjectConfigFile');
 
 const { APP_ROOT } = require('../lib/paths');
