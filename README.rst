@@ -35,6 +35,50 @@ CLI commands are structured like this: `fedx-scripts <targetScript> <options>`. 
      }
   }
 
+Extending or Overriding Default Config
+--------------------------------------
+
+This package contains default configuration for each command it
+offers (webpack, webpack-dev-server, babel, jest, eslint). If you
+need to extend or modify the base configuration you can add your
+own configuration files, either by extending frontend-build's
+configuration files or supplying your own wholesale.
+
+Method 1: Extend base config (babel.config.js)::
+
+   const { createConfig } = require('@edx/frontend-build');
+   module.exports = createConfig('babel', {
+      /* option overrides or extensions */
+   });
+
+Method 2: Custom manipulations (babel.config.js)::
+
+   const { getBaseConfig } = require('@edx/frontend-build');
+   const config = getBaseConfig('babel');
+
+   /* Custom config manipulations */
+
+   module.exports = config;
+
+Frontend build will look in the following locations for configuration
+files.
+
+- eslint: ``<project_root>/.eslintrc.js``
+- jest: ``<project_root>/'jest.config.js``
+- babel: ``<project_root>/'babel.config.js``
+- webpack-prod: ``<project_root>/'webpack.prod.config.js``
+- webpack-dev-server: ``<project_root>/'webpack.dev.config.js``
+
+You may specify custom config file locations via the command
+line if you prefer a different location. Example package.json::
+
+  {
+     "scripts": {
+        "build": "fedx-scripts webpack --config=./config/webpack.config.js",
+        ...
+     }
+  }
+
 Development
 -----------
 
