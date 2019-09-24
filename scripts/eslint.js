@@ -1,8 +1,8 @@
 const path = require('path');
 const fs = require('fs');
-const { spawn } = require('child_process');
 
 const getProjectConfigFile = require('../lib/getProjectConfigFile.js');
+const spawn = require('../lib/spawn');
 const { APP_ROOT } = require('../lib/paths');
 
 module.exports = (args = []) => {
@@ -16,8 +16,5 @@ module.exports = (args = []) => {
   spawn('eslint', [
     ...args,
     APP_ROOT
-  ], {
-    shell: true,
-    stdio: 'inherit',
-  });
+  ]);
 };

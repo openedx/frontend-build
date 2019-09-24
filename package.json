@@ -55,6 +55,7 @@
     "identity-obj-proxy": "^3.0.0",
     "image-webpack-loader": "4.6.0",
     "jest": "^24.9.0",
+    "lodash.defaultsdeep": "^4.6.1",
     "mini-css-extract-plugin": "^0.8.0",
     "new-relic-source-map-webpack-plugin": "^1.2.0",
     "node-sass": "^4.12.0",

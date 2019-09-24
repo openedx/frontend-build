@@ -1,7 +1,7 @@
 const path = require('path');
 const fs = require('fs');
-const { spawn } = require('child_process');
 const getProjectConfigFile = require('../lib/getProjectConfigFile.js');
+const spawn = require('../lib/spawn');
 
 module.exports = (args = []) => {
   const configIsSupplied = args.filter(arg => arg.includes('--config-file')).length > 0;
@@ -11,8 +11,5 @@ module.exports = (args = []) => {
     args.push(`--config-file=${configFile}`)
   }
 
-  spawn('babel', args, {
-    shell: true,
-    stdio: 'inherit',
-  });
+  spawn('babel', args);
 };

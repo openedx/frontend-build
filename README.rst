@@ -32,6 +32,24 @@ package.json::
      }
   }
 
+Development
+-----------
+
+This project leverages the command line interface for webpack, jest, eslint, and babel.
+Because of this, local development can be tricky. The easiest way to do local 
+development on this project is to put it inside a project where it will be used and 
+running `npm i -D ./frontend-build`. Most of the time this should put install
+dependencies in the right location, but it's not fool proof. If you run into errors that
+say something like "webpack: command not found" you have two options. 
+
+1. Delete the node_modules directories from the host project and this one and re-run 
+`npm i -D ./frontend-build` from the host project.
+
+2. Pack this project and install it by running 
+`npm install $(npm pack ../frontend-build/ | tail -1)`. This should work every time but
+you will need to run it every time you make changes to this project.
+
+
 .. |Build Status| image:: https://api.travis-ci.org/edx/frontend-base.svg?branch=master
    :target: https://travis-ci.org/edx/frontend-base
 .. |Codecov| image:: https://img.shields.io/codecov/c/github/edx/frontend-base

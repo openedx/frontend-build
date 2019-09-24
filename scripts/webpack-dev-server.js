@@ -1,6 +1,6 @@
 const path = require('path');
 const fs = require('fs');
-const { spawn } = require('child_process');
+const spawn = require('../lib/spawn');
 const getProjectConfigFile = require('../lib/getProjectConfigFile.js');
 
 module.exports = (appDir, args = []) => {
@@ -12,11 +12,9 @@ module.exports = (appDir, args = []) => {
   }
 
   spawn('webpack-dev-server', args, {
-    env: Object.assign({}, process.env, {
+    env: {
       NODE_ENV: 'development',
       BABEL_ENV: 'development',
-    }),
-    shell: true,
-    stdio: 'inherit',
+    },
   });
 };
