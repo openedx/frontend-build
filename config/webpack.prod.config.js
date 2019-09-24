@@ -16,14 +16,14 @@ const CssNano = require('cssnano');
 const commonConfig = require('./webpack.common.config.js');
 const getProjectConfigFile = require('../lib/getProjectConfigFile');
 
-const { APP_ROOT } = require('../lib/paths');
+const { PROJECT_ROOT } = require('../lib/paths');
 
 module.exports = Merge.smart(commonConfig, {
   mode: 'production',
   devtool: 'source-map',
   output: {
     filename: '[name].[chunkhash].js',
-    path: path.resolve(APP_ROOT, 'dist'),
+    path: path.resolve(PROJECT_ROOT, 'dist'),
   },
   module: {
     // Specify file-by-file rules to Webpack. Some file-types need a particular kind of loader.
@@ -81,8 +81,8 @@ module.exports = Merge.smart(commonConfig, {
             options: {
               sourceMap: true,
               includePaths: [
-                path.join(APP_ROOT, 'node_modules'),
-                path.join(APP_ROOT, 'src'),
+                path.join(PROJECT_ROOT, 'node_modules'),
+                path.join(PROJECT_ROOT, 'src'),
               ],
             },
           },
@@ -139,7 +139,7 @@ module.exports = Merge.smart(commonConfig, {
   plugins: [
     // Cleans the dist directory before each build
     new CleanWebpackPlugin(['dist'], {
-      root: APP_ROOT,
+      root: PROJECT_ROOT,
     }),
     // Writes the extracted CSS from each entry to a file in the output directory.
     new MiniCssExtractPlugin({
@@ -148,10 +148,10 @@ module.exports = Merge.smart(commonConfig, {
     // Generates an HTML file in the output directory.
     new HtmlWebpackPlugin({
       inject: true, // Appends script tags linking to the webpack bundles at the end of the body
-      template: path.resolve(APP_ROOT, 'public/index.html'),
+      template: path.resolve(PROJECT_ROOT, 'public/index.html'),
     }),
     new Dotenv({
-      path: path.resolve(APP_ROOT, '.env'),
+      path: path.resolve(PROJECT_ROOT, '.env'),
     }),
     new HtmlWebpackNewRelicPlugin({
       // This plugin fixes an issue where the newrelic script will break if

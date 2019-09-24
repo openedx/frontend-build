@@ -1,13 +1,13 @@
 const path = require('path');
 
-const { APP_ROOT } = require('../lib/paths');
+const { PROJECT_ROOT } = require('../lib/paths');
 
 module.exports = {
   entry: {
-    app: path.resolve(APP_ROOT, 'src/index'),
+    app: path.resolve(PROJECT_ROOT, 'src/index'),
   },
   output: {
-    path: path.resolve(APP_ROOT, 'dist'),
+    path: path.resolve(PROJECT_ROOT, 'dist'),
     publicPath: '/',
   },
   resolve: {

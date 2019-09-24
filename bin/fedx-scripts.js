@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 
-process.env.APP_ROOT = process.cwd();
+process.env.PROJECT_ROOT = process.cwd();
 
 // args come in the format: node fedx-scripts <command> <options>
 const args = process.argv.slice(2);
