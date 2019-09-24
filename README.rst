@@ -3,7 +3,7 @@ frontend-build
 
 |Build Status| |Codecov| |license|
 
-This repository is under active development. The purpose of this package is to
+The purpose of this package is to
 provide a common sense foundation and setup for frontend projects including:
 
 - linting (eslint)
