@@ -3,16 +3,24 @@ frontend-build
 
 |Build Status| |Codecov| |license|
 
-This repository is under active development. The purpose of this package is to provide a common sense foundation and setup for frontend projects including:
+The purpose of this package is to
+provide a common sense foundation and setup for frontend projects including:
 
 - linting (eslint)
 - testing (jest)
 - development server (webpack-dev-server)
 - build (webpack)
 
-This package can serve as a single dev dependency replacing a large number of dev and build dependencies. It aims to provide common sense defaults that should be good for most edX projects out of the box, but can extended or overridden where needed.
+This package can serve as a single dev dependency replacing a large number of
+dev and build dependencies. It aims to provide common sense defaults that
+should be good for most edX projects out of the box, but can extended or
+overridden where needed.
 
-package.json::
+Usage
+-----
+
+CLI commands are structured: ``fedx-scripts <targetScript> <options>``.
+Example package.json::
 
   {
      "scripts": {
@@ -31,6 +39,68 @@ package.json::
         "@edx/frontend-build-tools": "1.0.0"
      }
   }
+
+Extending or Overriding Default Config
+--------------------------------------
+
+This package contains default configuration for each command it
+offers (webpack, webpack-dev-server, babel, jest, eslint). If you
+need to extend or modify the base configuration you can add your
+own configuration files, either by extending frontend-build's
+configuration files or supplying your own wholesale.
+
+Method 1: Extend base config (babel.config.js)::
+
+   const { createConfig } = require('@edx/frontend-build');
+   module.exports = createConfig('babel', {
+      /* option overrides or extensions */
+   });
+
+Method 2: Custom manipulations (babel.config.js)::
+
+   const { getBaseConfig } = require('@edx/frontend-build');
+   const config = getBaseConfig('babel');
+
+   /* Custom config manipulations */
+
+   module.exports = config;
+
+Frontend build will look in the following locations for configuration
+files.
+
+- eslint: ``<project_root>/.eslintrc.js``
+- jest: ``<project_root>/'jest.config.js``
+- babel: ``<project_root>/'babel.config.js``
+- webpack-prod: ``<project_root>/'webpack.prod.config.js``
+- webpack-dev-server: ``<project_root>/'webpack.dev.config.js``
+
+You may specify custom config file locations via the command
+line if you prefer a different location. Example package.json::
+
+  {
+     "scripts": {
+        "build": "fedx-scripts webpack --config=./config/webpack.config.js",
+        ...
+     }
+  }
+
+Development
+-----------
+
+This project leverages the command line interface for webpack, jest, eslint, and babel.
+Because of this, local development can be tricky. The easiest way to do local 
+development on this project is to put it inside a project where it will be used and 
+running `npm i -D ./frontend-build`. Most of the time this should put install
+dependencies in the right location, but it's not fool proof. If you run into errors that
+say something like "webpack: command not found" you have two options. 
+
+1. Delete the node_modules directories from the host project and this one and re-run 
+`npm i -D ./frontend-build` from the host project.
+
+2. Pack this project and install it by running 
+`npm install $(npm pack ../frontend-build/ | tail -1)`. This should work every time but
+you will need to run it every time you make changes to this project.
+
 
 .. |Build Status| image:: https://api.travis-ci.org/edx/frontend-base.svg?branch=master
    :target: https://travis-ci.org/edx/frontend-base
