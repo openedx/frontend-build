@@ -12,7 +12,10 @@ This repository is under active development. The purpose of this package is to p
 
 This package can serve as a single dev dependency replacing a large number of dev and build dependencies. It aims to provide common sense defaults that should be good for most edX projects out of the box, but can extended or overridden where needed.
 
-package.json::
+Usage
+-----
+
+CLI commands are structured like this: `fedx-scripts <targetScript> <options>`. Example package.json::
 
   {
      "scripts": {

@@ -2,6 +2,7 @@
 
 process.env.APP_ROOT = process.cwd();
 
+// args come in the format: node fedx-scripts <command> <options>
 const args = process.argv.slice(2);
 const command = args.shift();
 
