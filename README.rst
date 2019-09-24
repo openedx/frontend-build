@@ -1,7 +1,7 @@
 frontend-build
 ==============
 
-|Build Status| |Codecov| |license|
+|Build Status| |npm_version| |Codecov| |license|
 
 The purpose of this package is to
 provide a common sense foundation and setup for frontend projects including:
@@ -108,3 +108,4 @@ you will need to run it every time you make changes to this project.
    :target: https://codecov.io/gh/edx/frontend-base
 .. |license| image:: https://img.shields.io/npm/l/@edx/frontend-base.svg
    :target: https://github.com/edx/frontend-base/blob/master/LICENSE
+.. |npm_version| image:: https://img.shields.io/npm/v/@edx/frontend-component-header.svg
