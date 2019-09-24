@@ -4,7 +4,6 @@ const Merge = require('webpack-merge');
 const commonConfig = require('./webpack.common.config.js');
 const path = require('path');
 const Dotenv = require('dotenv-webpack');
-const webpack = require('webpack');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const HtmlWebpackNewRelicPlugin = require('html-webpack-new-relic-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');

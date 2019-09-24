@@ -39,8 +39,9 @@ module.exports = Merge.smart(commonConfig, {
           loader: 'babel-loader',
           options: {
             configFile: getProjectConfigFile('babel'),
-            // Caches result of loader to the filesystem. Future builds will attempt to read from the
-            // cache to avoid needing to run the expensive recompilation process on each run.
+            // Caches result of loader to the filesystem. Future builds will attempt to read
+            // from the cache to avoid needing to run the expensive recompilation process
+            // on each run.
             cacheDirectory: true,
           },
         },

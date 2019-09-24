@@ -10,6 +10,7 @@
     "fedx-scripts": "./bin/fedx-scripts.js"
   },
   "scripts": {
+    "lint": "eslint . --no-eslintrc -c .eslintrc.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -72,5 +73,8 @@
     "webpack-cli": "^3.3.9",
     "webpack-dev-server": "^3.8.1",
     "webpack-merge": "^4.2.2"
+  },
+  "devDependencies": {
+    "semantic-release": "^15.13.24"
   }
 }

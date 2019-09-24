@@ -1,5 +1,3 @@
-const path = require('path');
-const fs = require('fs');
 const spawn = require('../lib/spawn');
 const getProjectConfigFile = require('../lib/getProjectConfigFile.js');
 
@@ -8,7 +6,7 @@ module.exports = (args = []) => {
 
   if (!configIsSupplied) {
     const configFile = getProjectConfigFile('webpack-dev');
-    args.push(`--config=${configFile}`)
+    args.push(`--config=${configFile}`);
   }
 
   spawn('webpack-dev-server', args, {
