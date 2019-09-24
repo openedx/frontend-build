@@ -3,19 +3,24 @@ frontend-build
 
 |Build Status| |Codecov| |license|
 
-This repository is under active development. The purpose of this package is to provide a common sense foundation and setup for frontend projects including:
+This repository is under active development. The purpose of this package is to
+provide a common sense foundation and setup for frontend projects including:
 
 - linting (eslint)
 - testing (jest)
 - development server (webpack-dev-server)
 - build (webpack)
 
-This package can serve as a single dev dependency replacing a large number of dev and build dependencies. It aims to provide common sense defaults that should be good for most edX projects out of the box, but can extended or overridden where needed.
+This package can serve as a single dev dependency replacing a large number of
+dev and build dependencies. It aims to provide common sense defaults that
+should be good for most edX projects out of the box, but can extended or
+overridden where needed.
 
 Usage
 -----
 
-CLI commands are structured like this: `fedx-scripts <targetScript> <options>`. Example package.json::
+CLI commands are structured: ``fedx-scripts <targetScript> <options>``.
+Example package.json::
 
   {
      "scripts": {
