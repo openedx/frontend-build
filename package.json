@@ -10,8 +10,7 @@
     "fedx-scripts": "./bin/fedx-scripts.js"
   },
   "scripts": {
-    "lint": "eslint . --no-eslintrc -c .eslintrc.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "lint": "eslint . --no-eslintrc -c .eslintrc.js"
   },
   "repository": {
     "type": "git",

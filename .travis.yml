@@ -4,7 +4,6 @@ install:
 - npm install
 script:
 - npm run lint
-- npm run test
 after_success:
 - npx semantic-release
 env:
