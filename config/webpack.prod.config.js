@@ -152,6 +152,7 @@ module.exports = Merge.smart(commonConfig, {
     }),
     new Dotenv({
       path: path.resolve(PROJECT_ROOT, '.env'),
+      systemvars: true,
     }),
     new HtmlWebpackNewRelicPlugin({
       // This plugin fixes an issue where the newrelic script will break if

@@ -126,6 +126,7 @@ module.exports = Merge.smart(commonConfig, {
     }),
     new Dotenv({
       path: path.resolve(PROJECT_ROOT, '.env.development'),
+      systemvars: true,
     }),
     // when the --hot option is not passed in as part of the command
     // the HotModuleReplacementPlugin has to be specified in the Webpack configuration
