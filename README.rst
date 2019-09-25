@@ -19,8 +19,9 @@ overridden where needed.
 Usage
 -----
 
-CLI commands are structured: ``fedx-scripts <targetScript> <options>``.
-Example package.json::
+CLI commands are structured: ``fedx-scripts <targetScript> <options>``. Options
+are passed on to the target script, so refer to each target script's cli
+documentation to learn what options are available. Example package.json::
 
   {
      "scripts": {
@@ -102,10 +103,10 @@ say something like "webpack: command not found" you have two options.
 you will need to run it every time you make changes to this project.
 
 
-.. |Build Status| image:: https://api.travis-ci.org/edx/frontend-base.svg?branch=master
-   :target: https://travis-ci.org/edx/frontend-base
-.. |Codecov| image:: https://img.shields.io/codecov/c/github/edx/frontend-base
-   :target: https://codecov.io/gh/edx/frontend-base
-.. |license| image:: https://img.shields.io/npm/l/@edx/frontend-base.svg
+.. |Build Status| image:: https://api.travis-ci.org/edx/frontend-build.svg?branch=master
+   :target: https://travis-ci.org/edx/frontend-build
+.. |Codecov| image:: https://img.shields.io/codecov/c/github/edx/frontend-build
+   :target: https://codecov.io/gh/edx/frontend-build
+.. |license| image:: https://img.shields.io/npm/l/@edx/frontend-build.svg
    :target: https://github.com/edx/frontend-base/blob/master/LICENSE
-.. |npm_version| image:: https://img.shields.io/npm/v/@edx/frontend-component-header.svg
+.. |npm_version| image:: https://img.shields.io/npm/v/@edx/frontend-build.svg
