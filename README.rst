@@ -37,7 +37,7 @@ documentation to learn what options are available. Example package.json::
         ...
      },
      "devDependencies": {
-        "@edx/frontend-build-tools": "1.0.0"
+        "@edx/frontend-build": "1.0.0"
      }
   }
 
