@@ -41,12 +41,19 @@ documentation to learn what options are available. Example package.json::
      }
   }
 
-Extending or Overriding Default Config
+Extending or Overriding Config Presets
 --------------------------------------
 
-This package contains default configuration for each command it
-offers (webpack, webpack-dev-server, babel, jest, eslint). If you
-need to extend or modify the base configuration you can add your
+This package contains a set of configuration presets:
+
+- webpack-prod
+- webpack-dev
+- babel
+- babel-preserve-modules
+- jest
+- eslint
+
+If you need to extend or modify a configuration you can add your
 own configuration files, either by extending frontend-build's
 configuration files or supplying your own wholesale.
 
