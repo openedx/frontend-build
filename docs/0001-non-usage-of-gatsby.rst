@@ -10,8 +10,7 @@ Context
 -------
 
 This package is responsible for containing common code concerning the transpilation,
-building, linting, and testing of React-based microfrontends. These four actions are
-interrelated and therefore the concern of this package. Gatsby was considered as a
+building, linting, and testing of React-based microfrontends. Gatsby was considered as a
 potential tool for this job.
 
 Decision
@@ -20,7 +19,7 @@ Decision
 We will not use Gatsby in these frontend build tools for two reasons:
 
 - Gatsby is itself a javascript framework. It concerns itself with more than 
-  frontend build tooling and into the construction of the runtime of the frontend app itself.
+  frontend build tooling, including patterns and tools for the runtime of the frontend app itself.
 - Gatsby relies heavily on convention, expecting to find files in particular places.
   This makes it difficult/impossible to pull a common configuration of Gatsby into a
   package like this one.
