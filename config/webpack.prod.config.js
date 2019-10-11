@@ -105,7 +105,7 @@ module.exports = Merge.smart(commonConfig, {
       },
       {
         test: /favicon.ico$/,
-        loader: 'file-loader?name=[name].[ext]'  // <-- retain original file name
+        loader: 'file-loader?name=[name].[ext]', // <-- retain original file name
       },
       {
         test: /\.(jpe?g|png|gif|ico)(\?v=\d+\.\d+\.\d+)?$/,
