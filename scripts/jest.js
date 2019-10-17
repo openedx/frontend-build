@@ -4,5 +4,7 @@ const getProjectConfigFile = require('../lib/getProjectConfigFile.js');
 module.exports = (args = []) => {
   getProjectConfigFile('jest');
 
-  spawn('jest', args);
+  spawn('jest', args).on('exit', (code) => {
+    process.exit(code);
+  });
 };

@@ -14,5 +14,7 @@ module.exports = (args = []) => {
       NODE_ENV: 'production',
       BABEL_ENV: 'production',
     },
+  }).on('exit', (code) => {
+    process.exit(code);
   });
 };

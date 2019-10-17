@@ -10,5 +10,7 @@ module.exports = (args = []) => {
     args.push(`--config=${configFile}`);
   }
 
-  spawn('eslint', [...args, PROJECT_ROOT]);
+  spawn('eslint', [...args, PROJECT_ROOT]).on('exit', (code) => {
+    process.exit(code);
+  });
 };
