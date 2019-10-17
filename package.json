@@ -74,6 +74,6 @@
     "webpack-merge": "^4.2.2"
   },
   "devDependencies": {
-    "semantic-release": "^15.13.24"
+    "semantic-release": "15.13.24"
   }
 }
