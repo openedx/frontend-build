@@ -9,5 +9,7 @@ module.exports = (args = []) => {
     args.push(`--config-file=${configFile}`);
   }
 
-  spawn('babel', args);
+  spawn('babel', args).on('exit', (code) => {
+    process.exit(code);
+  });
 };
