@@ -48,6 +48,7 @@ This package contains a set of configuration presets:
 
 - webpack-prod
 - webpack-dev
+- webpack-dev-stage (for running development apps against stage apis)
 - babel
 - babel-preserve-modules
 - jest
@@ -88,6 +89,7 @@ line if you prefer a different location. Example package.json::
   {
      "scripts": {
         "build": "fedx-scripts webpack --config=./config/webpack.config.js",
+        "start:stage": "fedx-scripts webpack-dev-server --config=webpack.dev-stage.config.js",
         ...
      }
   }
