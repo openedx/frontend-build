@@ -5,10 +5,8 @@ require('babel-polyfill');
 
 const { PROJECT_ROOT } = require('../../lib/paths');
 
-const testEnvFile = path.resolve(PROJECT_ROOT, '.env.development');
+const testEnvFile = path.resolve(PROJECT_ROOT, '.env.test');
 
 if (fs.existsSync(testEnvFile)) {
   dotenv.config({ path: testEnvFile });
-} else {
-  console.log(`No .env.development file found at ${testEnvFile}. No env vars will be loaded.`);
 }
