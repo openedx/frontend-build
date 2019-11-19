@@ -32,7 +32,7 @@ module.exports = Merge.smart(commonConfig, {
       // Babel is configured with the .babelrc file at the root of the project.
       {
         test: /\.(js|jsx)$/,
-        exclude: /node_modules/,
+        exclude: /node_modules\/(?!@edx)/,
         use: {
           loader: 'babel-loader',
           options: {
