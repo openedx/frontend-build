@@ -7,6 +7,7 @@ const CleanWebpackPlugin = require('clean-webpack-plugin');
 const HtmlWebpackNewRelicPlugin = require('html-webpack-new-relic-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const NewRelicSourceMapPlugin = require('new-relic-source-map-webpack-plugin');
 const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 const PostCssRtlPlugin = require('postcss-rtl');
 const PostCssAutoprefixerPlugin = require('autoprefixer');
@@ -163,6 +164,12 @@ module.exports = Merge.smart(commonConfig, {
       // We use non empty strings as defaults here to prevent errors for empty configs
       license: process.env.NEW_RELIC_LICENSE_KEY || 'fake_app',
       applicationID: process.env.NEW_RELIC_APP_ID || 'fake_license',
+    }),
+    new NewRelicSourceMapPlugin({
+      applicationId: process.env.NEW_RELIC_APP_ID,
+      nrAdminKey: process.env.NEW_RELIC_ADMIN_KEY,
+      staticAssetUrl: process.env.BASE_URL,
+      noop: typeof process.env.NEW_RELIC_ADMIN_KEY === 'undefined', // upload source maps in prod builds only
     }),
     new BundleAnalyzerPlugin({
       analyzerMode: 'static',
