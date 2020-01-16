@@ -58,7 +58,7 @@
     "lodash.defaultsdeep": "4.6.1",
     "mini-css-extract-plugin": "0.8.0",
     "new-relic-source-map-webpack-plugin": "1.2.0",
-    "node-sass": "4.12.0",
+    "node-sass": "4.13.1",
     "postcss-loader": "3.0.0",
     "postcss-rtl": "1.5.0",
     "react-dev-utils": "9.0.3",
