@@ -7,10 +7,4 @@ module.exports = createConfig('eslint', {
     'global-require': 'off',
     'no-template-curly-in-string': 'off',
   },
-  "parserOptions": {
-    "ecmaVersion": 2017
-  },
-  "env": {
-    "es6": true
-  },
 });

@@ -1,5 +1,5 @@
 module.exports = {
-  "extends": "eslint-config-edx",
+  "extends": "@edx/eslint-config",
   "parser": "babel-eslint",
   "rules": {
     "import/no-extraneous-dependencies": [
@@ -17,16 +17,6 @@ module.exports = {
       "components": [ "Link" ],
       "specialLink": [ "to" ]
     }],
-    "jsx-a11y/label-has-for": [ 2, {
-      "components": [ "label" ],
-      "required": {
-        "some": [ "nesting", "id" ]
-      },
-      "allowChildren": false
-    }]
-  },
-  "env": {
-    "jest": true
   },
   "globals": {
     "newrelic": false
