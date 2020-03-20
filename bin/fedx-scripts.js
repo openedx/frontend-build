@@ -1,6 +1,12 @@
 #!/usr/bin/env node
 const path = require('path');
 
+/**
+ * This file executes forwards cli commands by manipulating process.argv values
+ * and then directly requiring bin scripts from the specified packages.
+ */
+
+
 // Ensures that a config option already exists and if it does not adds a default
 function ensureConfigOption(defaultFilepath, keys = ['--config', '-c']) {
   const optionExists = process.argv.some(arg => keys.includes(arg));
