@@ -46,8 +46,8 @@ Extending or Overriding Config Presets
 
 This package contains a set of configuration presets:
 
-- webpack-prod
-- webpack-dev
+- webpack-prod (or webpack)
+- webpack-dev (or webpack-dev-server)
 - webpack-dev-stage (for running development apps against stage apis)
 - babel
 - babel-preserve-modules
@@ -75,7 +75,7 @@ Method 2: Custom manipulations (babel.config.js)::
    module.exports = config;
 
 Frontend build will look in the following locations for configuration
-files.
+files in your project.
 
 - eslint: ``<project_root>/.eslintrc.js``
 - jest: ``<project_root>/'jest.config.js``
@@ -88,26 +88,34 @@ line if you prefer a different location. Example package.json::
 
   {
      "scripts": {
-        "build": "fedx-scripts webpack --config=./config/webpack.config.js",
-        "start:stage": "fedx-scripts webpack-dev-server --config=webpack.dev-stage.config.js",
+        "build": "fedx-scripts webpack --config ./config/webpack.config.js",
+        "start:stage": "fedx-scripts webpack-dev-server --config webpack.dev-stage.config.js",
         ...
      }
   }
+
+Note, specifying a custom config location for babel may cause issues with other
+tools in frontend-build. eslint, jest, webpack, and webpack-dev-server configuration
+presets rely upon the babel config and resolve the location of the config file
+according to the default locations described above. If you need to move the babel
+config file to a custom location, you may also need to customize references to its
+location in other configuration files. Please reach out to the FedX team if you
+need to do this and are running into problems.
 
 Development
 -----------
 
 This project leverages the command line interface for webpack, jest, eslint, and babel.
-Because of this, local development can be tricky. The easiest way to do local 
-development on this project is to put it inside a project where it will be used and 
+Because of this, local development can be tricky. The easiest way to do local
+development on this project is to put it inside a project where it will be used and
 running ``npm i -D ./frontend-build``. Most of the time this should put install
 dependencies in the right location, but it's not fool proof. If you run into errors that
-say something like "webpack: command not found" you have two options. 
+say something like "webpack: command not found" you have two options.
 
-1. Delete the node_modules directories from the host project and this one and re-run 
+1. Delete the node_modules directories from the host project and this one and re-run
 ``npm i -D ./frontend-build`` from the host project.
 
-2. Pack this project and install it by running 
+2. Pack this project and install it by running
 ``npm install $(npm pack ../frontend-build/ | tail -1)``. This should work every time but
 you will need to run it every time you make changes to this project.
 

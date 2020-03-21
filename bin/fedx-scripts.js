@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-const path = require('path');
+const presets = require('../lib/presets');
 
 /**
  * This file executes forwards cli commands by manipulating process.argv values
@@ -8,23 +8,23 @@ const path = require('path');
 
 
 // Ensures that a config option already exists and if it does not adds a default
-function ensureConfigOption(defaultFilepath, keys = ['--config', '-c']) {
-  const optionExists = process.argv.some(arg => keys.includes(arg));
-
-  // explicily declared. no-op
-  if (optionExists) {
-    return;
-  }
-
-  const resolvedFilepath = require.resolve(defaultFilepath, {
-    paths: [
-      process.cwd(),
-      path.resolve(__dirname, '../config'),
-    ],
+function configOptionExists(keys = ['--config', '-c']) {
+  return process.argv.some((arg) => {
+    for (let i = 0; i < keys.length; i++) {
+      if (arg.startsWith(keys[i])) {
+        return true;
+      }
+    }
+    return false;
   });
+}
 
-  process.argv.push(keys[0]);
-  process.argv.push(resolvedFilepath);
+function ensureConfigOption(preset) {
+  if (!configOptionExists()) {
+    console.log(`Running with resolved config:\n${preset.resolvedFilepath}\n`);
+    process.argv.push('--config');
+    process.argv.push(preset.resolvedFilepath);
+  }
 }
 
 // command is the third argument after node and fedx-scripts
@@ -35,25 +35,25 @@ process.argv.splice(1, 1);
 
 switch (commandName) {
   case 'babel':
-    ensureConfigOption('./babel.config.js');
+    ensureConfigOption(presets.babel);
     require('@babel/cli/bin/babel');
     break;
   case 'eslint':
-    ensureConfigOption('./.eslintrc.js');
+    ensureConfigOption(presets.eslint);
     require('eslint/bin/eslint');
     break;
   case 'jest':
-    ensureConfigOption('./jest.config.js');
+    ensureConfigOption(presets.jest);
     require('jest/bin/jest');
     break;
   case 'webpack':
-    ensureConfigOption('./webpack.prod.config.js');
+    ensureConfigOption(presets.webpack);
     require('webpack/bin/webpack');
     break;
   case 'webpack-dev-server':
-    ensureConfigOption('./webpack.dev.config.js');
+    ensureConfigOption(presets.webpackDevServer);
+    console.log(process.argv);
     require('webpack-dev-server/bin/webpack-dev-server');
     break;
   default:
-    console.error(`${commandName} is not supported via fedx-scripts`);
 }

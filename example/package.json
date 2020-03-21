@@ -9,7 +9,7 @@
     "build2": "../bin/fedx-scripts.js webpack --config ./webpack.prod.config.js",
     "lint": "../bin/fedx-scripts.js eslint .",
     "babel": "../bin/fedx-scripts.js babel src --out-dir dist --source-maps --ignore **/*.test.jsx,**/*.test.js,**/setupTest.js --copy-files",
-    "start": "../bin/fedx-scripts.js webpack-dev-server --help"
+    "start": "../bin/fedx-scripts.js webpack-dev-server"
   },
   "keywords": [],
   "author": "",
