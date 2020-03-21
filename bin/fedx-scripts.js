@@ -3,7 +3,12 @@ const presets = require('../lib/presets');
 
 /**
  * This file executes forwards cli commands by manipulating process.argv values
- * and then directly requiring bin scripts from the specified packages.
+ * and then directly requiring bin scripts from the specified packages
+ * (as opposed to attempting to run them from the aliases npm copies to the .bin
+ * folder upon install). This seems like a relatively safe thing to do since
+ * these file names are identical to their cli name and this method of
+ * requiring/executing them should behave the same as if run from the command
+ * line as usual.
  */
 
 
@@ -27,7 +32,7 @@ function ensureConfigOption(preset) {
   }
 }
 
-// command is the third argument after node and fedx-scripts
+// commandName is the third argument after node and fedx-scripts
 const commandName = process.argv[2];
 
 // remove fedx-scripts from process.argv to allow subcommands to read options properly
