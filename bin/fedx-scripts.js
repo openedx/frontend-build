@@ -15,6 +15,7 @@ const presets = require('../lib/presets');
 // Ensures that a config option already exists and if it does not adds a default
 function configOptionExists(keys = ['--config', '-c']) {
   return process.argv.some((arg) => {
+    // eslint-disable-next-line no-plusplus
     for (let i = 0; i < keys.length; i++) {
       if (arg.startsWith(keys[i])) {
         return true;
