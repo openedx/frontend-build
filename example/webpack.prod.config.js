@@ -1,7 +1,3 @@
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-const CleanWebpackPlugin = require('clean-webpack-plugin');
-const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
-
 const config = {
   // Configuration Object
   mode: 'production',
@@ -32,11 +28,6 @@ const config = {
       },
     ],
   },
-  plugins: [
-    new CleanWebpackPlugin(['dist']),
-    new HtmlWebpackPlugin(),
-    new BundleAnalyzerPlugin({ analyzerMode: 'static', openAnalyzer: false }),
-  ]
 };
 
 module.exports = config;

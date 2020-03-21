@@ -10,7 +10,8 @@
     "fedx-scripts": "./bin/fedx-scripts.js"
   },
   "scripts": {
-    "lint": "eslint . --no-eslintrc -c .eslintrc.js"
+    "lint": "eslint . --no-eslintrc -c .eslintrc.js",
+    "test": "./smoke-test.sh"
   },
   "repository": {
     "type": "git",

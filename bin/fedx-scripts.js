@@ -57,7 +57,6 @@ switch (commandName) {
     break;
   case 'webpack-dev-server':
     ensureConfigOption(presets.webpackDevServer);
-    console.log(process.argv);
     require('webpack-dev-server/bin/webpack-dev-server');
     break;
   default:
