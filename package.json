@@ -33,7 +33,7 @@
     "@babel/preset-env": "7.9.0",
     "@babel/preset-react": "7.9.1",
     "@edx/eslint-config": "1.1.5",
-    "@svgr/webpack": "4.3.2",
+    "@svgr/webpack": "4.3.3",
     "autoprefixer": "9.6.1",
     "babel-eslint": "10.1.0",
     "babel-jest": "24.9.0",
