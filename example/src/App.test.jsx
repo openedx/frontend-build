@@ -1,6 +1,6 @@
 /* eslint-disable global-require */
 import React from 'react';
-import renderer, { act } from 'react-test-renderer';
+import renderer from 'react-test-renderer';
 import App from './App';
 
 describe('Basic test', () => {
