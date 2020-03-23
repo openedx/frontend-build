@@ -3,7 +3,7 @@
 const Merge = require('webpack-merge');
 const path = require('path');
 const Dotenv = require('dotenv-webpack');
-const CleanWebpackPlugin = require('clean-webpack-plugin');
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const HtmlWebpackNewRelicPlugin = require('html-webpack-new-relic-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
@@ -139,9 +139,7 @@ module.exports = Merge.smart(commonConfig, {
   // Specify additional processing or side-effects done on the Webpack output bundles as a whole.
   plugins: [
     // Cleans the dist directory before each build
-    new CleanWebpackPlugin(['dist'], {
-      root: process.cwd(),
-    }),
+    new CleanWebpackPlugin(),
     // Writes the extracted CSS from each entry to a file in the output directory.
     new MiniCssExtractPlugin({
       filename: '[name].[chunkhash].css',
