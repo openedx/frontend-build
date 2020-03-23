@@ -1,5 +1,6 @@
 import React from 'react';
 import appleUrl, { ReactComponent as Apple } from './apple.svg';
+import './style.scss';
 
 export default function App() {
   const newEnglandApples = ['macintosh', 'granny smith'];
