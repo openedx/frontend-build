@@ -61,4 +61,5 @@ switch (commandName) {
     require('webpack-dev-server/bin/webpack-dev-server');
     break;
   default:
+    console.warn(`fedx-scripts: The command ${commandName} is unsupported`);
 }
