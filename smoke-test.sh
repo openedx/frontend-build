@@ -1,3 +1,5 @@
+# exit on any errors in commands below
+# https://stackoverflow.com/questions/90418/exit-shell-script-based-on-process-exit-code
 set -e
 cd example
 npm install
