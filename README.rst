@@ -27,7 +27,7 @@ documentation to learn what options are available. Example package.json::
      "scripts": {
         "build": "fedx-scripts webpack",
         "i18n_extract": "BABEL_ENV=i18n fedx-scripts babel src --quiet > /dev/null",
-        "lint": "fedx-scripts eslint",
+        "lint": "fedx-scripts eslint --ext .jsx,.js .",
         "precommit": "npm run lint",
         "snapshot": "fedx-scripts jest --updateSnapshot",
         "start": "fedx-scripts webpack-dev-server --progress",
@@ -113,8 +113,11 @@ or to test with an existing project you can do the following:
 1. Delete the node_modules directories in the host project:
    ``rm -rf node_modules/``
 
-2. Install the development version of frontend-build
-   ``npm i --save-dev @edx/frontend-build@file:../frontend-build``.
+2. Move frontend-build inside the host project and delete its node modules folder
+   ``mv ../frontend-build ./ && rm -rf frontend-build/node_modules``
+
+3. Install the development version of frontend-build
+   ``npm i --save-dev @edx/frontend-build@file:./frontend-build``.
 
 
 .. |Build Status| image:: https://api.travis-ci.org/edx/frontend-build.svg?branch=master
