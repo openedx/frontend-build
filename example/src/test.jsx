@@ -6,7 +6,7 @@ import App from './App';
 describe('Basic test', () => {
   it('should render', () => {
     const component = <App />;
-
+    // expect(false).toBeTrue();
     const tree = renderer.create(component);
     expect(tree.toJSON()).toMatchSnapshot();
   });

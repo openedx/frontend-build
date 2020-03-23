@@ -11,7 +11,7 @@
   },
   "scripts": {
     "lint": "eslint . --no-eslintrc -c .eslintrc.js",
-    "test": "./smoke-test.sh"
+    "test": "bash ./smoke-test.sh"
   },
   "repository": {
     "type": "git",
