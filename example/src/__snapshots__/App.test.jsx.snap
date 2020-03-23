@@ -19,5 +19,30 @@ exports[`Basic test should render 1`] = `
       golden delicious
     </li>
   </ul>
+  <IconMock
+    style={
+      Object {
+        "width": "10rem",
+      }
+    }
+  />
+  <img
+    alt="apple"
+    src="icon/mock/path"
+    style={
+      Object {
+        "width": "10rem",
+      }
+    }
+  />
+  <img
+    alt="apple"
+    src="icon/mock/path"
+    style={
+      Object {
+        "width": "10rem",
+      }
+    }
+  />
 </div>
 `;
