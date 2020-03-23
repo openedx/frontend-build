@@ -17,7 +17,7 @@ const presets = require('../lib/presets');
  */
 
 
-function configOptionExists(keys = ['--config', '-c']) {
+function optionExists(keys) {
   return process.argv.some((arg) => {
     // eslint-disable-next-line no-plusplus
     for (let i = 0; i < keys.length; i++) {
@@ -30,10 +30,10 @@ function configOptionExists(keys = ['--config', '-c']) {
 }
 
 // Ensures that a config option already exists and if it does not adds a default
-function ensureConfigOption(preset) {
-  if (!configOptionExists()) {
+function ensureConfigOption(preset, keys = ['--config', '-c']) {
+  if (!optionExists(keys)) {
     console.log(`Running with resolved config:\n${preset.resolvedFilepath}\n`);
-    process.argv.push('--config');
+    process.argv.push(keys[0]);
     process.argv.push(preset.resolvedFilepath);
   }
 }
@@ -46,7 +46,7 @@ process.argv.splice(1, 1);
 
 switch (commandName) {
   case 'babel':
-    ensureConfigOption(presets.babel);
+    ensureConfigOption(presets.babel, ['--config-file']);
     require('@babel/cli/bin/babel');
     break;
   case 'eslint':
