@@ -10,13 +10,11 @@ const webpack = require('webpack');
 const PostCssRtlPlugin = require('postcss-rtl');
 
 const commonConfig = require('./webpack.common.config.js');
-const getProjectConfigFile = require('../lib/getProjectConfigFile');
-
-const { PROJECT_ROOT } = require('../lib/paths');
+const presets = require('../lib/presets');
 
 // Add process env vars. Currently used only for setting the server port
 dotenv.config({
-  path: path.resolve(PROJECT_ROOT, '.env.development-stage'),
+  path: path.resolve(process.cwd(), '.env.development-stage'),
 });
 
 module.exports = Merge.smart(commonConfig, {
@@ -25,7 +23,7 @@ module.exports = Merge.smart(commonConfig, {
   entry: {
     // enable react's custom hot dev client so we get errors reported in the browser
     hot: require.resolve('react-dev-utils/webpackHotDevClient'),
-    app: path.resolve(PROJECT_ROOT, 'src/index'),
+    app: path.resolve(process.cwd(), 'src/index'),
   },
   module: {
     // Specify file-by-file rules to Webpack. Some file-types need a particular kind of loader.
@@ -38,7 +36,7 @@ module.exports = Merge.smart(commonConfig, {
         use: {
           loader: 'babel-loader',
           options: {
-            configFile: getProjectConfigFile('babel'),
+            configFile: presets.webpackDevServerStage.resolvedFilepath,
             // Caches result of loader to the filesystem. Future builds will attempt to read
             // from the cache to avoid needing to run the expensive recompilation process
             // on each run.
@@ -71,8 +69,8 @@ module.exports = Merge.smart(commonConfig, {
             options: {
               sourceMap: true,
               includePaths: [
-                path.join(PROJECT_ROOT, 'node_modules'),
-                path.join(PROJECT_ROOT, 'src'),
+                path.join(process.cwd(), 'node_modules'),
+                path.join(process.cwd(), 'src'),
               ],
             },
           },
@@ -126,10 +124,10 @@ module.exports = Merge.smart(commonConfig, {
     // Generates an HTML file in the output directory.
     new HtmlWebpackPlugin({
       inject: true, // Appends script tags linking to the webpack bundles at the end of the body
-      template: path.resolve(PROJECT_ROOT, 'public/index.html'),
+      template: path.resolve(process.cwd(), 'public/index.html'),
     }),
     new Dotenv({
-      path: path.resolve(PROJECT_ROOT, '.env.development-stage'),
+      path: path.resolve(process.cwd(), '.env.development-stage'),
       systemvars: true,
     }),
     // when the --hot option is not passed in as part of the command

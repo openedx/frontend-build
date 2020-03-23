@@ -1,0 +1,23 @@
+{
+  "name": "example",
+  "version": "1.0.0",
+  "description": "",
+  "main": "webpack.prod.config.js",
+  "scripts": {
+    "test": "../bin/fedx-scripts.js jest ./src",
+    "build": "../bin/fedx-scripts.js webpack --config ./webpack.prod.config.js",
+    "lint": "../bin/fedx-scripts.js eslint .",
+    "babel": "../bin/fedx-scripts.js babel src --out-dir dist/babel --source-maps --ignore **/*.test.jsx,**/*.test.js --copy-files",
+    "start": "../bin/fedx-scripts.js webpack-dev-server"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "react": "^16.12.0",
+    "react-dom": "^16.12.0"
+  },
+  "devDependencies": {
+    "react-test-renderer": "^16.13.1"
+  }
+}

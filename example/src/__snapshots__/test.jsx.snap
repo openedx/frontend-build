@@ -1,0 +1,23 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Basic test should render 1`] = `
+<div>
+  <h1>
+    The Apples
+  </h1>
+  <ul>
+    <li>
+      macintosh
+    </li>
+    <li>
+      granny smith
+    </li>
+    <li>
+      fuji
+    </li>
+    <li>
+      golden delicious
+    </li>
+  </ul>
+</div>
+`;
