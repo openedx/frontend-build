@@ -1,6 +1,7 @@
 import React from 'react';
 import appleUrl, { ReactComponent as Apple } from './apple.svg';
 import './style.scss';
+import appleImg from './apple.jpg';
 
 export default function App() {
   const newEnglandApples = ['macintosh', 'granny smith'];
@@ -14,6 +15,9 @@ export default function App() {
       <Apple style={{ width: '10rem' }} />
       <img src={appleUrl} alt="apple" style={{ width: '10rem' }} />
       <img src={appleUrl} alt="apple" style={{ width: '10rem' }} />
+      <br />
+      <img src={appleImg} alt="apple" style={{ width: '10rem' }} />
+      <p>Photo by Louis Hansel @shotsoflouis on Unsplash</p>
     </div>
   );
 }

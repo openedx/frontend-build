@@ -44,5 +44,18 @@ exports[`Basic test should render 1`] = `
       }
     }
   />
+  <br />
+  <img
+    alt="apple"
+    src="test-file-stub"
+    style={
+      Object {
+        "width": "10rem",
+      }
+    }
+  />
+  <p>
+    Photo by Louis Hansel @shotsoflouis on Unsplash
+  </p>
 </div>
 `;

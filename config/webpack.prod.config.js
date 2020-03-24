@@ -111,15 +111,15 @@ module.exports = Merge.smart(commonConfig, {
           {
             loader: 'image-webpack-loader',
             options: {
-              optimizationlevel: 7,
               mozjpeg: {
                 progressive: true,
+                quality: 65,
               },
               gifsicle: {
                 interlaced: false,
               },
               pngquant: {
-                quality: '65-90',
+                quality: [0.65, 0.90],
                 speed: 4,
               },
             },
