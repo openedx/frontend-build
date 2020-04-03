@@ -36,7 +36,7 @@ module.exports = Merge.smart(commonConfig, {
         use: {
           loader: 'babel-loader',
           options: {
-            configFile: presets.webpackDevServerStage.resolvedFilepath,
+            configFile: presets.babel.resolvedFilepath,
             // Caches result of loader to the filesystem. Future builds will attempt to read
             // from the cache to avoid needing to run the expensive recompilation process
             // on each run.
