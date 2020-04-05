@@ -61,6 +61,10 @@ switch (commandName) {
     ensureConfigOption(presets.webpack);
     require('webpack/bin/webpack');
     break;
+  case 'webpack-dev':
+    ensureConfigOption(presets.webpackDev);
+    require('webpack/bin/webpack');
+    break;
   case 'webpack-dev-server':
     ensureConfigOption(presets.webpackDevServer);
     require('webpack-dev-server/bin/webpack-dev-server');
