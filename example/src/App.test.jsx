@@ -5,8 +5,8 @@ import App from './App';
 
 describe('Basic test', () => {
   it('should render', () => {
-    const component = <App />;
-    const tree = renderer.create(component);
+    const Component = <App />;
+    const tree = renderer.create(Component);
     expect(tree.toJSON()).toMatchSnapshot();
   });
 });
