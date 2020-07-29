@@ -12,7 +12,8 @@ const PostCssRtlPlugin = require('postcss-rtl');
 const commonConfig = require('./webpack.common.config.js');
 const presets = require('../lib/presets');
 
-// Add process env vars. Currently used only for setting the server port
+// Add process env vars. Currently used only for setting the
+// server port and the publicPath
 dotenv.config({
   path: path.resolve(process.cwd(), '.env.development'),
 });
@@ -78,6 +79,9 @@ module.exports = merge(commonConfig, {
     // enable react's custom hot dev client so we get errors reported in the browser
     hot: require.resolve('react-dev-utils/webpackHotDevClient'),
     app: path.resolve(process.cwd(), 'src/index'),
+  },
+  output: {
+    publicPath: process.env.PUBLIC_PATH || '/',
   },
   resolve: {
     alias: aliases,
@@ -202,6 +206,6 @@ module.exports = merge(commonConfig, {
     historyApiFallback: true,
     hot: true,
     inline: true,
-    publicPath: '/',
+    publicPath: process.env.PUBLIC_PATH || '/',
   },
 });

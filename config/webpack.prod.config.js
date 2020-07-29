@@ -2,6 +2,7 @@
 // optimized bundles at the expense of a longer build time.
 const { merge } = require('webpack-merge');
 const path = require('path');
+const dotenv = require('dotenv');
 const Dotenv = require('dotenv-webpack');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const HtmlWebpackNewRelicPlugin = require('html-webpack-new-relic-plugin');
@@ -15,12 +16,18 @@ const CssNano = require('cssnano');
 const commonConfig = require('./webpack.common.config.js');
 const presets = require('../lib/presets');
 
+// Add process env vars. Currently used only for setting the PUBLIC_PATH.
+dotenv.config({
+  path: path.resolve(process.cwd(), '.env'),
+});
+
 module.exports = merge(commonConfig, {
   mode: 'production',
   devtool: 'source-map',
   output: {
     filename: '[name].[chunkhash].js',
     path: path.resolve(process.cwd(), 'dist'),
+    publicPath: process.env.PUBLIC_PATH || '/',
   },
   module: {
     // Specify file-by-file rules to Webpack. Some file-types need a particular kind of loader.
