@@ -102,6 +102,33 @@ config file to a custom location, you may also need to customize references to i
 location in other configuration files. Please reach out to the FedX team if you
 need to do this and are running into problems.
 
+Local module configuration for Webpack
+--------------------------------------
+
+The development webpack configuration allows engineers to create a "module.config.js" file containing local module overrides.  This means that if you're developing a new feature in a shared library (@edx/frontend-platform, @edx/paragon, etc.), you can add the local location of that repository to your module.config.js file and the webpack build for your application will automatically pick it up and use it, rather than its node_modules version of the file.
+
+An example module.config.js file looks like the following.  You can copy this into your application to use local versions of paragon and frontend-platform::
+
+   module.exports = {
+      /*
+      Modules you want to use from local source code.  Adding a module here means that when this app
+      runs its build, it'll resolve the source from peer directories of this app.
+
+      moduleName: the name you use to import code from the module.
+      dir: The relative path to the module's source code.
+      dist: The sub-directory of the source code where it puts its build artifact.  Often "dist".
+      */
+      localModules: [
+         { moduleName: '@edx/paragon/scss', dir: '../paragon', dist: 'scss' },
+         { moduleName: '@edx/paragon', dir: '../paragon', dist: 'dist' },
+         { moduleName: '@edx/frontend-platform', dir: '../frontend-platform', dist: 'dist' },
+      ],
+   };
+
+Note that the "dir" and "dist" keys give you granular control over the shape of your repository's distribution.  Paragon, for instance, needs two separate entries to pick up both JS and SCSS imports.
+
+This mechanism uses Webpack resolve aliases, as documented here: https://webpack.js.org/configuration/resolve/#resolvealias
+
 Development
 -----------
 
