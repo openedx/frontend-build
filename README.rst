@@ -78,10 +78,10 @@ Frontend build will look in the following locations for configuration
 files in your project.
 
 - eslint: ``<project_root>/.eslintrc.js``
-- jest: ``<project_root>/'jest.config.js``
-- babel: ``<project_root>/'babel.config.js``
-- webpack-prod: ``<project_root>/'webpack.prod.config.js``
-- webpack-dev-server: ``<project_root>/'webpack.dev.config.js``
+- jest: ``<project_root>/jest.config.js``
+- babel: ``<project_root>/babel.config.js``
+- webpack-prod: ``<project_root>/webpack.prod.config.js``
+- webpack-dev-server: ``<project_root>/webpack.dev.config.js``
 
 You may specify custom config file locations via the command
 line if you prefer a different location. Example package.json::
