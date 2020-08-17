@@ -42,7 +42,6 @@
     "babel-plugin-transform-imports": "2.0.0",
     "babel-polyfill": "6.26.0",
     "clean-webpack-plugin": "3.0.0",
-    "copy-webpack-plugin": "5.1.1",
     "css-loader": "3.5.1",
     "cssnano": "4.1.10",
     "dotenv": "8.2.0",
@@ -61,7 +60,7 @@
     "jest": "26.0.1",
     "mini-css-extract-plugin": "0.9.0",
     "new-relic-source-map-webpack-plugin": "1.2.0",
-    "node-sass": "4.13.1",
+    "node-sass": "4.14.1",
     "postcss-loader": "3.0.0",
     "postcss-rtl": "1.7.3",
     "react-dev-utils": "9.1.0",
@@ -73,7 +72,7 @@
     "webpack": "4.42.1",
     "webpack-bundle-analyzer": "3.6.1",
     "webpack-cli": "3.3.11",
-    "webpack-dev-server": "3.10.3",
+    "webpack-dev-server": "3.11.0",
     "webpack-merge": "4.2.2"
-  }
+  },
 }
