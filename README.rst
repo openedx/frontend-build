@@ -107,6 +107,8 @@ Local module configuration for Webpack
 
 The development webpack configuration allows engineers to create a "module.config.js" file containing local module overrides.  This means that if you're developing a new feature in a shared library (@edx/frontend-platform, @edx/paragon, etc.), you can add the local location of that repository to your module.config.js file and the webpack build for your application will automatically pick it up and use it, rather than its node_modules version of the file.
 
+**NOTE: This module.config.js file should be added to your** `.gitignore`.
+
 An example module.config.js file looks like the following.  You can copy this into your application to use local versions of paragon and frontend-platform::
 
    module.exports = {
