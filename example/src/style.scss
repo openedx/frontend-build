@@ -1,3 +1,5 @@
-body {
-  border: solid 4px red;
+$h1-color: red;
+
+h1 {
+  color: $h1-color;
 }
