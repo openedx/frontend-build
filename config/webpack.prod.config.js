@@ -77,10 +77,12 @@ module.exports = Merge.smart(commonConfig, {
             loader: 'sass-loader', // compiles Sass to CSS
             options: {
               sourceMap: true,
-              includePaths: [
-                path.join(process.cwd(), 'node_modules'),
-                path.join(process.cwd(), 'src'),
-              ],
+              sassOptions: {
+                includePaths: [
+                  path.join(process.cwd(), 'node_modules'),
+                  path.join(process.cwd(), 'src'),
+                ],
+              },
             },
           },
         ],
