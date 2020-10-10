@@ -1,7 +1,7 @@
 // This is the dev Webpack config. All settings here should prefer a fast build
 // time at the expense of creating larger, unoptimized bundles.
 
-const Merge = require('webpack-merge');
+const { merge } = require('webpack-merge');
 const path = require('path');
 const dotenv = require('dotenv');
 const Dotenv = require('dotenv-webpack');
@@ -17,7 +17,7 @@ dotenv.config({
   path: path.resolve(process.cwd(), '.env.development-stage'),
 });
 
-module.exports = Merge.smart(commonConfig, {
+module.exports = merge(commonConfig, {
   mode: 'development',
   devtool: 'eval-source-map',
   entry: {

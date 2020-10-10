@@ -1,6 +1,6 @@
 // This is the prod Webpack config. All settings here should prefer smaller,
 // optimized bundles at the expense of a longer build time.
-const Merge = require('webpack-merge');
+const { merge } = require('webpack-merge');
 const path = require('path');
 const Dotenv = require('dotenv-webpack');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
@@ -15,7 +15,7 @@ const CssNano = require('cssnano');
 const commonConfig = require('./webpack.common.config.js');
 const presets = require('../lib/presets');
 
-module.exports = Merge.smart(commonConfig, {
+module.exports = merge(commonConfig, {
   mode: 'production',
   devtool: 'source-map',
   output: {
