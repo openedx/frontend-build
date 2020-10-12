@@ -162,11 +162,9 @@ module.exports = merge(commonConfig, {
         ],
       },
       {
-        test: /.svg$/,
-        issuer: {
-          test: /\.jsx?$/,
-        },
-        loader: '@svgr/webpack',
+        test: /.svg(\?v=\d+\.\d+\.\d+)?$/,
+        issuer: /\.jsx?$/,
+        use: ['@svgr/webpack'],
       },
       // Webpack, by default, uses the url-loader for images and fonts that are required/included by
       // files it processes, which just base64 encodes them and inlines them in the javascript
@@ -178,7 +176,10 @@ module.exports = merge(commonConfig, {
       },
       {
         test: /favicon.ico$/,
-        loader: 'file-loader?name=[name].[ext]', // <-- retain original file name
+        loader: 'file-loader',
+        options: {
+          name: '[name].[ext]', // <-- retain original file name
+        },
       },
       {
         test: /\.(jpe?g|png|gif)(\?v=\d+\.\d+\.\d+)?$/,

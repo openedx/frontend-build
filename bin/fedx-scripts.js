@@ -16,7 +16,6 @@ const presets = require('../lib/presets');
  * them should behave the same as if run from the command line as usual.
  */
 
-
 function optionExists(keys) {
   return process.argv.some((arg) => {
     // eslint-disable-next-line no-plusplus
