@@ -71,6 +71,7 @@ function getLocalAliases() {
 }
 
 const aliases = getLocalAliases();
+const PUBLIC_PATH = process.env.PUBLIC_PATH || '/';
 
 module.exports = merge(commonConfig, {
   mode: 'development',
@@ -81,7 +82,7 @@ module.exports = merge(commonConfig, {
     app: path.resolve(process.cwd(), 'src/index'),
   },
   output: {
-    publicPath: process.env.PUBLIC_PATH || '/',
+    publicPath: PUBLIC_PATH,
   },
   resolve: {
     alias: aliases,
@@ -203,9 +204,11 @@ module.exports = merge(commonConfig, {
   devServer: {
     host: '0.0.0.0',
     port: process.env.PORT || 8080,
-    historyApiFallback: true,
+    historyApiFallback: {
+      index: path.join(PUBLIC_PATH, 'index.html'),
+    },
     hot: true,
     inline: true,
-    publicPath: process.env.PUBLIC_PATH || '/',
+    publicPath: PUBLIC_PATH,
   },
 });
