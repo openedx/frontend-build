@@ -158,6 +158,7 @@ module.exports = merge(commonConfig, {
       inject: true, // Appends script tags linking to the webpack bundles at the end of the body
       template: path.resolve(process.cwd(), 'public/index.html'),
       OPTIMIZELY_PROJECT_ID: process.env.OPTIMIZELY_PROJECT_ID || null,
+      publicPath: process.env.PUBLIC_PATH || 'auto',
     }),
     new Dotenv({
       path: path.resolve(process.cwd(), '.env'),

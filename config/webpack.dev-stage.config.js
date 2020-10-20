@@ -127,6 +127,7 @@ module.exports = merge(commonConfig, {
     new HtmlWebpackPlugin({
       inject: true, // Appends script tags linking to the webpack bundles at the end of the body
       template: path.resolve(process.cwd(), 'public/index.html'),
+      publicPath: process.env.PUBLIC_PATH || 'auto',
     }),
     new Dotenv({
       path: path.resolve(process.cwd(), '.env.development-stage'),
