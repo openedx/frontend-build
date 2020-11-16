@@ -149,8 +149,8 @@ or to test with an existing project you can do the following:
    ``npm i --save-dev @edx/frontend-build@file:./frontend-build``.
 
 
-.. |Build Status| image:: https://api.travis-ci.org/edx/frontend-build.svg?branch=master
-   :target: https://travis-ci.org/edx/frontend-build
+.. |Build Status| image:: https://api.travis-ci.com/edx/frontend-build.svg?branch=master
+   :target: https://travis-ci.com/edx/frontend-build
 .. |Codecov| image:: https://img.shields.io/codecov/c/github/edx/frontend-build
    :target: https://codecov.io/gh/edx/frontend-build
 .. |license| image:: https://img.shields.io/npm/l/@edx/frontend-build.svg
