@@ -53,7 +53,7 @@ function getLocalAliases() {
     const excludedPeerPackages = [];
     localModules.forEach(({ moduleName, dir, dist = '' }) => {
       // eslint-disable-next-line import/no-dynamic-require, global-require
-      const { peerDependencies, name } = require(path.resolve(process.cwd(), dir, 'package.json'));
+      const { peerDependencies = {}, name } = require(path.resolve(process.cwd(), dir, 'package.json'));
       allPeerDependencies = allPeerDependencies.concat(Object.keys(peerDependencies));
       aliases[moduleName] = path.resolve(process.cwd(), dir, dist);
       excludedPeerPackages.push(name);
