@@ -119,6 +119,10 @@ An example module.config.js file looks like the following.  You can copy this in
      moduleName: the name you use to import code from the module.
      dir: The relative path to the module's source code.
      dist: The sub-directory of the source code where it puts its build artifact.  Often "dist".
+     
+     IMPORTANT NOTE: If any of the below packages (like paragon and frontend-platform have a build step 
+     that populates their 'dist' directories, you must manually run that step.  For paragon and 
+     frontend-platform, for instance, you need to run `npm run build` in the repo before module.config.js will work.
      */
      localModules: [
        { moduleName: '@edx/brand', dir: '../brand-openedx' }, // replace with your brand checkout
