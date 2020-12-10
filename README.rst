@@ -157,8 +157,6 @@ or to test with an existing project you can do the following:
 When making commits, ensure to use the [supported commit lint format](https://github.com/semantic-release/semantic-release#commit-message-format) otherwise your release will
 not be created by semantic-release. Commitlint support will be added to the project to address this.
 
-.. |Build Status| image:: https://api.travis-ci.org/edx/frontend-build.svg?branch=master
-   :target: https://travis-ci.org/edx/frontend-build
 .. |Codecov| image:: https://img.shields.io/codecov/c/github/edx/frontend-build
    :target: https://codecov.io/gh/edx/frontend-build
 .. |license| image:: https://img.shields.io/npm/l/@edx/frontend-build.svg
