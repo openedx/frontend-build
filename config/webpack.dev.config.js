@@ -8,6 +8,7 @@ const Dotenv = require('dotenv-webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const webpack = require('webpack');
 const PostCssRtlPlugin = require('postcss-rtl');
+const PostCssAutoprefixerPlugin = require('autoprefixer');
 
 const commonConfig = require('./webpack.common.config.js');
 const presets = require('../lib/presets');
@@ -60,7 +61,10 @@ module.exports = Merge.smart(commonConfig, {
           {
             loader: 'postcss-loader',
             options: {
-              plugins: () => [PostCssRtlPlugin()],
+              plugins: () => [
+                PostCssRtlPlugin(),
+                PostCssAutoprefixerPlugin({ grid: true }),
+              ],
             },
           },
           'resolve-url-loader',
