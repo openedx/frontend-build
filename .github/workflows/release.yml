@@ -3,6 +3,9 @@ on:
   push:
     branches:
       - master
+      - next
+      - beta
+      - alpha
 jobs:
   release:
     name: Release
@@ -23,7 +26,22 @@ jobs:
       - name: Test
         run: npm run test
       - name: Release
+        uses: cycjimmy/semantic-release-action@v2
+        with:
+          semantic_version: 16
+          branches: |
+            [
+              'master',
+              'next',
+              {
+                name: 'beta',
+                prerelease: true
+              },
+              {
+                name: 'alpha',
+                prerelease: true
+              }
+            ]
         env:
-          GITHUB_TOKEN: ${{ secrets.SEMANTIC_RELEASE_GITHUB_TOKEN }}
-          NPM_TOKEN: ${{ secrets.SEMANTIC_RELEASE_NPM_TOKEN }}
-        run: npx semantic-release
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
