@@ -8,6 +8,7 @@ const Dotenv = require('dotenv-webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const webpack = require('webpack');
 const PostCssRtlPlugin = require('postcss-rtl');
+const PostCssAutoprefixerPlugin = require('autoprefixer');
 
 const commonConfig = require('./webpack.common.config.js');
 const presets = require('../lib/presets');
@@ -53,7 +54,7 @@ function getLocalAliases() {
     const excludedPeerPackages = [];
     localModules.forEach(({ moduleName, dir, dist = '' }) => {
       // eslint-disable-next-line import/no-dynamic-require, global-require
-      const { peerDependencies, name } = require(path.resolve(process.cwd(), dir, 'package.json'));
+      const { peerDependencies = {}, name } = require(path.resolve(process.cwd(), dir, 'package.json'));
       allPeerDependencies = allPeerDependencies.concat(Object.keys(peerDependencies));
       aliases[moduleName] = path.resolve(process.cwd(), dir, dist);
       excludedPeerPackages.push(name);
@@ -122,7 +123,10 @@ module.exports = merge(commonConfig, {
           {
             loader: 'postcss-loader',
             options: {
-              plugins: () => [PostCssRtlPlugin()],
+              plugins: () => [
+                PostCssRtlPlugin(),
+                PostCssAutoprefixerPlugin({ grid: true }),
+              ],
             },
           },
           'resolve-url-loader',
@@ -189,6 +193,7 @@ module.exports = merge(commonConfig, {
     new HtmlWebpackPlugin({
       inject: true, // Appends script tags linking to the webpack bundles at the end of the body
       template: path.resolve(process.cwd(), 'public/index.html'),
+      FAVICON_URL: process.env.FAVICON_URL || null,
     }),
     new Dotenv({
       path: path.resolve(process.cwd(), '.env.development'),
