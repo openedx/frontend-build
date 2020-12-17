@@ -56,7 +56,7 @@
     "html-webpack-new-relic-plugin": "2.0.0",
     "html-webpack-plugin": "4.5.0",
     "identity-obj-proxy": "3.0.0",
-    "image-webpack-loader": "7.0.1",
+    "image-webpack-loader": "6.0.0",
     "jest": "26.4.2",
     "mini-css-extract-plugin": "0.12.0",
     "new-relic-source-map-webpack-plugin": "1.2.0",
