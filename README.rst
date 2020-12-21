@@ -136,6 +136,18 @@ Note that the "dir" and "dist" keys give you granular control over the shape of 
 
 This mechanism uses Webpack resolve aliases, as documented here: https://webpack.js.org/configuration/resolve/#resolvealias
 
+Override default .env.development environment variables with .env.private
+-------------------------------------------------------------------------
+
+In some situations, you may want to override development environment variables defined in .env.development
+with private environment variables that should never be checked into a repository. For example, a
+.env.development file may contain secrets for a third-party service (e.g., Algolia) that you'd like to use
+during development but want to ensure these secrets are not checked into Git.
+
+You may create a `.env.private` with any overrides of the environment settings configured in `.env.development`.
+
+**Note: .env.private should be added to your project's .gitignore so it does not get checked in.**
+
 Development
 -----------
 

@@ -12,12 +12,18 @@ const PostCssAutoprefixerPlugin = require('autoprefixer');
 
 const commonConfig = require('./webpack.common.config.js');
 const presets = require('../lib/presets');
+const resolvePrivateEnvConfig = require('../lib/resolvePrivateEnvConfig');
 
 // Add process env vars. Currently used only for setting the
 // server port and the publicPath
 dotenv.config({
   path: path.resolve(process.cwd(), '.env.development'),
 });
+
+// Allow private/local overrides of env vars from .env.development for config settings
+// that you'd like to persist locally during development, without the risk of checking
+// in temporary modifications to .env.development.
+resolvePrivateEnvConfig('.env.private');
 
 /*
 This function reads in a 'module.config.js' file if it exists and uses its contents to define
