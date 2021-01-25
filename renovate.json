@@ -2,6 +2,10 @@
   "extends": [
     "config:base"
   ],
+  "patch": {
+    "automerge": true
+  },
+  "rebaseStalePrs": true,
   "packageRules": [
     {
       "packagePatterns": [
