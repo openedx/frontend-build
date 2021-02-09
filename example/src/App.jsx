@@ -20,6 +20,8 @@ export default function App() {
       <br />
       <img src={appleImg} alt="apple" style={{ width: '10rem' }} />
       <p>Photo by Louis Hansel @shotsoflouis on Unsplash</p>
+      <p>Test variable: {process.env.TEST_VARIABLE}</p>
+      <p>Non-existent variable: {process.env.I_AM_NOT_HERE}</p>
     </div>
   );
 }
