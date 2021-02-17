@@ -2,6 +2,7 @@
 // time at the expense of creating larger, unoptimized bundles.
 
 const { merge } = require('webpack-merge');
+const fs = require('fs');
 const path = require('path');
 const dotenv = require('dotenv');
 const Dotenv = require('dotenv-webpack');
@@ -9,7 +10,6 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const webpack = require('webpack');
 const PostCssRtlPlugin = require('postcss-rtl');
 const PostCssAutoprefixerPlugin = require('autoprefixer');
-
 const commonConfig = require('./webpack.common.config.js');
 const presets = require('../lib/presets');
 const resolvePrivateEnvConfig = require('../lib/resolvePrivateEnvConfig');
@@ -53,12 +53,21 @@ function getLocalAliases() {
   const aliases = {};
 
   try {
+    const moduleConfigPath = path.resolve(process.cwd(), 'module.config.js');
+    if (!fs.existsSync(moduleConfigPath)) {
+      console.log('No local module configuration file found. This is fine.');
+      return aliases;
+    }
     // eslint-disable-next-line import/no-dynamic-require, global-require
-    const { localModules } = require(path.resolve(process.cwd(), 'module.config.js'));
+    const { localModules } = require(moduleConfigPath);
 
     let allPeerDependencies = [];
     const excludedPeerPackages = [];
+    if (localModules.length > 0) {
+      console.info('Resolving modules from local directories via module.config.js.');
+    }
     localModules.forEach(({ moduleName, dir, dist = '' }) => {
+      console.info(`Using local version of ${moduleName} from ${dir}/${dist}.`);
       // eslint-disable-next-line import/no-dynamic-require, global-require
       const { peerDependencies = {}, name } = require(path.resolve(process.cwd(), dir, 'package.json'));
       allPeerDependencies = allPeerDependencies.concat(Object.keys(peerDependencies));
@@ -72,7 +81,9 @@ function getLocalAliases() {
       aliases[dep] = path.resolve(process.cwd(), 'node_modules', dep);
     });
   } catch (e) {
-    console.log('No local module configuration file found. This is fine.');
+    console.error(e);
+    console.error('Error in module.config.js parsing. module.config.js will be ignored.');
+    return {};
   }
   return aliases;
 }
