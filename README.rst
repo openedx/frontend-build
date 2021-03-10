@@ -127,6 +127,7 @@ An example module.config.js file looks like the following.  You can copy this in
      localModules: [
        { moduleName: '@edx/brand', dir: '../brand-openedx' }, // replace with your brand checkout
        { moduleName: '@edx/paragon/scss/core', dir: '../paragon', dist: 'scss/core' },
+       { moduleName: '@edx/paragon/icons', dir: '../paragon', dist: 'icons' },
        { moduleName: '@edx/paragon', dir: '../paragon', dist: 'dist' },
        { moduleName: '@edx/frontend-platform', dir: '../frontend-platform', dist: 'dist' },
      ],
