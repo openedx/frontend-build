@@ -62,7 +62,7 @@
     "new-relic-source-map-webpack-plugin": "1.2.0",
     "postcss-loader": "3.0.0",
     "postcss-rtl": "1.7.3",
-    "react-dev-utils": "11.0.3",
+    "react-dev-utils": "11.0.4",
     "resolve-url-loader": "3.1.2",
     "sass": "1.26.11",
     "sass-loader": "10.0.5",
