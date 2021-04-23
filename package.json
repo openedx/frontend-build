@@ -54,7 +54,7 @@
     "eslint-plugin-react-hooks": "1.7.0",
     "file-loader": "6.2.0",
     "html-webpack-new-relic-plugin": "2.0.0",
-    "html-webpack-plugin": "4.5.1",
+    "html-webpack-plugin": "4.5.2",
     "identity-obj-proxy": "3.0.0",
     "image-webpack-loader": "6.0.0",
     "jest": "26.4.2",
