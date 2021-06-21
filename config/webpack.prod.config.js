@@ -1,18 +1,19 @@
 // This is the prod Webpack config. All settings here should prefer smaller,
 // optimized bundles at the expense of a longer build time.
-const { merge } = require('webpack-merge');
-const path = require('path');
-const dotenv = require('dotenv');
-const Dotenv = require('dotenv-webpack');
+
+const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+const { merge } = require('webpack-merge');
+const CssNano = require('cssnano');
+const Dotenv = require('dotenv-webpack');
+const dotenv = require('dotenv');
 const HtmlWebpackNewRelicPlugin = require('html-webpack-new-relic-plugin');
 const NewRelicSourceMapPlugin = require('new-relic-source-map-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
-const PostCssRtlPlugin = require('postcss-rtl');
+const path = require('path');
 const PostCssAutoprefixerPlugin = require('autoprefixer');
-const CssNano = require('cssnano');
+const PostCssRTLCSS = require('postcss-rtlcss');
 
 const commonConfig = require('./webpack.common.config.js');
 const presets = require('../lib/presets');
@@ -73,11 +74,13 @@ module.exports = merge(commonConfig, {
           {
             loader: 'postcss-loader',
             options: {
-              plugins: () => [
-                PostCssRtlPlugin(),
-                PostCssAutoprefixerPlugin({ grid: true }),
-                CssNano(),
-              ],
+              postcssOptions: {
+                plugins: [
+                  PostCssAutoprefixerPlugin({ grid: true }),
+                  PostCssRTLCSS(),
+                  CssNano(),
+                ],
+              },
             },
           },
           'resolve-url-loader',
