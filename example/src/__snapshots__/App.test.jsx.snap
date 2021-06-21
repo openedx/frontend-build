@@ -57,5 +57,16 @@ exports[`Basic test should render 1`] = `
   <p>
     Photo by Louis Hansel @shotsoflouis on Unsplash
   </p>
+  <p>
+    Test variable: 
+  </p>
+  <p>
+    Non-existent variable: 
+  </p>
+  <p
+    className="text-align-right"
+  >
+    I'm aligned right, but left in RTL.
+  </p>
 </div>
 `;
