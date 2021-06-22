@@ -168,8 +168,11 @@ module.exports = merge(commonConfig, {
       // This plugin fixes an issue where the newrelic script will break if
       //  not added directly to the HTML.
       // We use non empty strings as defaults here to prevent errors for empty configs
-      license: process.env.NEW_RELIC_LICENSE_KEY || 'fake_app',
-      applicationID: process.env.NEW_RELIC_APP_ID || 'fake_license',
+      accountID: process.env.NEW_RELIC_ACCOUNT_ID || 'undefined_account_id',
+      agentID: process.env.NEW_RELIC_AGENT_ID || 'undefined_agent_id',
+      trustKey: process.env.NEW_RELIC_TRUST_KEY || 'undefined_trust_key',
+      licenseKey: process.env.NEW_RELIC_LICENSE_KEY || 'undefined_license_key',
+      applicationID: process.env.NEW_RELIC_APP_ID || 'undefined_application_id',
     }),
     new BundleAnalyzerPlugin({
       analyzerMode: 'static',
