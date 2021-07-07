@@ -2,14 +2,15 @@
 // time at the expense of creating larger, unoptimized bundles.
 
 const { merge } = require('webpack-merge');
-const fs = require('fs');
-const path = require('path');
-const dotenv = require('dotenv');
 const Dotenv = require('dotenv-webpack');
+const dotenv = require('dotenv');
+const fs = require('fs');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const webpack = require('webpack');
-const PostCssRtlPlugin = require('postcss-rtl');
+const path = require('path');
 const PostCssAutoprefixerPlugin = require('autoprefixer');
+const PostCssRTLCSS = require('postcss-rtlcss');
+const { HotModuleReplacementPlugin } = require('webpack');
+
 const commonConfig = require('./webpack.common.config.js');
 const presets = require('../lib/presets');
 const resolvePrivateEnvConfig = require('../lib/resolvePrivateEnvConfig');
@@ -140,10 +141,12 @@ module.exports = merge(commonConfig, {
           {
             loader: 'postcss-loader',
             options: {
-              plugins: () => [
-                PostCssRtlPlugin(),
-                PostCssAutoprefixerPlugin({ grid: true }),
-              ],
+              postcssOptions: {
+                plugins: [
+                  PostCssAutoprefixerPlugin({ grid: true }),
+                  PostCssRTLCSS(),
+                ],
+              },
             },
           },
           'resolve-url-loader',
@@ -162,11 +165,9 @@ module.exports = merge(commonConfig, {
         ],
       },
       {
-        test: /.svg$/,
-        issuer: {
-          test: /\.jsx?$/,
-        },
-        loader: '@svgr/webpack',
+        test: /.svg(\?v=\d+\.\d+\.\d+)?$/,
+        issuer: /\.jsx?$/,
+        use: ['@svgr/webpack'],
       },
       // Webpack, by default, uses the url-loader for images and fonts that are required/included by
       // files it processes, which just base64 encodes them and inlines them in the javascript
@@ -178,7 +179,10 @@ module.exports = merge(commonConfig, {
       },
       {
         test: /favicon.ico$/,
-        loader: 'file-loader?name=[name].[ext]', // <-- retain original file name
+        loader: 'file-loader',
+        options: {
+          name: '[name].[ext]', // <-- retain original file name
+        },
       },
       {
         test: /\.(jpe?g|png|gif)(\?v=\d+\.\d+\.\d+)?$/,
@@ -219,7 +223,7 @@ module.exports = merge(commonConfig, {
     // when the --hot option is not passed in as part of the command
     // the HotModuleReplacementPlugin has to be specified in the Webpack configuration
     // https://webpack.js.org/configuration/dev-server/#devserver-hot
-    new webpack.HotModuleReplacementPlugin(),
+    new HotModuleReplacementPlugin(),
   ],
   // This configures webpack-dev-server which serves bundles from memory and provides live
   // reloading.
@@ -238,7 +242,8 @@ module.exports = merge(commonConfig, {
     // Use 'ws' instead of 'sockjs-node' on server since we're using native
     // websockets in `webpackHotDevClient`.
     transportMode: 'ws',
-    inline: true,
-    publicPath: PUBLIC_PATH,
+    devMiddleware: {
+      publicPath: PUBLIC_PATH,
+    },
   },
 });
