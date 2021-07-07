@@ -58,7 +58,7 @@
     "identity-obj-proxy": "3.0.0",
     "image-webpack-loader": "7.0.1",
     "jest": "26.4.2",
-    "mini-css-extract-plugin": "1.6.0",
+    "mini-css-extract-plugin": "1.6.2",
     "new-relic-source-map-webpack-plugin": "1.2.0",
     "postcss": "8.3.5",
     "postcss-loader": "6.1.0",
