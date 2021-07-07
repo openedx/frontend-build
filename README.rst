@@ -166,7 +166,6 @@ or to test with an existing project you can do the following:
 3. Install the development version of frontend-build
    ``npm i --save-dev @edx/frontend-build@file:./frontend-build``.
 
-
 .. |Build Status| image:: https://api.travis-ci.com/edx/frontend-build.svg?branch=master
    :target: https://travis-ci.com/edx/frontend-build
 .. |Codecov| image:: https://img.shields.io/codecov/c/github/edx/frontend-build
