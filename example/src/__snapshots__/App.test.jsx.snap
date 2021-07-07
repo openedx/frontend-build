@@ -59,6 +59,7 @@ exports[`Basic test should render 1`] = `
   </p>
   <p>
     Test variable: 
+    foo
   </p>
   <p>
     Non-existent variable: 
