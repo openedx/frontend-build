@@ -9,6 +9,7 @@ const path = require('path');
 const PostCssAutoprefixerPlugin = require('autoprefixer');
 const PostCssRTLCSS = require('postcss-rtlcss');
 const { HotModuleReplacementPlugin } = require('webpack');
+const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin');
 
 const commonConfig = require('./webpack.common.config.js');
 const presets = require('../lib/presets');
@@ -38,6 +39,12 @@ module.exports = merge(commonConfig, {
   output: {
     publicPath: PUBLIC_PATH,
   },
+  optimization: {
+    // ``runtimeChunk`` is needed to support hot reloading. See
+    // https://github.com/pmmmwh/react-refresh-webpack-plugin/issues/88#issuecomment-627558799
+    // for more details.
+    runtimeChunk: 'single',
+  },
   module: {
     // Specify file-by-file rules to Webpack. Some file-types need a particular kind of loader.
     rules: [
@@ -54,6 +61,9 @@ module.exports = merge(commonConfig, {
             // from the cache to avoid needing to run the expensive recompilation process
             // on each run.
             cacheDirectory: true,
+            plugins: [
+              require.resolve('react-refresh/babel'),
+            ],
           },
         },
       },
@@ -68,6 +78,9 @@ module.exports = merge(commonConfig, {
             loader: 'css-loader', // translates CSS into CommonJS
             options: {
               sourceMap: true,
+              modules: {
+                compileType: 'icss',
+              },
             },
           },
           {
@@ -156,6 +169,7 @@ module.exports = merge(commonConfig, {
     // the HotModuleReplacementPlugin has to be specified in the Webpack configuration
     // https://webpack.js.org/configuration/dev-server/#devserver-hot
     new HotModuleReplacementPlugin(),
+    new ReactRefreshWebpackPlugin(),
   ],
   // This configures webpack-dev-server which serves bundles from memory and provides live
   // reloading.
