@@ -14,6 +14,7 @@ const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin'
 const commonConfig = require('./webpack.common.config.js');
 const presets = require('../lib/presets');
 const resolvePrivateEnvConfig = require('../lib/resolvePrivateEnvConfig');
+const getLocalAliases = require('./getLocalAliases');
 
 // Add process env vars. Currently used only for setting the
 // server port and the publicPath
@@ -26,24 +27,17 @@ dotenv.config({
 // in temporary modifications to .env.development.
 resolvePrivateEnvConfig('.env.private');
 
+const aliases = getLocalAliases();
 const PUBLIC_PATH = process.env.PUBLIC_PATH || '/';
 
 module.exports = merge(commonConfig, {
   mode: 'development',
   devtool: 'eval-source-map',
-  entry: {
-    // enable react's custom hot dev client so we get errors reported in the browser
-    hot: require.resolve('react-dev-utils/webpackHotDevClient'),
-    app: path.resolve(process.cwd(), 'src/index'),
-  },
   output: {
     publicPath: PUBLIC_PATH,
   },
-  optimization: {
-    // ``runtimeChunk`` is needed to support hot reloading. See
-    // https://github.com/pmmmwh/react-refresh-webpack-plugin/issues/88#issuecomment-627558799
-    // for more details.
-    runtimeChunk: 'single',
+  resolve: {
+    alias: aliases,
   },
   module: {
     // Specify file-by-file rules to Webpack. Some file-types need a particular kind of loader.
