@@ -9,10 +9,12 @@ const path = require('path');
 const PostCssAutoprefixerPlugin = require('autoprefixer');
 const PostCssRTLCSS = require('postcss-rtlcss');
 const { HotModuleReplacementPlugin } = require('webpack');
+const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin');
 
 const commonConfig = require('./webpack.common.config.js');
 const presets = require('../lib/presets');
 const resolvePrivateEnvConfig = require('../lib/resolvePrivateEnvConfig');
+const getLocalAliases = require('./getLocalAliases');
 
 // Add process env vars. Currently used only for setting the
 // server port and the publicPath
@@ -25,18 +27,17 @@ dotenv.config({
 // in temporary modifications to .env.development.
 resolvePrivateEnvConfig('.env.private');
 
+const aliases = getLocalAliases();
 const PUBLIC_PATH = process.env.PUBLIC_PATH || '/';
 
 module.exports = merge(commonConfig, {
   mode: 'development',
   devtool: 'eval-source-map',
-  entry: {
-    // enable react's custom hot dev client so we get errors reported in the browser
-    hot: require.resolve('react-dev-utils/webpackHotDevClient'),
-    app: path.resolve(process.cwd(), 'src/index'),
-  },
   output: {
     publicPath: PUBLIC_PATH,
+  },
+  resolve: {
+    alias: aliases,
   },
   module: {
     // Specify file-by-file rules to Webpack. Some file-types need a particular kind of loader.
@@ -54,6 +55,9 @@ module.exports = merge(commonConfig, {
             // from the cache to avoid needing to run the expensive recompilation process
             // on each run.
             cacheDirectory: true,
+            plugins: [
+              require.resolve('react-refresh/babel'),
+            ],
           },
         },
       },
@@ -68,6 +72,9 @@ module.exports = merge(commonConfig, {
             loader: 'css-loader', // translates CSS into CommonJS
             options: {
               sourceMap: true,
+              modules: {
+                compileType: 'icss',
+              },
             },
           },
           {
@@ -156,6 +163,7 @@ module.exports = merge(commonConfig, {
     // the HotModuleReplacementPlugin has to be specified in the Webpack configuration
     // https://webpack.js.org/configuration/dev-server/#devserver-hot
     new HotModuleReplacementPlugin(),
+    new ReactRefreshWebpackPlugin(),
   ],
   // This configures webpack-dev-server which serves bundles from memory and provides live
   // reloading.

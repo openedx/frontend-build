@@ -69,6 +69,9 @@ module.exports = merge(commonConfig, {
             loader: 'css-loader', // translates CSS into CommonJS
             options: {
               sourceMap: true,
+              modules: {
+                compileType: 'icss',
+              },
             },
           },
           {
