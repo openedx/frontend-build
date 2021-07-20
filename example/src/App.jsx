@@ -1,5 +1,3 @@
-import React from 'react';
-
 import appleUrl, { ReactComponent as Apple } from './apple.svg';
 import appleImg from './apple.jpg';
 
