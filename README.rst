@@ -119,23 +119,31 @@ An example module.config.js file looks like the following.  You can copy this in
      moduleName: the name you use to import code from the module.
      dir: The relative path to the module's source code.
      dist: The sub-directory of the source code where it puts its build artifact.  Often "dist".
-
-     IMPORTANT NOTE: If any of the below packages (like paragon or frontend-platform) have a build step
-     that populates their 'dist' directories, you must manually run that step.  For paragon and
-     frontend-platform, for instance, you need to run `npm run build` in the repo before module.config.js will work.
      */
      localModules: [
-       { moduleName: '@edx/brand', dir: '../brand-openedx' }, // replace with your brand checkout
-       { moduleName: '@edx/paragon/scss/core', dir: '../paragon', dist: 'scss/core' },
-       { moduleName: '@edx/paragon/icons', dir: '../paragon', dist: 'icons' },
-       { moduleName: '@edx/paragon', dir: '../paragon', dist: 'dist' },
-       { moduleName: '@edx/frontend-platform', dir: '../frontend-platform', dist: 'dist' },
+       { moduleName: '@edx/brand', dir: '../src/brand-openedx' }, // replace with your brand checkout
+       { moduleName: '@edx/paragon/scss/core', dir: '../src/paragon', dist: 'scss/core' },
+       { moduleName: '@edx/paragon/icons', dir: '../src/paragon', dist: 'icons' },
+       { moduleName: '@edx/paragon', dir: '../src/paragon', dist: 'dist' },
+       { moduleName: '@edx/frontend-platform', dir: '../src/frontend-platform', dist: 'dist' },
      ],
    };
 
-Note that the "dir" and "dist" keys give you granular control over the shape of your repository's distribution.  Paragon, for instance, needs two separate entries to pick up both JS and SCSS imports.
+Steps
+~~~~~
 
-This mechanism uses Webpack resolve aliases, as documented here: https://webpack.js.org/configuration/resolve/#resolvealias
+#. Copy the ``module.config.js`` into your frontend app repository, modifying it as necessary.
+#. Run ``npm install && npm run build`` within any shared NPM package you want to use locally.
+#. Restart your app.
+
+Notes
+~~~~~
+
+* The "dir" and "dist" keys give you granular control over the shape of your repository's distribution.  Paragon, for instance, needs two separate entries to pick up both JS and SCSS imports.
+* The directory location ``../src`` (relative to the root of your frontend app repository) is recommended for shared NPM package repositories, since it will work whether or not you are running your frontend via devstack. If you are *not* running your frontend via devstack, then you can place your shared libraries anywhere in your file system, updating the "dir" key accordingly. To learn more, see `this devstack ADR on local packages`_.
+* This mechanism uses Webpack resolve aliases, as documented here: https://webpack.js.org/configuration/resolve/#resolvealias
+
+.. _this devstack ADR on local packages: https://github.com/edx/devstack/tree/master/docs/decisions/0005-frontend-package-mounts.rst
 
 Override default .env.development environment variables with .env.private
 -------------------------------------------------------------------------
