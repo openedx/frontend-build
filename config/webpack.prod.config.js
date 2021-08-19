@@ -184,7 +184,7 @@ module.exports = merge(commonConfig, {
     }),
     new NewRelicSourceMapPlugin({
       applicationId: process.env.NEW_RELIC_APP_ID,
-      nrAdminKey: process.env.NEW_RELIC_ADMIN_KEY,
+      apiKey: process.env.NEW_RELIC_ADMIN_KEY,
       staticAssetUrl: process.env.BASE_URL,
       // upload source maps in prod builds only
       noop: typeof process.env.NEW_RELIC_ADMIN_KEY === 'undefined',
