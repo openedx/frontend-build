@@ -9,6 +9,9 @@ module.exports = {
           "**/*.config.*",
           "**/*.test.*",
           "**/setupTest.js",
+        ],
+        "import/ignore": [
+          "env.config",
         ]
       }
     ],
