@@ -11,7 +11,7 @@ export default function App() {
     <div>
       <h1>Test page</h1>
       <h2>SCSS parsing tests</h2>
-      <h3>The Apples</h3> ("The Apples" should be red)
+      <h3>The Apples</h3> (&quot;The Apples&quot; should be red)
       <h2>ES6 parsing tests</h2>
       <ul>
         {allApples.map(apple => <li key={apple}>{apple}</li>)}
@@ -28,7 +28,9 @@ export default function App() {
       <p>Test process.env variable: {process.env.TEST_VARIABLE}</p>
       <p>Non-existent process.env variable (nothing here is good): {process.env.I_AM_NOT_HERE}</p>
       <h2>env.config.js tests</h2>
-      <p>env.config.js boolean test: {config.FALSE_VALUE === false ? config.CORRECT_BOOL_VALUE : config.INCORRECT_BOOL_VALUE}</p>
+      <p>env.config.js boolean test:
+        {config.FALSE_VALUE === false ? config.CORRECT_BOOL_VALUE : config.INCORRECT_BOOL_VALUE}
+      </p>
       <p>env.config.js integer test: {Number.isInteger(config.INTEGER_VALUE) ? 'It was an integer. Great.' : 'It was not an integer! Why not? '}</p>
       <h2>Right-to-left language handling tests</h2>
       <p className="text-align-right">I&apos;m aligned right, but left in RTL.</p>

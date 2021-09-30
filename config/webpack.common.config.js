@@ -13,7 +13,7 @@ module.exports = {
       'env.config': path.resolve(process.cwd(), './env.config'),
     },
     fallback: {
-      'env.config': path.resolve(__dirname, `./env.config.js`),
+      'env.config': path.resolve(__dirname, './env.config.js'),
     },
     extensions: ['.js', '.jsx'],
   },
