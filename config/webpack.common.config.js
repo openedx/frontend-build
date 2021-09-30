@@ -9,6 +9,12 @@ module.exports = {
     publicPath: '/',
   },
   resolve: {
+    alias: {
+      'env.config': path.resolve(process.cwd(), './env.config'),
+    },
+    fallback: {
+      'env.config': path.resolve(__dirname, `./env.config.js`),
+    },
     extensions: ['.js', '.jsx'],
   },
 };
