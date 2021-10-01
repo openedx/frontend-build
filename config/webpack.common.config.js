@@ -13,7 +13,9 @@ module.exports = {
       'env.config': path.resolve(process.cwd(), './env.config'),
     },
     fallback: {
-      'env.config': path.resolve(__dirname, './env.config.js'),
+      // This causes the system to return an empty object if it can't find an env.config.js file in
+      // the application being built.
+      'env.config': false,
     },
     extensions: ['.js', '.jsx'],
   },

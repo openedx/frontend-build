@@ -3,7 +3,7 @@ const fs = require('fs');
 
 const presets = require('../lib/presets');
 
-let envConfigPath = path.resolve(__dirname, './env.config.js');
+let envConfigPath = path.resolve(__dirname, './jest/fallback.env.config.js');
 const appEnvConfigPath = path.resolve(process.cwd(), './env.config.js');
 
 if (fs.existsSync(appEnvConfigPath)) {
