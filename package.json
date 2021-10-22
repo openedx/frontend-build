@@ -78,10 +78,7 @@
     "webpack-dev-server": "4.0.0-rc.1",
     "webpack-merge": "5.2.0"
   },
-  "devDependencies": {
-    "@commitlint/cli": "11.0.0",
-    "@commitlint/config-angular": "11.0.0"
-  },
+  "devDependencies": {},
   "peerDependencies": {
     "react": "^16.14.0 || ^17.0.0"
   }
