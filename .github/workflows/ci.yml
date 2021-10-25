@@ -18,5 +18,3 @@ jobs:
       run: npm run lint
     - name: Test
       run: npm run test
-    - name: Commit Linter
-      uses: wagoid/commitlint-github-action@v2.0.3
