@@ -43,3 +43,5 @@ And it'll import the code from `env.config.js` if it's present, or the frontend-
 # Follow-on work
 
 After getting this code committed to frontend-build, we'll want to consume it in frontend-platform.  This will probably take the form of a new "configuration service" interface with two implementations: the existing `process.env`-based implementation packaged into a class, and a new `env.config`-based implementation.  Cutting over from one to the other over time will have to be done in a backwards compatible way so that we can continue to support existing MFE builds.
+
+We expect that we'll also want to update https://github.com/edx/tubular to support this new mechanism.  Operators who want to take advantage of it may need to update any repositories that contain their environment-specific configurations as well.
