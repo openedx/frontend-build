@@ -9,6 +9,14 @@ module.exports = {
           "**/*.config.*",
           "**/*.test.*",
           "**/setupTest.js",
+        ],
+      }
+    ],
+    "import/no-unresolved": [
+      "error",
+      {
+        "ignore": [
+          "env.config"
         ]
       }
     ],

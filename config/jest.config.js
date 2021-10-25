@@ -1,6 +1,14 @@
 const path = require('path');
+const fs = require('fs');
 
 const presets = require('../lib/presets');
+
+let envConfigPath = path.resolve(__dirname, './jest/fallback.env.config.js');
+const appEnvConfigPath = path.resolve(process.cwd(), './env.config.js');
+
+if (fs.existsSync(appEnvConfigPath)) {
+  envConfigPath = appEnvConfigPath;
+}
 
 module.exports = {
   testURL: 'http://localhost/',
@@ -12,6 +20,7 @@ module.exports = {
     '\\.svg': path.resolve(__dirname, 'jest/svgrMock.js'),
     '\\.(jpg|jpeg|png|gif|eot|otf|webp|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$': path.resolve(__dirname, 'jest/fileMock.js'),
     '\\.(css|scss)$': 'identity-obj-proxy',
+    'env.config': envConfigPath,
   },
   collectCoverageFrom: [
     'src/**/*.{js,jsx}',
