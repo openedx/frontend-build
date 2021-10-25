@@ -28,7 +28,7 @@ export default function App() {
       <p>Test process.env variable: {process.env.TEST_VARIABLE}</p>
       <p>Non-existent process.env variable (nothing here is good): {process.env.I_AM_NOT_HERE}</p>
       <h2>env.config.js tests</h2>
-      <p>env.config.js boolean test:
+      <p><span>env.config.js boolean test: </span>
         {config.FALSE_VALUE === false ? config.CORRECT_BOOL_VALUE : config.INCORRECT_BOOL_VALUE}
       </p>
       <p>env.config.js integer test: {Number.isInteger(config.INTEGER_VALUE) ? 'It was an integer. Great.' : 'It was not an integer! Why not? '}</p>

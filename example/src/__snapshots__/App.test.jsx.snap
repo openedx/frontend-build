@@ -87,7 +87,9 @@ exports[`Basic test should render 1`] = `
     env.config.js tests
   </h2>
   <p>
-    env.config.js boolean test:
+    <span>
+      env.config.js boolean test: 
+    </span>
     Good, false meant false.  We did not cast a boolean to a string.
   </p>
   <p>
