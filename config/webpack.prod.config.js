@@ -7,13 +7,13 @@ const { merge } = require('webpack-merge');
 const CssNano = require('cssnano');
 const Dotenv = require('dotenv-webpack');
 const dotenv = require('dotenv');
-const HtmlWebpackNewRelicPlugin = require('html-webpack-new-relic-plugin');
-const NewRelicSourceMapPlugin = require('@edx/new-relic-source-map-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const path = require('path');
 const PostCssAutoprefixerPlugin = require('autoprefixer');
 const PostCssRTLCSS = require('postcss-rtlcss');
+const NewRelicSourceMapPlugin = require('@edx/new-relic-source-map-webpack-plugin');
+const HtmlWebpackNewRelicPlugin = require('html-webpack-new-relic-plugin');
 
 const commonConfig = require('./webpack.common.config.js');
 const presets = require('../lib/presets');
@@ -22,6 +22,28 @@ const presets = require('../lib/presets');
 dotenv.config({
   path: path.resolve(process.cwd(), '.env'),
 });
+
+const extraPlugins = [];
+if (process.env.ENABLE_NEW_RELIC !== 'false') {
+  // Enable NewRelic logging only if the account ID is properly defined
+  extraPlugins.push(new HtmlWebpackNewRelicPlugin({
+    // This plugin fixes an issue where the newrelic script will break if
+    // not added directly to the HTML.
+    // We use non empty strings as defaults here to prevent errors for empty configs
+    accountID: process.env.NEW_RELIC_ACCOUNT_ID || 'undefined_account_id',
+    agentID: process.env.NEW_RELIC_AGENT_ID || 'undefined_agent_id',
+    trustKey: process.env.NEW_RELIC_TRUST_KEY || 'undefined_trust_key',
+    licenseKey: process.env.NEW_RELIC_LICENSE_KEY || 'undefined_license_key',
+    applicationID: process.env.NEW_RELIC_APP_ID || 'undefined_application_id',
+  }));
+  extraPlugins.push(new NewRelicSourceMapPlugin({
+    applicationId: process.env.NEW_RELIC_APP_ID,
+    apiKey: process.env.NEW_RELIC_ADMIN_KEY,
+    staticAssetUrl: process.env.BASE_URL,
+    // upload source maps in prod builds only
+    noop: typeof process.env.NEW_RELIC_ADMIN_KEY === 'undefined',
+  }));
+}
 
 module.exports = merge(commonConfig, {
   mode: 'production',
@@ -172,26 +194,10 @@ module.exports = merge(commonConfig, {
       path: path.resolve(process.cwd(), '.env'),
       systemvars: true,
     }),
-    new HtmlWebpackNewRelicPlugin({
-      // This plugin fixes an issue where the newrelic script will break if
-      //  not added directly to the HTML.
-      // We use non empty strings as defaults here to prevent errors for empty configs
-      accountID: process.env.NEW_RELIC_ACCOUNT_ID || 'undefined_account_id',
-      agentID: process.env.NEW_RELIC_AGENT_ID || 'undefined_agent_id',
-      trustKey: process.env.NEW_RELIC_TRUST_KEY || 'undefined_trust_key',
-      licenseKey: process.env.NEW_RELIC_LICENSE_KEY || 'undefined_license_key',
-      applicationID: process.env.NEW_RELIC_APP_ID || 'undefined_application_id',
-    }),
-    new NewRelicSourceMapPlugin({
-      applicationId: process.env.NEW_RELIC_APP_ID,
-      apiKey: process.env.NEW_RELIC_ADMIN_KEY,
-      staticAssetUrl: process.env.BASE_URL,
-      // upload source maps in prod builds only
-      noop: typeof process.env.NEW_RELIC_ADMIN_KEY === 'undefined',
-    }),
     new BundleAnalyzerPlugin({
       analyzerMode: 'static',
       openAnalyzer: false,
     }),
+    ...extraPlugins,
   ],
 });
