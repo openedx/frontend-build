@@ -14,7 +14,7 @@ const path = require('path');
 const PostCssAutoprefixerPlugin = require('autoprefixer');
 const PostCssRTLCSS = require('postcss-rtlcss');
 
-const HtmlWebpackNewRelicPlugin = require('../lib/plugins/HtmlWebpackNewRelicPlugin');
+const HtmlWebpackNewRelicPlugin = require('../lib/plugins/html-webpack-new-relic-plugin');
 const commonConfig = require('./webpack.common.config.js');
 const presets = require('../lib/presets');
 
