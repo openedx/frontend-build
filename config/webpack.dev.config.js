@@ -8,7 +8,6 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const path = require('path');
 const PostCssAutoprefixerPlugin = require('autoprefixer');
 const PostCssRTLCSS = require('postcss-rtlcss');
-const { HotModuleReplacementPlugin } = require('webpack');
 const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin');
 
 const commonConfig = require('./webpack.common.config.js');
