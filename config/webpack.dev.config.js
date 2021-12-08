@@ -8,7 +8,6 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const path = require('path');
 const PostCssAutoprefixerPlugin = require('autoprefixer');
 const PostCssRTLCSS = require('postcss-rtlcss');
-const { HotModuleReplacementPlugin } = require('webpack');
 const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin');
 
 const commonConfig = require('./webpack.common.config.js');
@@ -159,10 +158,6 @@ module.exports = merge(commonConfig, {
       path: path.resolve(process.cwd(), '.env.development'),
       systemvars: true,
     }),
-    // when the --hot option is not passed in as part of the command
-    // the HotModuleReplacementPlugin has to be specified in the Webpack configuration
-    // https://webpack.js.org/configuration/dev-server/#devserver-hot
-    new HotModuleReplacementPlugin(),
     new ReactRefreshWebpackPlugin(),
   ],
   // This configures webpack-dev-server which serves bundles from memory and provides live
