@@ -7,14 +7,14 @@ const { merge } = require('webpack-merge');
 const CssNano = require('cssnano');
 const Dotenv = require('dotenv-webpack');
 const dotenv = require('dotenv');
+const NewRelicSourceMapPlugin = require('@edx/new-relic-source-map-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const path = require('path');
 const PostCssAutoprefixerPlugin = require('autoprefixer');
 const PostCssRTLCSS = require('postcss-rtlcss');
-const NewRelicSourceMapPlugin = require('@edx/new-relic-source-map-webpack-plugin');
-const HtmlWebpackNewRelicPlugin = require('html-webpack-new-relic-plugin');
 
+const HtmlWebpackNewRelicPlugin = require('../lib/plugins/HtmlWebpackNewRelicPlugin');
 const commonConfig = require('./webpack.common.config.js');
 const presets = require('../lib/presets');
 
