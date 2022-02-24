@@ -81,7 +81,7 @@ module.exports = merge(commonConfig, {
             options: {
               postcssOptions: {
                 plugins: [
-                  PostCssAutoprefixerPlugin({ grid: true }),
+                  PostCssAutoprefixerPlugin(),
                   PostCssRTLCSS(),
                 ],
               },
