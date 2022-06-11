@@ -168,6 +168,7 @@ module.exports = merge(commonConfig, {
     host: '0.0.0.0',
     port: process.env.PORT || 8080,
     historyApiFallback: {
+      disableDotRule: true,
       index: path.join(PUBLIC_PATH, 'index.html'),
     },
     // Enable hot reloading server. It will provide WDS_SOCKET_PATH endpoint
