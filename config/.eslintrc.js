@@ -1,6 +1,6 @@
 module.exports = {
   "extends": "@edx/eslint-config",
-  "parser": "babel-eslint",
+  "parser": "@babel/eslint-parser",
   "rules": {
     "import/no-extraneous-dependencies": [
       "error",
