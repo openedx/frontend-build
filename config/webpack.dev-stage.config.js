@@ -10,7 +10,7 @@ const PostCssAutoprefixerPlugin = require('autoprefixer');
 const PostCssRTLCSS = require('postcss-rtlcss');
 const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin');
 
-const commonConfig = require('./webpack.common.config.js');
+const commonConfig = require('./webpack.common.config');
 const presets = require('../lib/presets');
 const resolvePrivateEnvConfig = require('../lib/resolvePrivateEnvConfig');
 const getLocalAliases = require('./getLocalAliases');

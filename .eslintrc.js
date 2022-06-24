@@ -1,4 +1,4 @@
-const { createConfig } = require('./');
+const { createConfig } = require('.');
 
 module.exports = createConfig('eslint', {
   rules: {
