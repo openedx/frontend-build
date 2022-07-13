@@ -15,7 +15,7 @@ const PostCssAutoprefixerPlugin = require('autoprefixer');
 const PostCssRTLCSS = require('postcss-rtlcss');
 
 const HtmlWebpackNewRelicPlugin = require('../lib/plugins/html-webpack-new-relic-plugin');
-const commonConfig = require('./webpack.common.config.js');
+const commonConfig = require('./webpack.common.config');
 const presets = require('../lib/presets');
 
 // Add process env vars. Currently used only for setting the PUBLIC_PATH.
