@@ -1,8 +1,13 @@
+const path = require('path');
+
 module.exports = {
   extends: '@edx/eslint-config',
   parser: '@babel/eslint-parser',
   parserOptions: {
-    requireConfigFile: false,
+    requireConfigFile: true,
+    babelOptions: {
+      configFile: path.resolve(__dirname, './babel.config.js'),
+    },
   },
   rules: {
     'import/no-extraneous-dependencies': [
