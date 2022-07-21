@@ -1,4 +1,4 @@
-const path = require('path');
+const { babel } = require('../lib/presets');
 
 module.exports = {
   extends: '@edx/eslint-config',
@@ -6,7 +6,7 @@ module.exports = {
   parserOptions: {
     requireConfigFile: true,
     babelOptions: {
-      configFile: path.resolve(__dirname, './babel.config.js'),
+      configFile: babel.resolvedFilepath || babel.defaultFilepath,
     },
   },
   rules: {
