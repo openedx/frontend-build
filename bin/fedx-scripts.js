@@ -50,6 +50,7 @@ switch (commandName) {
     break;
   case 'eslint':
     ensureConfigOption(presets.eslint);
+    require('eslint/bin/eslint');
     break;
   case 'jest':
     ensureConfigOption(presets.jest);
