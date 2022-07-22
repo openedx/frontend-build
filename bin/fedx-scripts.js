@@ -50,7 +50,8 @@ switch (commandName) {
     break;
   case 'eslint':
     ensureConfigOption(presets.eslint);
-    require('eslint/bin/eslint');
+    // eslint-disable-next-line import/extensions, import/no-extraneous-dependencies
+    require('.bin/eslint');
     break;
   case 'jest':
     ensureConfigOption(presets.jest);
