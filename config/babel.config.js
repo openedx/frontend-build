@@ -35,7 +35,6 @@ module.exports = {
         [
           'formatjs',
           {
-            messagesDir: './temp/babel-plugin-formatjs',
             moduleSourceName: '@edx/frontend-platform/i18n',
           },
         ],
