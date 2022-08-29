@@ -1,5 +1,6 @@
 // This is the dev Webpack config. All settings here should prefer a fast build
 // time at the expense of creating larger, unoptimized bundles.
+const ImageMinimizerPlugin = require('image-minimizer-webpack-plugin');
 
 const { merge } = require('webpack-merge');
 const Dotenv = require('dotenv-webpack');
@@ -124,26 +125,25 @@ module.exports = merge(commonConfig, {
       },
       {
         test: /\.(jpe?g|png|gif)(\?v=\d+\.\d+\.\d+)?$/,
-        use: [
-          'file-loader',
-          {
-            loader: 'image-webpack-loader',
-            options: {
-              mozjpeg: {
-                progressive: true,
-                quality: 65,
-              },
-              gifsicle: {
-                interlaced: false,
-              },
-              pngquant: {
-                quality: [0.65, 0.90],
-                speed: 4,
-              },
-            },
-          },
-        ],
+        loader: 'file-loader',
       },
+    ],
+  },
+  optimization: {
+    minimizer: [
+      '...',
+      new ImageMinimizerPlugin({
+        minimizer: {
+          implementation: ImageMinimizerPlugin.imageminMinify,
+          options: {
+            plugins: [
+              ['gifsicle', { interlaced: false }],
+              ['mozjpeg', { progressive: true, quality: 65 }],
+              ['pngquant', { quality: [0.65, 0.90], speed: 4 }],
+            ],
+          },
+        },
+      }),
     ],
   },
   // Specify additional processing or side-effects done on the Webpack output bundles as a whole.
