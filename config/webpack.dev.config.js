@@ -134,13 +134,13 @@ module.exports = merge(commonConfig, {
       '...',
       new ImageMinimizerPlugin({
         minimizer: {
-          implementation: ImageMinimizerPlugin.imageminMinify,
+          implementation: ImageMinimizerPlugin.sharpMinify,
           options: {
-            plugins: [
-              ['gifsicle', { interlaced: false }],
-              ['mozjpeg', { progressive: true, quality: 65 }],
-              ['pngquant', { quality: [0.65, 0.90], speed: 4 }],
-            ],
+            encodeOptions: {
+              ...['png', 'jpeg', 'jpg'].reduce((accumulator, value) => (
+                { ...accumulator, [value]: { progressive: true, quality: 65 } }
+              ), {}),
+            },
           },
         },
       }),
