@@ -37,4 +37,7 @@ module.exports = {
   globals: {
     newrelic: false,
   },
+  ignorePatterns: [
+    'module.config.js',
+  ],
 };
