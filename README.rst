@@ -143,7 +143,7 @@ Notes
 * The directory location ``../src`` (relative to the root of your frontend app repository) is recommended for shared NPM package repositories, since it will work whether or not you are running your frontend via devstack. If you are *not* running your frontend via devstack, then you can place your shared libraries anywhere in your file system, updating the "dir" key accordingly. To learn more, see `this devstack ADR on local packages`_.
 * This mechanism uses Webpack resolve aliases, as documented here: https://webpack.js.org/configuration/resolve/#resolvealias
 
-.. _this devstack ADR on local packages: https://github.com/edx/devstack/tree/master/docs/decisions/0005-frontend-package-mounts.rst
+.. _this devstack ADR on local packages: https://github.com/openedx/devstack/tree/master/docs/decisions/0005-frontend-package-mounts.rst
 
 Override default .env.development environment variables with .env.private
 -------------------------------------------------------------------------
@@ -179,5 +179,5 @@ or to test with an existing project you can do the following:
 .. |Codecov| image:: https://img.shields.io/codecov/c/github/edx/frontend-build
    :target: https://codecov.io/gh/edx/frontend-build
 .. |license| image:: https://img.shields.io/npm/l/@edx/frontend-build.svg
-   :target: https://github.com/edx/frontend-base/blob/master/LICENSE
+   :target: https://github.com/edx-unsupported/frontend-base/blob/master/LICENSE
 .. |npm_version| image:: https://img.shields.io/npm/v/@edx/frontend-build.svg
