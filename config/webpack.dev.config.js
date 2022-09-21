@@ -140,6 +140,9 @@ module.exports = merge(commonConfig, {
               ...['png', 'jpeg', 'jpg'].reduce((accumulator, value) => (
                 { ...accumulator, [value]: { progressive: true, quality: 65 } }
               ), {}),
+              gif: {
+                effort: 5,
+              },
             },
           },
         },
