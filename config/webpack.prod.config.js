@@ -16,7 +16,6 @@ const PostCssRTLCSS = require('postcss-rtlcss');
 
 const HtmlWebpackNewRelicPlugin = require('../lib/plugins/html-webpack-new-relic-plugin');
 const commonConfig = require('./webpack.common.config');
-const presets = require('../lib/presets');
 
 // Add process env vars. Currently used only for setting the PUBLIC_PATH.
 dotenv.config({
@@ -62,9 +61,14 @@ module.exports = merge(commonConfig, {
         test: /\.(js|jsx)$/,
         exclude: /node_modules\/(?!@edx)/,
         use: {
-          loader: 'babel-loader',
+          loader: 'swc-loader',
           options: {
-            configFile: presets.babel.resolvedFilepath,
+            jsc: {
+              parser: {
+                jsx: true,
+              },
+            },
+            sourceMap: true,
           },
         },
       },
