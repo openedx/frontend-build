@@ -7,6 +7,6 @@ module.exports = createConfig('eslint', {
     'global-require': 'off',
     'no-template-curly-in-string': 'off',
     'import/no-import-module-export': 'off',
-    'react/function-component-definition': [2, { 'namedComponents': 'arrow-function' }]
+    'react/function-component-definition': [2, { namedComponents: 'arrow-function' }],
   },
 });
