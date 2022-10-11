@@ -37,6 +37,7 @@ module.exports = merge(commonConfig, {
   },
   resolve: {
     alias: aliases,
+    extensions: ['.js', '.jsx', '.ts', '.tsx'],
   },
   module: {
     // Specify file-by-file rules to Webpack. Some file-types need a particular kind of loader.
@@ -44,12 +45,12 @@ module.exports = merge(commonConfig, {
       // The babel-loader transforms newer ES2015+ syntax to older ES5 for older browsers.
       // Babel is configured with the .babelrc file at the root of the project.
       {
-        test: /\.(js|jsx)$/,
+        test: /\.(js|jsx|ts|tsx)$/,
         exclude: /node_modules\/(?!@edx)/,
         use: {
           loader: 'babel-loader',
           options: {
-            configFile: presets.babel.resolvedFilepath,
+            configFile: presets['babel-typescript'].resolvedFilepath,
             // Caches result of loader to the filesystem. Future builds will attempt to read
             // from the cache to avoid needing to run the expensive recompilation process
             // on each run.
