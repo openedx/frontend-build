@@ -4,6 +4,7 @@ import appleImg from './apple.jpg';
 
 import './style.scss';
 
+// eslint-disable-next-line react/function-component-definition
 export default function App() {
   const newEnglandApples = ['macintosh', 'granny smith'];
   const allApples = [...newEnglandApples, 'fuji', 'golden delicious'];

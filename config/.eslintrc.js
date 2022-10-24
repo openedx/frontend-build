@@ -33,6 +33,8 @@ module.exports = {
       components: ['Link'],
       specialLink: ['to'],
     }],
+    'import/no-import-module-export': 'off',
+    'react/function-component-definition': [2, { namedComponents: 'arrow-function' }],
   },
   globals: {
     newrelic: false,
