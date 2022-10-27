@@ -17,6 +17,9 @@ const PostCssAutoprefixerPlugin = require('autoprefixer');
 const PostCssRTLCSS = require('postcss-rtlcss');
 const PostCssCustomMediaCSS = require('postcss-custom-media');
 
+// Reduce CSS file size by ~70%
+const purgecss = require('@fullhuman/postcss-purgecss');
+
 const HtmlWebpackNewRelicPlugin = require('../lib/plugins/html-webpack-new-relic-plugin');
 const commonConfig = require('./webpack.common.config');
 const presets = require('../lib/presets');
@@ -26,6 +29,12 @@ dotenv.config({
   path: path.resolve(process.cwd(), '.env'),
 });
 
+const extraPostCssPlugins = [];
+if (process.env.USE_PURGECSS) { // If USE_PURGECSS is set we append it.
+  extraPostCssPlugins.push(purgecss({
+    content: ['./**/*.html', './**/*.js', './**/*.jsx', './**/*.ts', './**/*.tsx'],
+  }));
+}
 const extraPlugins = [];
 if (process.env.ENABLE_NEW_RELIC !== 'false') {
   // Enable NewRelic logging only if the account ID is properly defined
@@ -108,6 +117,7 @@ module.exports = merge(commonConfig, {
                   PostCssRTLCSS(),
                   CssNano(),
                   PostCssCustomMediaCSS(),
+                  ...extraPostCssPlugins,
                 ],
               },
             },
