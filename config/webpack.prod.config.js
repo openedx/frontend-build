@@ -1,6 +1,8 @@
 // This is the prod Webpack config. All settings here should prefer smaller,
 // optimized bundles at the expense of a longer build time.
 
+const ImageMinimizerPlugin = require('image-minimizer-webpack-plugin');
+
 const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const { merge } = require('webpack-merge');
@@ -145,25 +147,7 @@ module.exports = merge(commonConfig, {
       },
       {
         test: /\.(jpe?g|png|gif)(\?v=\d+\.\d+\.\d+)?$/,
-        use: [
-          'file-loader',
-          {
-            loader: 'image-webpack-loader',
-            options: {
-              mozjpeg: {
-                progressive: true,
-                quality: 65,
-              },
-              gifsicle: {
-                interlaced: false,
-              },
-              pngquant: {
-                quality: [0.65, 0.90],
-                speed: 4,
-              },
-            },
-          },
-        ],
+        loader: 'file-loader',
       },
     ],
   },
@@ -174,6 +158,24 @@ module.exports = merge(commonConfig, {
     splitChunks: {
       chunks: 'all',
     },
+    minimizer: [
+      '...',
+      new ImageMinimizerPlugin({
+        minimizer: {
+          implementation: ImageMinimizerPlugin.sharpMinify,
+          options: {
+            encodeOptions: {
+              ...['png', 'jpeg', 'jpg'].reduce((accumulator, value) => (
+                { ...accumulator, [value]: { progressive: true, quality: 65 } }
+              ), {}),
+              gif: {
+                effort: 5,
+              },
+            },
+          },
+        },
+      }),
+    ],
   },
   // Specify additional processing or side-effects done on the Webpack output bundles as a whole.
   plugins: [
