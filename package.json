@@ -37,7 +37,7 @@
     "@edx/new-relic-source-map-webpack-plugin": "1.0.1",
     "@pmmmwh/react-refresh-webpack-plugin": "0.5.3",
     "@svgr/webpack": "6.2.1",
-    "autoprefixer": "10.2.6",
+    "autoprefixer": "10.4.13",
     "babel-jest": "26.6.3",
     "babel-loader": "8.2.3",
     "babel-plugin-react-intl": "7.9.4",
