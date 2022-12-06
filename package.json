@@ -34,7 +34,7 @@
     "@babel/preset-env": "7.16.4",
     "@babel/preset-react": "7.16.0",
     "@edx/eslint-config": "3.1.0",
-    "@edx/new-relic-source-map-webpack-plugin": "1.0.1",
+    "@edx/new-relic-source-map-webpack-plugin": "1.0.2",
     "@pmmmwh/react-refresh-webpack-plugin": "0.5.3",
     "@svgr/webpack": "6.2.1",
     "autoprefixer": "10.4.13",
