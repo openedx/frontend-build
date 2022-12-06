@@ -70,7 +70,7 @@
     "sass-loader": "12.6.0",
     "sharp": "^0.30.7",
     "source-map-loader": "0.2.4",
-    "style-loader": "2.0.0",
+    "style-loader": "3.3.1",
     "url-loader": "4.1.1",
     "webpack": "5.50.0",
     "webpack-bundle-analyzer": "4.5.0",
