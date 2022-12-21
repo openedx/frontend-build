@@ -19,7 +19,6 @@ module.exports = {
         [
           'react-intl',
           {
-            messagesDir: './temp/babel-plugin-react-intl',
             moduleSourceName: '@edx/frontend-platform/i18n',
           },
         ],
