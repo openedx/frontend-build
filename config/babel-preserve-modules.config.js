@@ -18,9 +18,6 @@ module.exports = {
       plugins: [
         [
           'formatjs',
-          {
-            moduleSourceName: '@edx/frontend-platform/i18n',
-          },
         ],
       ],
     },
