@@ -68,7 +68,7 @@
     "resolve-url-loader": "5.0.0",
     "sass": "1.56.1",
     "sass-loader": "12.6.0",
-    "sharp": "^0.30.7",
+    "sharp": "^0.31.0",
     "source-map-loader": "0.2.4",
     "style-loader": "3.3.1",
     "url-loader": "4.1.1",
