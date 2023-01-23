@@ -129,6 +129,7 @@ An example module.config.js file looks like the following.  You can copy this in
      ],
    };
 
+
 Steps
 ~~~~~
 
@@ -156,6 +157,14 @@ during development but want to ensure these secrets are not checked into Git.
 You may create a `.env.private` with any overrides of the environment settings configured in `.env.development`.
 
 **Note: .env.private should be added to your project's .gitignore so it does not get checked in.**
+
+Local module configuration for TypeScript
+-----------------------------------------
+
+#. Copy tsconfig.json into the root of the module
+#. Set "rootDir" to the root of the source code folders
+#. Set "include" to wildcard patterns specifying the subdirectories/files under rootDir where source code can be found
+#. Include any wildcards under rootDir that should be excluded using "exclude"
 
 Development
 -----------
