@@ -129,7 +129,6 @@ An example module.config.js file looks like the following.  You can copy this in
      ],
    };
 
-
 Steps
 ~~~~~
 
@@ -162,9 +161,9 @@ Local module configuration for TypeScript
 -----------------------------------------
 
 #. Copy tsconfig.json into the root of the module
-#. Set "rootDir" to the root of the source code folders
+#. Set "rootDir" to the root of the source code folders, and "outDir" to the distribution folder
 #. Set "include" to wildcard patterns specifying the subdirectories/files under rootDir where source code can be found
-#. Include any wildcards under rootDir that should be excluded using "exclude"
+#. Include any wildcards under rootDir that should be excluded using "exclude".  Make sure the "outDir" directory is excluded here, if it is under "include".
 
 Development
 -----------
