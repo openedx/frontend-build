@@ -65,6 +65,10 @@ switch (commandName) {
     ensureConfigOption(presets.webpackDevServer);
     require('webpack-dev-server/bin/webpack-dev-server');
     break;
+  case 'formatjs':
+    ensureConfigOption(presets.formatjs);
+    require('@formatjs/cli/bin/formatjs');
+    break;
   default:
     console.warn(`fedx-scripts: The command ${commandName} is unsupported`);
 }
