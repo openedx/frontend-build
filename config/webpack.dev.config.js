@@ -9,6 +9,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const path = require('path');
 const PostCssAutoprefixerPlugin = require('autoprefixer');
 const PostCssRTLCSS = require('postcss-rtlcss');
+const PostCssCustomMediaCSS = require('postcss-custom-media');
 const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin');
 
 const commonConfig = require('./webpack.common.config');
@@ -85,6 +86,7 @@ module.exports = merge(commonConfig, {
                 plugins: [
                   PostCssAutoprefixerPlugin(),
                   PostCssRTLCSS(),
+                  PostCssCustomMediaCSS(),
                 ],
               },
             },
