@@ -15,6 +15,7 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const path = require('path');
 const PostCssAutoprefixerPlugin = require('autoprefixer');
 const PostCssRTLCSS = require('postcss-rtlcss');
+const PostCssCustomMediaCSS = require('postcss-custom-media');
 
 const HtmlWebpackNewRelicPlugin = require('../lib/plugins/html-webpack-new-relic-plugin');
 const commonConfig = require('./webpack.common.config');
@@ -106,6 +107,7 @@ module.exports = merge(commonConfig, {
                   PostCssAutoprefixerPlugin(),
                   PostCssRTLCSS(),
                   CssNano(),
+                  PostCssCustomMediaCSS(),
                 ],
               },
             },
