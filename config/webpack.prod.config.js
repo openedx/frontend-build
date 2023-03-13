@@ -62,12 +62,12 @@ module.exports = merge(commonConfig, {
       // The babel-loader transforms newer ES2015+ syntax to older ES5 for older browsers.
       // Babel is configured with the .babelrc file at the root of the project.
       {
-        test: /\.(js|jsx|ts|tsx)$/,
+        test: /\.(js|jsx)$/,
         exclude: /node_modules\/(?!@edx)/,
         use: {
           loader: 'babel-loader',
           options: {
-            configFile: presets['babel-typescript'].resolvedFilepath,
+            configFile: presets.babel.resolvedFilepath,
           },
         },
       },
