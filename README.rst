@@ -174,6 +174,16 @@ or to test with an existing project you can do the following:
 3. Install the development version of frontend-build
    ``npm i --save-dev @edx/frontend-build@file:./frontend-build``.
 
+Optimization
+-----------
+To increase optimization by reducing unused CSS, you can set ``USE_PURGECSS=true`` in ``.env`` or as ENV var in the corresponding MFE.
+However, note that doing this will increase build time by 30%. It's thus not recommended to use this option during development.
+On the other hand, enabling PurgeCSS will increase browser performance for the end user by as much as 20% (as measured by `lighthouse`_).  Operators are encouraged to do so for production deployments.
+
+For more information about optimizing MFEs, refer to the `issue #138`_ in the wg-frontend repository.
+
+.. _lighthouse: https://developer.chrome.com/docs/lighthouse/overview/
+.. _issue #138: https://github.com/openedx/wg-frontend/issues/138
 .. |Build Status| image:: https://api.travis-ci.com/edx/frontend-build.svg?branch=master
    :target: https://travis-ci.com/edx/frontend-build
 .. |Codecov| image:: https://img.shields.io/codecov/c/github/edx/frontend-build
