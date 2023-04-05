@@ -17,6 +17,6 @@ module.exports = {
       // the application being built.
       'env.config': false,
     },
-    extensions: ['.js', '.jsx'],
+    extensions: ['.js', '.jsx', '.ts', '.tsx'],
   },
 };
