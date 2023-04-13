@@ -145,7 +145,7 @@ Notes
 
 .. _this devstack ADR on local packages: https://github.com/openedx/devstack/tree/master/docs/decisions/0005-frontend-package-mounts.rst
 
-Override default .env.development environment variables with .env.private
+Override default ``.env.development`` environment variables with .env.private
 -------------------------------------------------------------------------
 
 In some situations, you may want to override development environment variables defined in .env.development
