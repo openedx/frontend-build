@@ -20,7 +20,7 @@ jobs:
         id: cpr
         uses: tretuna/sync-branches@1.4.0
         with:
-          GITHUB_TOKEN: ${{ secrets.requirements_bot_github_token }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           FROM_BRANCH: master
           TO_BRANCH: alpha
       - name: Auto-approve pull request for dependent project usages
@@ -31,5 +31,5 @@ jobs:
       - name: Enable Pull Request Automerge
         uses: peter-evans/enable-pull-request-automerge@v2
         with:
-          token: ${{ secrets.requirements_bot_github_token }}
           pull-request-number: ${{ steps.cpr.outputs.PULL_REQUEST_NUMBER }}
+          token: ${{ secrets.requirements_bot_github_token }}
