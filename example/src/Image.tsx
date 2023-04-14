@@ -1,4 +1,4 @@
-import React, { CSSProperties } from "react";
+import React, { CSSProperties } from 'react';
 
 type ImageProps = {
   src: string;
@@ -6,6 +6,10 @@ type ImageProps = {
   style?: CSSProperties;
 };
 
-export default function Image(props:ImageProps) {
-  return <img {...props} />;
-}
+const Image = ({ alt, ...rest }:ImageProps) => <img alt={alt} {...rest} />;
+
+const defaultProps = {
+  alt: undefined,
+  style: undefined,
+};
+Image.defaultProps = defaultProps;
