@@ -1,6 +1,6 @@
 const path = require('path');
 const fs = require('fs');
-const { defaults: tsjPreset } = require('ts-jest/presets');
+const { jsWithTs: tsjPreset } = require('ts-jest/presets');
 
 const presets = require('../lib/presets');
 
