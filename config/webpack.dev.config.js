@@ -175,6 +175,7 @@ module.exports = merge(commonConfig, {
     port: process.env.PORT || 8080,
     historyApiFallback: {
       index: path.join(PUBLIC_PATH, 'index.html'),
+      disableDotRule: true,
     },
     // Enable hot reloading server. It will provide WDS_SOCKET_PATH endpoint
     // for the WebpackDevServer client so it can learn when the files were
