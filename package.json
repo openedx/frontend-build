@@ -38,7 +38,6 @@
     "@edx/typescript-config": "^1.0.0",
     "@fullhuman/postcss-purgecss": "^5.0.0",
     "@pmmmwh/react-refresh-webpack-plugin": "0.5.10",
-    "@svgr/webpack": "6.5.1",
     "@types/jest": "^26.0.0",
     "@typescript-eslint/eslint-plugin": "^5.58.0",
     "@typescript-eslint/parser": "^5.58.0",
