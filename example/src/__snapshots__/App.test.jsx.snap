@@ -104,5 +104,49 @@ exports[`Basic test should render 1`] = `
   >
     I'm aligned right, but left in RTL.
   </p>
+  <h2>
+    Paragon
+  </h2>
+  <h3>
+    Exposed Theme CSS
+  </h3>
+  <ul>
+    <li>
+      <a
+        href="/core.min.css"
+        rel="noopener noreferrer"
+        target="_blank"
+      >
+        core.min.css
+      </a>
+    </li>
+    <li>
+      <a
+        href="/light.min.css"
+        rel="noopener noreferrer"
+        target="_blank"
+      >
+        light.min.css
+      </a>
+    </li>
+  </ul>
+  <h3>
+    Contents of 
+    <code>
+      PARAGON
+    </code>
+     global variable
+  </h3>
+  <pre>
+    {
+  "version": "1.0.0",
+  "themeUrls": {
+    "core": "core.min.css",
+    "variants": {
+      "light": "light.min.css"
+    }
+  }
+}
+  </pre>
 </div>
 `;

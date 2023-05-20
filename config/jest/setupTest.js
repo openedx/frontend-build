@@ -8,3 +8,13 @@ const testEnvFile = path.resolve(process.cwd(), '.env.test');
 if (fs.existsSync(testEnvFile)) {
   dotenv.config({ path: testEnvFile });
 }
+
+global.PARAGON = {
+  version: '1.0.0',
+  themeUrls: {
+    core: 'core.min.css',
+    variants: {
+      light: 'light.min.css',
+    },
+  },
+};

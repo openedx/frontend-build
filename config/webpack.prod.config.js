@@ -115,8 +115,8 @@ module.exports = merge(commonConfig, {
                 plugins: [
                   PostCssAutoprefixerPlugin(),
                   PostCssRTLCSS(),
-                  CssNano(),
                   PostCssCustomMediaCSS(),
+                  CssNano(),
                   ...extraPostCssPlugins,
                 ],
               },
@@ -201,6 +201,7 @@ module.exports = merge(commonConfig, {
     new HtmlWebpackPlugin({
       inject: true, // Appends script tags linking to the webpack bundles at the end of the body
       template: path.resolve(process.cwd(), 'public/index.html'),
+      chunks: ['app'],
       FAVICON_URL: process.env.FAVICON_URL || null,
       OPTIMIZELY_PROJECT_ID: process.env.OPTIMIZELY_PROJECT_ID || null,
       NODE_ENV: process.env.NODE_ENV || null,

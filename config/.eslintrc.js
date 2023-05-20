@@ -38,6 +38,7 @@ module.exports = {
   },
   globals: {
     newrelic: false,
+    PARAGON: false,
   },
   ignorePatterns: [
     'module.config.js',
