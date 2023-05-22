@@ -1,16 +1,14 @@
-const path = require('path');
-
 module.exports = {
   entry: {
-    app: path.resolve(process.cwd(), './src/index'),
+    main: './src/index.js',
   },
   output: {
-    path: path.resolve(process.cwd(), './dist'),
+    path: './dist',
     publicPath: '/',
   },
   resolve: {
     alias: {
-      'env.config': path.resolve(process.cwd(), './env.config'),
+      'env.config': './env.config',
     },
     fallback: {
       // This causes the system to return an empty object if it can't find an env.config.js file in
