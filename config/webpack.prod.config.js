@@ -21,7 +21,7 @@ const PostCssCustomMediaCSS = require('postcss-custom-media');
 const purgecss = require('@fullhuman/postcss-purgecss');
 
 const HtmlWebpackNewRelicPlugin = require('../lib/plugins/html-webpack-new-relic-plugin');
-const commonConfig = require('./webpack.common.config');
+const commonConfig = require('./rspack.common.config');
 const presets = require('../lib/presets');
 
 // Add process env vars. Currently used only for setting the PUBLIC_PATH.
@@ -148,18 +148,18 @@ module.exports = merge(commonConfig, {
       // file-loader instead to copy the files directly to the output directory.
       {
         test: /\.(woff2?|ttf|svg|eot)(\?v=\d+\.\d+\.\d+)?$/,
-        loader: 'file-loader',
+        type: 'asset/resource',
       },
       {
         test: /favicon.ico$/,
-        loader: 'file-loader',
+        type: 'asset/resource',
         options: {
           name: '[name].[ext]', // <-- retain original file name
         },
       },
       {
         test: /\.(jpe?g|png|gif)(\?v=\d+\.\d+\.\d+)?$/,
-        loader: 'file-loader',
+        type: 'asset/resource',
       },
     ],
   },
@@ -189,6 +189,19 @@ module.exports = merge(commonConfig, {
       }),
     ],
   },
+
+  // HTML support
+  builtins: {
+    html: [
+      {
+        inject: true, // Appends script tags linking to the webpack bundles at the end of the body
+        template: 'index.html',
+        FAVICON_URL: process.env.FAVICON_URL || null,
+        OPTIMIZELY_PROJECT_ID: process.env.OPTIMIZELY_PROJECT_ID || null,
+        NODE_ENV: process.env.NODE_ENV || null,
+      },
+    ],
+  },
   // Specify additional processing or side-effects done on the Webpack output bundles as a whole.
   plugins: [
     // Cleans the dist directory before each build
@@ -198,6 +211,7 @@ module.exports = merge(commonConfig, {
       filename: '[name].[chunkhash].css',
     }),
     // Generates an HTML file in the output directory.
+
     new HtmlWebpackPlugin({
       inject: true, // Appends script tags linking to the webpack bundles at the end of the body
       template: path.resolve(process.cwd(), 'public/index.html'),
