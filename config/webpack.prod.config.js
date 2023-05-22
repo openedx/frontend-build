@@ -10,7 +10,6 @@ const CssNano = require('cssnano');
 const Dotenv = require('dotenv-webpack');
 const dotenv = require('dotenv');
 const NewRelicSourceMapPlugin = require('@edx/new-relic-source-map-webpack-plugin');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const path = require('path');
 const PostCssAutoprefixerPlugin = require('autoprefixer');
@@ -211,14 +210,6 @@ module.exports = merge(commonConfig, {
       filename: '[name].[chunkhash].css',
     }),
     // Generates an HTML file in the output directory.
-
-    new HtmlWebpackPlugin({
-      inject: true, // Appends script tags linking to the webpack bundles at the end of the body
-      template: path.resolve(process.cwd(), 'public/index.html'),
-      FAVICON_URL: process.env.FAVICON_URL || null,
-      OPTIMIZELY_PROJECT_ID: process.env.OPTIMIZELY_PROJECT_ID || null,
-      NODE_ENV: process.env.NODE_ENV || null,
-    }),
     new Dotenv({
       path: path.resolve(process.cwd(), '.env'),
       systemvars: true,
