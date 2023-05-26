@@ -73,7 +73,7 @@
     "react-refresh": "0.14.0",
     "resolve-url-loader": "5.0.0",
     "sass": "1.62.1",
-    "sass-loader": "12.6.0",
+    "sass-loader": "13.3.0",
     "sharp": "^0.32.0",
     "source-map-loader": "^4.0.1",
     "ts-jest": "^26.5.0",
