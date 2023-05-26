@@ -35,6 +35,7 @@
     "@babel/preset-react": "7.18.6",
     "@edx/eslint-config": "4.0.0-alpha.1",
     "@edx/typescript-config": "^1.0.0",
+    "@edx/new-relic-source-map-webpack-plugin": "2.1.0",
     "@fullhuman/postcss-purgecss": "^5.0.0",
     "@pmmmwh/react-refresh-webpack-plugin": "0.5.10",
     "@types/jest": "^26.0.0",
