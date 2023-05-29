@@ -24,9 +24,18 @@ function getParagonVersion(dir) {
  */
 
 /**
+ * @typedef {Object} ParagonThemeVariantCssAsset
+ * @property {string} filePath
+ * @property {string} entryName
+ * @property {string} outputChunkName
+ * @property {boolean} default
+ * @property {boolean} dark
+ */
+
+/**
  * @typedef {Object} ParagonThemeCss
  * @property {ParagonThemeCssAsset} core The metadata about the core Paragon theme CSS
- * @property {Object.<string, ParagonThemeCssAsset>} variants A collection of theme variants.
+ * @property {Object.<string, ParagonThemeVariantCssAsset>} variants A collection of theme variants.
  */
 
 /**
@@ -41,16 +50,16 @@ function getParagonThemeCss(dir) {
   }
   const paragonConfig = JSON.parse(fs.readFileSync(pathToParagonThemeOutput));
   const {
-    core: coreThemePath,
-    variants: themeVariantPaths,
+    core: themeCore,
+    variants: themeVariants,
   } = paragonConfig?.themeUrls || {};
 
-  const pathToCoreCss = path.resolve(dir, './node_modules/@edx/paragon', 'dist', coreThemePath.minified);
+  const pathToCoreCss = path.resolve(dir, './node_modules/@edx/paragon', 'dist', themeCore.paths.minified);
   const coreCssExists = fs.existsSync(pathToCoreCss);
 
-  const validThemeVariantPaths = Object.entries(themeVariantPaths || {}).filter(([, value]) => {
-    const themeVariantCssDefault = path.resolve(dir, './node_modules/@edx/paragon', 'dist', value.default);
-    const themeVariantCssMinified = path.resolve(dir, './node_modules/@edx/paragon', 'dist', value.minified);
+  const validThemeVariantPaths = Object.entries(themeVariants || {}).filter(([, value]) => {
+    const themeVariantCssDefault = path.resolve(dir, './node_modules/@edx/paragon', 'dist', value.paths.default);
+    const themeVariantCssMinified = path.resolve(dir, './node_modules/@edx/paragon', 'dist', value.paths.minified);
     return fs.existsSync(themeVariantCssDefault) && fs.existsSync(themeVariantCssMinified);
   });
 
@@ -66,9 +75,11 @@ function getParagonThemeCss(dir) {
   const themeVariantResults = {};
   validThemeVariantPaths.forEach(([themeVariant, value]) => {
     themeVariantResults[themeVariant] = {
-      filePath: path.resolve(dir, './node_modules/@edx/paragon', 'dist', value.minified),
+      filePath: path.resolve(dir, './node_modules/@edx/paragon', 'dist', value.paths.minified),
       entryName: `paragon.theme.variants.${themeVariant}`,
       outputChunkName: `paragon-theme-variant-${themeVariant}`,
+      default: value.default,
+      dark: value.dark,
     };
   });
 

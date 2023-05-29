@@ -122,12 +122,10 @@ exports[`Basic test should render 1`] = `
     </li>
     <li>
       <a
-        href="/light.min.css"
+        href="/undefined"
         rel="noopener noreferrer"
         target="_blank"
-      >
-        light.min.css
-      </a>
+      />
     </li>
   </ul>
   <h3>
@@ -141,9 +139,15 @@ exports[`Basic test should render 1`] = `
     {
   "version": "1.0.0",
   "themeUrls": {
-    "core": "core.min.css",
+    "core": {
+      "fileName": "core.min.css"
+    },
     "variants": {
-      "light": "light.min.css"
+      "light": {
+        "filePath": "light.min.css",
+        "default": true,
+        "dark": false
+      }
     }
   }
 }

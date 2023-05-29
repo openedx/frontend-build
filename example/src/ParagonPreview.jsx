@@ -10,13 +10,13 @@ const ParagonPreview = () => {
       <h3>Exposed Theme CSS</h3>
       <ul>
         <li>
-          <a href={`/${PARAGON.themeUrls.core}`} target="_blank" rel="noopener noreferrer">
-            {PARAGON?.themeUrls.core}
+          <a href={`/${PARAGON.themeUrls.core.fileName}`} target="_blank" rel="noopener noreferrer">
+            {PARAGON?.themeUrls.core.fileName}
           </a>
         </li>
         <li>
-          <a href={`/${PARAGON.themeUrls.variants.light}`} target="_blank" rel="noopener noreferrer">
-            {PARAGON.themeUrls.variants.light}
+          <a href={`/${PARAGON.themeUrls.variants.light.fileName}`} target="_blank" rel="noopener noreferrer">
+            {PARAGON.themeUrls.variants.light.fileName}
           </a>
         </li>
       </ul>

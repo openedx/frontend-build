@@ -12,9 +12,15 @@ if (fs.existsSync(testEnvFile)) {
 global.PARAGON = {
   version: '1.0.0',
   themeUrls: {
-    core: 'core.min.css',
+    core: {
+      fileName: 'core.min.css',
+    },
     variants: {
-      light: 'light.min.css',
+      light: {
+        filePath: 'light.min.css',
+        default: true,
+        dark: false,
+      },
     },
   },
 };
