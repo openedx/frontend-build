@@ -8,7 +8,8 @@
     "build": "../bin/fedx-scripts.js webpack",
     "lint": "../bin/fedx-scripts.js eslint . --ext .jsx,.js",
     "babel": "../bin/fedx-scripts.js babel src --out-dir dist/babel --source-maps --ignore **/*.test.jsx,**/*.test.js --copy-files",
-    "start": "../bin/fedx-scripts.js webpack-dev-server"
+    "start": "../bin/fedx-scripts.js webpack-dev-server",
+    "serve": "npx serve dist"
   },
   "keywords": [],
   "author": "",
