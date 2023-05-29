@@ -17,7 +17,7 @@ global.PARAGON = {
     },
     variants: {
       light: {
-        filePath: 'light.min.css',
+        fileName: 'light.min.css',
         default: true,
         dark: false,
       },
