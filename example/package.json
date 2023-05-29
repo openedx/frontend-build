@@ -14,12 +14,12 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@edx/paragon": "^21.0.0-alpha.28",
     "react": "^16.14.0",
     "react-dom": "^16.14.0"
   },
   "devDependencies": {
     "@edx/browserslist-config": "^1.2.0",
+    "@edx/paragon": "^21.0.0-alpha.29",
     "react-test-renderer": "16.14.0"
   }
 }

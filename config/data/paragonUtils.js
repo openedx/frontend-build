@@ -20,35 +20,51 @@ function getParagonVersion(dir) {
  * TODO
  */
 function getParagonThemeCss(dir) {
-  const pathToCoreCss = `${dir}/node_modules/@edx/paragon/dist/core.min.css`;
-  const pathToThemeVariantLightCss = `${dir}/node_modules/@edx/paragon/dist/light.min.css`;
-
-  const coreCssExists = fs.existsSync(pathToCoreCss);
-  const themeVariantLightCssExists = fs.existsSync(pathToThemeVariantLightCss);
-
-  if (!coreCssExists || !themeVariantLightCssExists) {
+  const pathToParagonThemeOutput = path.resolve(dir, './node_modules/@edx/paragon', 'dist', 'paragon-theme.json');
+  if (!fs.existsSync(pathToParagonThemeOutput)) {
     return undefined;
   }
+  const paragonConfig = JSON.parse(fs.readFileSync(pathToParagonThemeOutput));
+  const {
+    core: coreThemePath,
+    variants: themeVariantPaths,
+  } = paragonConfig?.themeUrls || {};
 
+  const pathToCoreCss = path.resolve(dir, './node_modules/@edx/paragon', 'dist', coreThemePath.minified);
+  const coreCssExists = fs.existsSync(pathToCoreCss);
+
+  const validThemeVariantPaths = Object.entries(themeVariantPaths || {}).filter(([, value]) => {
+    const themeVariantCssDefault = path.resolve(dir, './node_modules/@edx/paragon', 'dist', value.default);
+    const themeVariantCssMinified = path.resolve(dir, './node_modules/@edx/paragon', 'dist', value.minified);
+    return fs.existsSync(themeVariantCssDefault) && fs.existsSync(themeVariantCssMinified);
+  });
+
+  if (!coreCssExists || validThemeVariantPaths.length === 0) {
+    return undefined;
+  }
   const coreResult = {
-    filePath: path.resolve(__dirname, pathToCoreCss),
-    entryName: 'paragonThemeCoreCss',
+    filePath: path.resolve(dir, pathToCoreCss),
+    entryName: 'paragon.theme.core',
     outputChunkName: 'paragon-theme-core',
   };
-  const themeVariantResults = {
-    light: {
-      filePath: path.resolve(__dirname, pathToThemeVariantLightCss),
-      entryName: 'paragonThemeVariantLightCss',
-      outputChunkName: 'paragon-theme-variant-light',
-    },
-  };
+
+  const themeVariantResults = {};
+  validThemeVariantPaths.forEach(([key, value]) => {
+    themeVariantResults[key] = {
+      filePath: path.resolve(dir, './node_modules/@edx/paragon', 'dist', value.minified),
+      entryName: `paragon.theme.variants.${key}`,
+      outputChunkName: `paragon-theme-variant-${key}`,
+    };
+  });
 
   return {
     core: fs.existsSync(pathToCoreCss) ? coreResult : undefined,
-    variants: {
-      light: fs.existsSync(pathToThemeVariantLightCss) ? themeVariantResults.light : undefined,
-    },
+    variants: themeVariantResults,
   };
+}
+
+function replacePeriodsWithHyphens(string) {
+  return string.replaceAll('.', '-');
 }
 
 /**
@@ -59,31 +75,20 @@ function getParagonCacheGroups(paragonThemeCss) {
   if (!paragonThemeCss) {
     return cacheGroups;
   }
-  const getCacheGroupName = (module, _, cacheGroupKey) => {
-    const buildHash = module.buildInfo.hash;
-    const moduleFileName = module
-      .identifier()
-      .split('/')
-      .reduceRight((item) => item)
-      .split('|')[0]
-      .split('.css')[0];
-    const outputChunkFilename = `${cacheGroupKey}.${buildHash}.${moduleFileName}`;
-    return outputChunkFilename;
-  };
-
   cacheGroups[paragonThemeCss.core.entryName] = {
     type: 'css/mini-extract',
-    name: getCacheGroupName,
+    name: replacePeriodsWithHyphens(paragonThemeCss.core.entryName),
     chunks: chunk => chunk.name === paragonThemeCss.core.entryName,
     enforce: true,
   };
-  cacheGroups[paragonThemeCss.variants.light.entryName] = {
-    type: 'css/mini-extract',
-    name: getCacheGroupName,
-    chunks: chunk => chunk.name === paragonThemeCss.variants.light.entryName,
-    enforce: true,
-  };
-
+  Object.values(paragonThemeCss.variants).forEach(({ entryName }) => {
+    cacheGroups[entryName] = {
+      type: 'css/mini-extract',
+      name: replacePeriodsWithHyphens(entryName),
+      chunks: chunk => chunk.name === entryName,
+      enforce: true,
+    };
+  });
   return cacheGroups;
 }
 
@@ -93,10 +98,9 @@ function getParagonEntryPoints(paragonThemeCss) {
     return entryPoints;
   }
   entryPoints[paragonThemeCss.core.entryName] = path.resolve(process.cwd(), paragonThemeCss.core.filePath);
-  entryPoints[paragonThemeCss.variants.light.entryName] = path.resolve(
-    process.cwd(),
-    paragonThemeCss.variants.light.filePath,
-  );
+  Object.values(paragonThemeCss.variants).forEach(({ filePath, entryName }) => {
+    entryPoints[entryName] = path.resolve(process.cwd(), filePath);
+  });
   return entryPoints;
 }
 
@@ -105,4 +109,5 @@ module.exports = {
   getParagonThemeCss,
   getParagonCacheGroups,
   getParagonEntryPoints,
+  replacePeriodsWithHyphens,
 };
