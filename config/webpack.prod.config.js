@@ -211,10 +211,6 @@ module.exports = merge(commonConfig, {
       path: path.resolve(process.cwd(), '.env'),
       systemvars: true,
     }),
-    new CompressionPlugin({
-      algorithm: 'gzip',
-      test: /.js$|.css$/,
-    }),
     new BundleAnalyzerPlugin({
       analyzerMode: 'static',
       openAnalyzer: false,
