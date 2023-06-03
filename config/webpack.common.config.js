@@ -13,6 +13,13 @@ const paragonThemeCss = getParagonThemeCss(process.cwd());
 module.exports = {
   entry: {
     app: path.resolve(process.cwd(), './src/index'),
+    /**
+     * The entry points for the Paragon theme CSS. Example: ```
+     * {
+     *   "paragon.theme.core": "/path/to/node_modules/@edx/paragon/dist/core.min.css",
+     *   "paragon.theme.variants.light": "/path/to/node_modules/@edx/paragon/dist/light.min.css"
+     * }
+     */
     ...getParagonEntryPoints(paragonThemeCss),
   },
   output: {

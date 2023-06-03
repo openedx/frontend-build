@@ -134,7 +134,12 @@ function getParagonCacheGroups(paragonThemeCss) {
 
 /**
  * @param {ParagonThemeCss} paragonThemeCss The Paragon theme CSS metadata.
- * @returns {Object.<string, string>} The entry points for the Paragon theme CSS.
+ * @returns {Object.<string, string>} The entry points for the Paragon theme CSS. Example: ```
+ * {
+ *   "paragon.theme.core": "/path/to/node_modules/@edx/paragon/dist/core.min.css",
+ *   "paragon.theme.variants.light": "/path/to/node_modules/@edx/paragon/dist/light.min.css"
+ * }
+ * ```
  */
 function getParagonEntryPoints(paragonThemeCss) {
   const entryPoints = {};

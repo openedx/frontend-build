@@ -45,6 +45,7 @@
     "babel-plugin-transform-imports": "2.0.0",
     "babel-polyfill": "6.26.0",
     "clean-webpack-plugin": "4.0.0",
+    "compression-webpack-plugin": "^10.0.0",
     "css-loader": "5.2.7",
     "cssnano": "6.0.1",
     "dotenv": "8.6.0",
