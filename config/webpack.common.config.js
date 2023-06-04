@@ -9,6 +9,7 @@ const {
 } = require('./data/paragonUtils');
 
 const paragonThemeCss = getParagonThemeCss(process.cwd());
+const brandThemeCss = getParagonThemeCss(process.cwd(), { isBrandOverride: true });
 
 module.exports = {
   entry: {
@@ -21,6 +22,14 @@ module.exports = {
      * }
      */
     ...getParagonEntryPoints(paragonThemeCss),
+    /**
+     * The entry points for the brand theme CSS. Example: ```
+     * {
+     *   "paragon.theme.core": "/path/to/node_modules/@edx/brand/dist/core.min.css",
+     *   "paragon.theme.variants.light": "/path/to/node_modules/@edx/brand/dist/light.min.css"
+     * }
+     */
+    ...getParagonEntryPoints(brandThemeCss),
   },
   output: {
     path: path.resolve(process.cwd(), './dist'),
@@ -42,6 +51,7 @@ module.exports = {
       chunks: 'all',
       cacheGroups: {
         ...getParagonCacheGroups(paragonThemeCss),
+        ...getParagonCacheGroups(brandThemeCss),
       },
     },
   },

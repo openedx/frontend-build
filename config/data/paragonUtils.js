@@ -8,8 +8,9 @@ const fs = require('fs');
  * @param {string} dir Path to directory containing `node_modules`.
  * @returns {string} Paragon dependency version of the consuming application
  */
-function getParagonVersion(dir) {
-  const pathToPackageJson = `${dir}/node_modules/@edx/paragon/package.json`;
+function getParagonVersion(dir, { isBrandOverride = false } = {}) {
+  const npmPackageName = isBrandOverride ? '@edx/brand' : '@edx/paragon';
+  const pathToPackageJson = `${dir}/node_modules/${npmPackageName}/package.json`;
   if (!fs.existsSync(pathToPackageJson)) {
     return undefined;
   }
@@ -43,8 +44,10 @@ function getParagonVersion(dir) {
  * @param {string} dir Path to directory containing `node_modules`.
  * @returns {ParagonThemeCss}
  */
-function getParagonThemeCss(dir) {
-  const pathToParagonThemeOutput = path.resolve(dir, './node_modules/@edx/paragon', 'dist', 'theme-urls.json');
+function getParagonThemeCss(dir, { isBrandOverride = false } = {}) {
+  const npmPackageName = isBrandOverride ? '@edx/brand' : '@edx/paragon';
+  const pathToParagonThemeOutput = path.resolve(dir, 'node_modules', npmPackageName, 'dist', 'theme-urls.json');
+
   if (!fs.existsSync(pathToParagonThemeOutput)) {
     return undefined;
   }
@@ -54,12 +57,12 @@ function getParagonThemeCss(dir) {
     variants: themeVariants,
   } = paragonConfig?.themeUrls || {};
 
-  const pathToCoreCss = path.resolve(dir, './node_modules/@edx/paragon', 'dist', themeCore.paths.minified);
+  const pathToCoreCss = path.resolve(dir, 'node_modules', npmPackageName, 'dist', themeCore.paths.minified);
   const coreCssExists = fs.existsSync(pathToCoreCss);
 
   const validThemeVariantPaths = Object.entries(themeVariants || {}).filter(([, value]) => {
-    const themeVariantCssDefault = path.resolve(dir, './node_modules/@edx/paragon', 'dist', value.paths.default);
-    const themeVariantCssMinified = path.resolve(dir, './node_modules/@edx/paragon', 'dist', value.paths.minified);
+    const themeVariantCssDefault = path.resolve(dir, 'node_modules', npmPackageName, 'dist', value.paths.default);
+    const themeVariantCssMinified = path.resolve(dir, 'node_modules', npmPackageName, 'dist', value.paths.minified);
     return fs.existsSync(themeVariantCssDefault) && fs.existsSync(themeVariantCssMinified);
   });
 
@@ -68,16 +71,16 @@ function getParagonThemeCss(dir) {
   }
   const coreResult = {
     filePath: path.resolve(dir, pathToCoreCss),
-    entryName: 'paragon.theme.core',
-    outputChunkName: 'paragon-theme-core',
+    entryName: isBrandOverride ? 'brand.theme.core' : 'paragon.theme.core',
+    outputChunkName: isBrandOverride ? 'brand-theme-core' : 'paragon-theme-core',
   };
 
   const themeVariantResults = {};
   validThemeVariantPaths.forEach(([themeVariant, value]) => {
     themeVariantResults[themeVariant] = {
-      filePath: path.resolve(dir, './node_modules/@edx/paragon', 'dist', value.paths.minified),
-      entryName: `paragon.theme.variants.${themeVariant}`,
-      outputChunkName: `paragon-theme-variant-${themeVariant}`,
+      filePath: path.resolve(dir, 'node_modules', npmPackageName, 'dist', value.paths.minified),
+      entryName: isBrandOverride ? `brand.theme.variants.${themeVariant}` : `paragon.theme.variants.${themeVariant}`,
+      outputChunkName: isBrandOverride ? `brand-theme-variant-${themeVariant}` : `paragon-theme-variant-${themeVariant}`,
       default: value.default,
       dark: value.dark,
     };
