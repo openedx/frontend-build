@@ -44,7 +44,7 @@ function getParagonVersion(dir) {
  * @returns {ParagonThemeCss}
  */
 function getParagonThemeCss(dir) {
-  const pathToParagonThemeOutput = path.resolve(dir, './node_modules/@edx/paragon', 'dist', 'paragon-theme.json');
+  const pathToParagonThemeOutput = path.resolve(dir, './node_modules/@edx/paragon', 'dist', 'theme-urls.json');
   if (!fs.existsSync(pathToParagonThemeOutput)) {
     return undefined;
   }
