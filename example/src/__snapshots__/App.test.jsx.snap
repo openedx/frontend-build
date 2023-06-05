@@ -116,5 +116,90 @@ exports[`Basic test should render 1`] = `
   >
     I'm aligned right, but left in RTL.
   </p>
+  <h2>
+    Paragon
+  </h2>
+  <h3>
+    Exposed theme CSS files
+  </h3>
+  <ul>
+    <li>
+      <a
+        href="/core.min.css"
+        rel="noopener noreferrer"
+        target="_blank"
+      >
+        core.min.css
+      </a>
+    </li>
+    <li>
+      <a
+        href="/light.min.css"
+        rel="noopener noreferrer"
+        target="_blank"
+      >
+        light.min.css
+      </a>
+    </li>
+    <li>
+      <a
+        href="/core.min.css"
+        rel="noopener noreferrer"
+        target="_blank"
+      >
+        core.min.css
+      </a>
+    </li>
+    <li>
+      <a
+        href="/light.min.css"
+        rel="noopener noreferrer"
+        target="_blank"
+      >
+        light.min.css
+      </a>
+    </li>
+  </ul>
+  <h3>
+    Contents of 
+    <code>
+      PARAGON_THEME
+    </code>
+     global variable
+  </h3>
+  <pre>
+    {
+  "paragon": {
+    "version": "1.0.0",
+    "themeUrls": {
+      "core": {
+        "fileName": "core.min.css"
+      },
+      "variants": {
+        "light": {
+          "fileName": "light.min.css",
+          "default": true,
+          "dark": false
+        }
+      }
+    }
+  },
+  "brand": {
+    "version": "1.0.0",
+    "themeUrls": {
+      "core": {
+        "fileName": "core.min.css"
+      },
+      "variants": {
+        "light": {
+          "fileName": "light.min.css",
+          "default": true,
+          "dark": false
+        }
+      }
+    }
+  }
+}
+  </pre>
 </div>
 `;

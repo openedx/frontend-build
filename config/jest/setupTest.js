@@ -8,3 +8,36 @@ const testEnvFile = path.resolve(process.cwd(), '.env.test');
 if (fs.existsSync(testEnvFile)) {
   dotenv.config({ path: testEnvFile });
 }
+
+global.PARAGON_THEME = {
+  paragon: {
+    version: '1.0.0',
+    themeUrls: {
+      core: {
+        fileName: 'core.min.css',
+      },
+      variants: {
+        light: {
+          fileName: 'light.min.css',
+          default: true,
+          dark: false,
+        },
+      },
+    },
+  },
+  brand: {
+    version: '1.0.0',
+    themeUrls: {
+      core: {
+        fileName: 'core.min.css',
+      },
+      variants: {
+        light: {
+          fileName: 'light.min.css',
+          default: true,
+          dark: false,
+        },
+      },
+    },
+  },
+};
