@@ -108,9 +108,27 @@ exports[`Basic test should render 1`] = `
     Paragon
   </h2>
   <h3>
-    Exposed Theme CSS
+    Exposed theme CSS files
   </h3>
   <ul>
+    <li>
+      <a
+        href="/core.min.css"
+        rel="noopener noreferrer"
+        target="_blank"
+      >
+        core.min.css
+      </a>
+    </li>
+    <li>
+      <a
+        href="/light.min.css"
+        rel="noopener noreferrer"
+        target="_blank"
+      >
+        light.min.css
+      </a>
+    </li>
     <li>
       <a
         href="/core.min.css"
@@ -133,22 +151,39 @@ exports[`Basic test should render 1`] = `
   <h3>
     Contents of 
     <code>
-      PARAGON
+      PARAGON_THEME
     </code>
      global variable
   </h3>
   <pre>
     {
-  "version": "1.0.0",
-  "themeUrls": {
-    "core": {
-      "fileName": "core.min.css"
-    },
-    "variants": {
-      "light": {
-        "fileName": "light.min.css",
-        "default": true,
-        "dark": false
+  "paragon": {
+    "version": "1.0.0",
+    "themeUrls": {
+      "core": {
+        "fileName": "core.min.css"
+      },
+      "variants": {
+        "light": {
+          "fileName": "light.min.css",
+          "default": true,
+          "dark": false
+        }
+      }
+    }
+  },
+  "brand": {
+    "version": "1.0.0",
+    "themeUrls": {
+      "core": {
+        "fileName": "core.min.css"
+      },
+      "variants": {
+        "light": {
+          "fileName": "light.min.css",
+          "default": true,
+          "dark": false
+        }
       }
     }
   }
