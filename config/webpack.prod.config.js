@@ -63,7 +63,7 @@ module.exports = merge(commonConfig, {
   output: {
     filename: '[name].[chunkhash].js',
     path: path.resolve(process.cwd(), 'dist'),
-    publicPath: process.env.PUBLIC_PATH || '/',
+    publicPath: process.env.PUBLIC_PATH_CDN || process.env.PUBLIC_PATH || '/',
   },
   module: {
     // Specify file-by-file rules to Webpack. Some file-types need a particular kind of loader.
