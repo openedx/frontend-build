@@ -66,7 +66,7 @@
     "image-minimizer-webpack-plugin": "3.8.3",
     "jest": "27.5.1",
     "mini-css-extract-plugin": "1.6.2",
-    "postcss": "8.4.25",
+    "postcss": "8.4.26",
     "postcss-custom-media": "^9.1.2",
     "postcss-loader": "7.3.3",
     "postcss-rtlcss": "4.0.6",
