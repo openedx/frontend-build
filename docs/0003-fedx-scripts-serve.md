@@ -16,11 +16,9 @@ To mitigate this, this ADR describes a new mechanism to provide a standard, docu
 
 # Decision
 
-We will create a new `serve` command for `fedx-scripts` that creates an Express.js server to run the generated `dist` file assets (e.g., `index.html`) on the `PORT` specified in the MFE's `env.config.js` file on `localhost`.
+We will create a new `serve` command for `fedx-scripts` that creates an Express.js server to run the generated `dist` file assets (e.g., `index.html`) on the `PORT` specified in the MFE's `env.config.js` and/or `.env.development|private` file(s) on `localhost`.
 
-If no `env.config.js` file is specified and/or no `PORT` is specified in `env.config.js`, the `serve` command will fallback to port 8080, which is similar to the default ports our typical example MFE applications use.
-
-Note: At the time of this writing, the `.env*` environment variables approach to configuration is deprecated. As such, supporting the `.env*` files is intentionally not supported by the new `serve` command.
+If no `env.config.js` and/or `.env.development|private` file(s) exist and/or no `PORT` setting is specified those files, the `serve` command will fallback to a default port 8080, which is similar to the default ports our typical example MFE applications use.
 
 # Implementation
 
@@ -36,4 +34,4 @@ Once in place, a MFE application may add a `serve` script to its NPM scripts in 
 }
 ```
 
-Then, running `npm run serve` in the root of that MFE application will run the new `serve` command in `@edx/frontend-build`, serving the assets in the MFE's `dist` directory on the `PORT` specified in the `env.config.js` file.
+Then, running `npm run serve` in the root of that MFE application will run the new `serve` command in `@edx/frontend-build`, serving the assets in the MFE's `dist` directory on the `PORT` specified in the `env.config.js` file or `.env.development|private` file(s).
