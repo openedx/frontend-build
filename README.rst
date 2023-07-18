@@ -188,6 +188,16 @@ Local module configuration for TypeScript
 }
 ```
 
+Serving a production Webpack build locally
+------------------------------------------
+
+In some scenarios, you may want to run a production Webpack build locally. To serve a production build locally:
+
+#. Create an ``env.config.js`` file containing the configuration for local development, with the exception of ``NODE_ENV='production'``.
+#. Run ``npm run build`` to build the production assets. The output assets will rely on the local development configuration specified in the prior step.
+#. Add an NPM script ``serve`` to your application's ``package.json`` (i.e., ``"serve": "fedx-scripts serve"``).
+#. Run ``npm run serve`` to serve your production build assets. It will attempt to run the build on the same port specified in the ``env.config.js`` file.
+
 Development
 -----------
 
