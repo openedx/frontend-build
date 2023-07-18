@@ -2,7 +2,6 @@
 // optimized bundles at the expense of a longer build time.
 
 const ImageMinimizerPlugin = require('image-minimizer-webpack-plugin');
-
 const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const { merge } = require('webpack-merge');
