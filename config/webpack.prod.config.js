@@ -131,6 +131,8 @@ module.exports = merge(commonConfig, {
                   path.join(process.cwd(), 'node_modules'),
                   path.join(process.cwd(), 'src'),
                 ],
+                // silences compiler warnings regarding deprecation warnings
+                quietDeps: true,
               },
             },
           },
