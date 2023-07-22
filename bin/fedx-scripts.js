@@ -1,4 +1,7 @@
 #!/usr/bin/env node
+
+const chalk = require('chalk');
+
 const presets = require('../lib/presets');
 
 /**
@@ -65,6 +68,9 @@ switch (commandName) {
     ensureConfigOption(presets.webpackDevServer);
     require('webpack-dev-server/bin/webpack-dev-server');
     break;
+  case 'serve':
+    require('../lib/scripts/serve');
+    break;
   default:
-    console.warn(`fedx-scripts: The command ${commandName} is unsupported`);
+    console.log(chalk.red(`[ERROR] fedx-scripts: The command ${chalk.bold.red(commandName)} is unsupported.`));
 }

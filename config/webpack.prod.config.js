@@ -2,7 +2,6 @@
 // optimized bundles at the expense of a longer build time.
 
 const ImageMinimizerPlugin = require('image-minimizer-webpack-plugin');
-
 const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const { merge } = require('webpack-merge');
@@ -132,6 +131,8 @@ module.exports = merge(commonConfig, {
                   path.join(process.cwd(), 'node_modules'),
                   path.join(process.cwd(), 'src'),
                 ],
+                // silences compiler warnings regarding deprecation warnings
+                quietDeps: true,
               },
             },
           },
