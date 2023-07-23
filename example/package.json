@@ -15,8 +15,8 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@edx/brand": "npm:@edx/brand-openedx@1.2.0",
-    "@edx/paragon": "20.43.0",
+    "@edx/brand": "npm:@edx/brand-edx.org@2.2.0-alpha.13",
+    "@edx/paragon": "21.0.0-alpha.40",
     "react": "16.14.0",
     "react-dom": "16.14.0"
   },
