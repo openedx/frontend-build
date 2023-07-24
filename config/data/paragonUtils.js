@@ -29,8 +29,6 @@ function getParagonVersion(dir, { isBrandOverride = false } = {}) {
  * @property {string} filePath
  * @property {string} entryName
  * @property {string} outputChunkName
- * @property {boolean} default
- * @property {boolean} dark
  */
 
 /**
@@ -55,6 +53,7 @@ function getParagonThemeCss(dir, { isBrandOverride = false } = {}) {
   const {
     core: themeCore,
     variants: themeVariants,
+    defaults,
   } = paragonConfig?.themeUrls || {};
 
   const pathToCoreCss = path.resolve(dir, 'node_modules', npmPackageName, 'dist', themeCore.paths.minified);
@@ -80,25 +79,15 @@ function getParagonThemeCss(dir, { isBrandOverride = false } = {}) {
     themeVariantResults[themeVariant] = {
       filePath: path.resolve(dir, 'node_modules', npmPackageName, 'dist', value.paths.minified),
       entryName: isBrandOverride ? `brand.theme.variants.${themeVariant}` : `paragon.theme.variants.${themeVariant}`,
-      outputChunkName: isBrandOverride ? `brand-theme-variant-${themeVariant}` : `paragon-theme-variant-${themeVariant}`,
-      default: value.default,
-      dark: value.dark,
+      outputChunkName: isBrandOverride ? `brand-theme-variants-${themeVariant}` : `paragon-theme-variants-${themeVariant}`,
     };
   });
 
   return {
     core: fs.existsSync(pathToCoreCss) ? coreResult : undefined,
     variants: themeVariantResults,
+    defaults,
   };
-}
-
-/**
- * Replaces all periods in a string with hyphens.
- * @param {string} str A string containing periods to replace with hyphens.
- * @returns The input string with periods replaced with hyphens.
- */
-function replacePeriodsWithHyphens(str) {
-  return str.replaceAll('.', '-');
 }
 
 /**
@@ -118,16 +107,16 @@ function getParagonCacheGroups(paragonThemeCss) {
   if (!paragonThemeCss) {
     return cacheGroups;
   }
-  cacheGroups[paragonThemeCss.core.entryName] = {
+  cacheGroups[paragonThemeCss.core.outputChunkName] = {
     type: 'css/mini-extract',
-    name: replacePeriodsWithHyphens(paragonThemeCss.core.entryName),
+    name: paragonThemeCss.core.outputChunkName,
     chunks: chunk => chunk.name === paragonThemeCss.core.entryName,
     enforce: true,
   };
-  Object.values(paragonThemeCss.variants).forEach(({ entryName }) => {
-    cacheGroups[entryName] = {
+  Object.values(paragonThemeCss.variants).forEach(({ entryName, outputChunkName }) => {
+    cacheGroups[outputChunkName] = {
       type: 'css/mini-extract',
-      name: replacePeriodsWithHyphens(entryName),
+      name: outputChunkName,
       chunks: chunk => chunk.name === entryName,
       enforce: true,
     };
@@ -161,5 +150,4 @@ module.exports = {
   getParagonThemeCss,
   getParagonCacheGroups,
   getParagonEntryPoints,
-  replacePeriodsWithHyphens,
 };

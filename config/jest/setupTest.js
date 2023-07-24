@@ -16,11 +16,12 @@ global.PARAGON_THEME = {
       core: {
         fileName: 'core.min.css',
       },
+      defaults: {
+        light: 'light',
+      },
       variants: {
         light: {
           fileName: 'light.min.css',
-          default: true,
-          dark: false,
         },
       },
     },
@@ -31,11 +32,12 @@ global.PARAGON_THEME = {
       core: {
         fileName: 'core.min.css',
       },
+      defaults: {
+        light: 'light',
+      },
       variants: {
         light: {
           fileName: 'light.min.css',
-          default: true,
-          dark: false,
         },
       },
     },
