@@ -1,6 +1,5 @@
 const path = require('path');
 const fs = require('fs');
-const { jsWithTs: tsjPreset } = require('ts-jest/presets');
 
 const presets = require('../lib/presets');
 
@@ -40,6 +39,6 @@ module.exports = {
         configFile: presets.babel.resolvedFilepath,
       },
     ],
-    ...tsjPreset.transform,
+    '^.+\\.[tj]sx?$': path.resolve(__dirname, '../node_modules/.bin/ts-jest'),
   },
 };
