@@ -20,7 +20,7 @@ Usage
 -----
 
 CLI commands are structured: ``fedx-scripts <targetScript> <options>``. Options
-are passed on to the target script, so refer to each target script's cli
+are passed on to the target script, so refer to each target script's CLI
 documentation to learn what options are available. Example package.json::
 
   {
@@ -31,7 +31,8 @@ documentation to learn what options are available. Example package.json::
         "precommit": "npm run lint",
         "snapshot": "fedx-scripts jest --updateSnapshot",
         "start": "fedx-scripts webpack-dev-server --progress",
-        "test": "fedx-scripts jest --coverage --passWithNoTests"
+        "test": "fedx-scripts jest --coverage --passWithNoTests",
+        "serve": "fedx-scripts serve"
      },
      "dependencies": {
         ...
@@ -156,6 +157,36 @@ during development but want to ensure these secrets are not checked into Git.
 You may create a `.env.private` with any overrides of the environment settings configured in `.env.development`.
 
 **Note: .env.private should be added to your project's .gitignore so it does not get checked in.**
+
+Local module configuration for TypeScript
+-----------------------------------------
+
+#. Create file in repository `tsconfig.json`, with a clause `"extends": "@edx/frontend-build"`
+#. Set "rootDir" to the root of the source code folders
+#. Set "include" to wildcard patterns specifying the subdirectories/files under rootDir where source code can be found
+#. Include any wildcards under rootDir that should be excluded using "exclude"
+
+```Sample json
+{
+  "extends": "@edx/frontend-build",
+  "compilerOptions": {
+    "rootDir": ".",
+    "outDir": "dist"
+  },
+  "include": ["src/**/*"],
+  "exclude": ["dist", "node_modules"]
+}
+```
+
+Serving a production Webpack build locally
+------------------------------------------
+
+In some scenarios, you may want to run a production Webpack build locally. To serve a production build locally:
+
+#. Create an ``env.config.js`` file containing the configuration for local development, with the exception of ``NODE_ENV='production'``.
+#. Run ``npm run build`` to build the production assets. The output assets will rely on the local development configuration specified in the prior step.
+#. Add an NPM script ``serve`` to your application's ``package.json`` (i.e., ``"serve": "fedx-scripts serve"``).
+#. Run ``npm run serve`` to serve your production build assets. It will attempt to run the build on the same port specified in the ``env.config.js`` file.
 
 Local module configuration for TypeScript
 -----------------------------------------
