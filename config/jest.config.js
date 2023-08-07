@@ -10,6 +10,21 @@ if (fs.existsSync(appEnvConfigPath)) {
   envConfigPath = appEnvConfigPath;
 }
 
+const transform = {
+  '^.+\\.jsx?$': [
+    'babel-jest',
+    {
+      configFile: presets.babel.resolvedFilepath,
+    },
+  ],
+};
+
+try {
+  transform['^.+\\.[tj]sx?$'] = path.resolve(__dirname, '../node_modules/.bin/ts-jest');
+} catch {
+  console.log('skipping ts config');
+}
+
 module.exports = {
   testURL: 'http://localhost/',
   setupFiles: [
@@ -32,13 +47,5 @@ module.exports = {
   transformIgnorePatterns: [
     '/node_modules/(?!@edx)',
   ],
-  transform: {
-    '^.+\\.jsx?$': [
-      'babel-jest',
-      {
-        configFile: presets.babel.resolvedFilepath,
-      },
-    ],
-    '^.+\\.[tj]sx?$': path.resolve(__dirname, '../node_modules/.bin/ts-jest'),
-  },
+  transform,
 };
