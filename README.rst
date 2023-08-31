@@ -168,26 +168,6 @@ In some scenarios, you may want to run a production Webpack build locally. To se
 #. Add an NPM script ``serve`` to your application's ``package.json`` (i.e., ``"serve": "fedx-scripts serve"``).
 #. Run ``npm run serve`` to serve your production build assets. It will attempt to run the build on the same port specified in the ``env.config.js`` file.
 
-Local module configuration for TypeScript
------------------------------------------
-
-#. Create file in repository `tsconfig.json`, with a clause `"extends": "@edx/frontend-build"`
-#. Set "rootDir" to the root of the source code folders
-#. Set "include" to wildcard patterns specifying the subdirectories/files under rootDir where source code can be found
-#. Include any wildcards under rootDir that should be excluded using "exclude"
-
-```Sample json
-{
-  "extends": "@edx/frontend-build",
-  "compilerOptions": {
-    "rootDir": ".",
-    "outDir": "dist"
-  },
-  "include": ["src/**/*"],
-  "exclude": ["dist", "node_modules"]
-}
-```
-
 Serving a production Webpack build locally
 ------------------------------------------
 
