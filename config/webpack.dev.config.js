@@ -9,6 +9,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const path = require('path');
 const PostCssAutoprefixerPlugin = require('autoprefixer');
 const PostCssRTLCSS = require('postcss-rtlcss');
+const PostCssCustomMediaCSS = require('postcss-custom-media');
 const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin');
 
 const commonConfig = require('./webpack.common.config');
@@ -85,6 +86,7 @@ module.exports = merge(commonConfig, {
                 plugins: [
                   PostCssAutoprefixerPlugin(),
                   PostCssRTLCSS(),
+                  PostCssCustomMediaCSS(),
                 ],
               },
             },
@@ -99,6 +101,8 @@ module.exports = merge(commonConfig, {
                   path.join(process.cwd(), 'node_modules'),
                   path.join(process.cwd(), 'src'),
                 ],
+                // silences compiler warnings regarding deprecation warnings
+                quietDeps: true,
               },
             },
           },
@@ -173,6 +177,7 @@ module.exports = merge(commonConfig, {
     port: process.env.PORT || 8080,
     historyApiFallback: {
       index: path.join(PUBLIC_PATH, 'index.html'),
+      disableDotRule: true,
     },
     // Enable hot reloading server. It will provide WDS_SOCKET_PATH endpoint
     // for the WebpackDevServer client so it can learn when the files were

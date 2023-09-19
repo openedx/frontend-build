@@ -20,7 +20,7 @@ Usage
 -----
 
 CLI commands are structured: ``fedx-scripts <targetScript> <options>``. Options
-are passed on to the target script, so refer to each target script's cli
+are passed on to the target script, so refer to each target script's CLI
 documentation to learn what options are available. Example package.json::
 
   {
@@ -31,7 +31,8 @@ documentation to learn what options are available. Example package.json::
         "precommit": "npm run lint",
         "snapshot": "fedx-scripts jest --updateSnapshot",
         "start": "fedx-scripts webpack-dev-server --progress",
-        "test": "fedx-scripts jest --coverage --passWithNoTests"
+        "test": "fedx-scripts jest --coverage --passWithNoTests",
+        "serve": "fedx-scripts serve"
      },
      "dependencies": {
         ...
@@ -157,13 +158,15 @@ You may create a `.env.private` with any overrides of the environment settings c
 
 **Note: .env.private should be added to your project's .gitignore so it does not get checked in.**
 
-Local module configuration for TypeScript
------------------------------------------
+Serving a production Webpack build locally
+------------------------------------------
 
-#. Copy tsconfig.json into the root of the module
-#. Set "rootDir" to the root of the source code folders, and "outDir" to the distribution folder
-#. Set "include" to wildcard patterns specifying the subdirectories/files under rootDir where source code can be found
-#. Include any wildcards under rootDir that should be excluded using "exclude".  Make sure the "outDir" directory is excluded here, if it is under "include".
+In some scenarios, you may want to run a production Webpack build locally. To serve a production build locally:
+
+#. Create an ``env.config.js`` file containing the configuration for local development, with the exception of ``NODE_ENV='production'``.
+#. Run ``npm run build`` to build the production assets. The output assets will rely on the local development configuration specified in the prior step.
+#. Add an NPM script ``serve`` to your application's ``package.json`` (i.e., ``"serve": "fedx-scripts serve"``).
+#. Run ``npm run serve`` to serve your production build assets. It will attempt to run the build on the same port specified in the ``env.config.js`` file.
 
 Development
 -----------
@@ -182,6 +185,16 @@ or to test with an existing project you can do the following:
 3. Install the development version of frontend-build
    ``npm i --save-dev @edx/frontend-build@file:./frontend-build``.
 
+Optimization
+-----------
+To increase optimization by reducing unused CSS, you can set ``USE_PURGECSS=true`` in ``.env`` or as ENV var in the corresponding MFE.
+However, note that doing this will increase build time by 30%. It's thus not recommended to use this option during development.
+On the other hand, enabling PurgeCSS will increase browser performance for the end user by as much as 20% (as measured by `lighthouse`_).  Operators are encouraged to do so for production deployments.
+
+For more information about optimizing MFEs, refer to the `issue #138`_ in the wg-frontend repository.
+
+.. _lighthouse: https://developer.chrome.com/docs/lighthouse/overview/
+.. _issue #138: https://github.com/openedx/wg-frontend/issues/138
 .. |Build Status| image:: https://api.travis-ci.com/edx/frontend-build.svg?branch=master
    :target: https://travis-ci.com/edx/frontend-build
 .. |Codecov| image:: https://img.shields.io/codecov/c/github/edx/frontend-build
