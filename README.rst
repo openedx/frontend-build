@@ -26,7 +26,7 @@ documentation to learn what options are available. Example package.json::
   {
      "scripts": {
         "build": "fedx-scripts webpack",
-        "i18n_extract": "fedx-scripts formatjs extract --out-file ./temp/react-intl-formatjs/Header.messages.json -- 'src/**/*.jsx'",
+        "i18n_extract": "fedx-scripts formatjs extract",
         "lint": "fedx-scripts eslint --ext .jsx,.js .",
         "precommit": "npm run lint",
         "snapshot": "fedx-scripts jest --updateSnapshot",
