@@ -14,7 +14,7 @@
       "groupName": "eslint"
     },
     {
-      "matchPackagePatterns": ["@edx"],
+      "matchPackagePatterns": ["@edx", "@openedx"],
       "matchUpdateTypes": ["minor", "patch"],
       "automerge": true
     }
