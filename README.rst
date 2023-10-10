@@ -26,7 +26,7 @@ documentation to learn what options are available. Example package.json::
   {
      "scripts": {
         "build": "fedx-scripts webpack",
-        "i18n_extract": "BABEL_ENV=i18n fedx-scripts babel src --quiet > /dev/null",
+        "i18n_extract": "fedx-scripts formatjs extract",
         "lint": "fedx-scripts eslint --ext .jsx,.js .",
         "precommit": "npm run lint",
         "snapshot": "fedx-scripts jest --updateSnapshot",
