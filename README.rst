@@ -1,7 +1,12 @@
+##############
 frontend-build
-==============
+##############
 
 |Build Status| |npm_version| |Codecov| |license|
+
+********
+Purpose
+********
 
 The purpose of this package is to provide a common sense foundation and
 setup for frontend projects including:
@@ -16,8 +21,29 @@ dev and build dependencies. It aims to provide common sense defaults that
 should be good for most edX projects out of the box, but can extended or
 overridden where needed.
 
+Cloning and Startup
+===================
+
+.. code-block::
+
+
+  1. Clone your new repo:
+
+    ``git clone https://github.com/openedx/frontend-build.git``
+
+  2. Use node v18.x.
+
+    The current version of the micro-frontend build scripts support node 18.
+    Using other major versions of node *may* work, but this is unsupported.  For
+    convenience, this repository includes an .nvmrc file to help in setting the
+    correct node version via `nvm <https://github.com/nvm-sh/nvm>`_.
+
+  3. Install npm dependencies:
+
+    ``cd frontend-build && npm ci``
+
 Usage
------
+=====
 
 CLI commands are structured: ``fedx-scripts <targetScript> <options>``. Options
 are passed on to the target script, so refer to each target script's CLI
@@ -43,7 +69,7 @@ documentation to learn what options are available. Example package.json::
   }
 
 Extending or Overriding Config Presets
---------------------------------------
+======================================
 
 This package contains a set of configuration presets:
 
@@ -104,7 +130,7 @@ location in other configuration files. Please reach out to the FedX team if you
 need to do this and are running into problems.
 
 Local module configuration for Webpack
---------------------------------------
+======================================
 
 The development webpack configuration allows engineers to create a "module.config.js" file containing local module overrides.  This means that if you're developing a new feature in a shared library (@edx/frontend-platform, @edx/paragon, etc.), you can add the local location of that repository to your module.config.js file and the webpack build for your application will automatically pick it up and use it, rather than its node_modules version of the file.
 
@@ -131,14 +157,14 @@ An example module.config.js file looks like the following.  You can copy this in
    };
 
 Steps
-~~~~~
+=====
 
 #. Copy the ``module.config.js`` into your frontend app repository, modifying it as necessary.
 #. Run ``npm install && npm run build`` within any shared NPM package you want to use locally.
 #. Restart your app.
 
 Notes
-~~~~~
+=====
 
 * The "dir" and "dist" keys give you granular control over the shape of your repository's distribution.  Paragon, for instance, needs two separate entries to pick up both JS and SCSS imports.
 * The directory location ``../src`` (relative to the root of your frontend app repository) is recommended for shared NPM package repositories, since it will work whether or not you are running your frontend via devstack. If you are *not* running your frontend via devstack, then you can place your shared libraries anywhere in your file system, updating the "dir" key accordingly. To learn more, see `this devstack ADR on local packages`_.
@@ -147,7 +173,7 @@ Notes
 .. _this devstack ADR on local packages: https://github.com/openedx/devstack/tree/master/docs/decisions/0005-frontend-package-mounts.rst
 
 Override default .env.development environment variables with .env.private
--------------------------------------------------------------------------
+=========================================================================
 
 In some situations, you may want to override development environment variables defined in .env.development
 with private environment variables that should never be checked into a repository. For example, a
@@ -159,7 +185,7 @@ You may create a `.env.private` with any overrides of the environment settings c
 **Note: .env.private should be added to your project's .gitignore so it does not get checked in.**
 
 Serving a production Webpack build locally
-------------------------------------------
+==========================================
 
 In some scenarios, you may want to run a production Webpack build locally. To serve a production build locally:
 
@@ -169,7 +195,7 @@ In some scenarios, you may want to run a production Webpack build locally. To se
 #. Run ``npm run serve`` to serve your production build assets. It will attempt to run the build on the same port specified in the ``env.config.js`` file.
 
 Development
------------
+===========
 
 This project leverages the command line interface for webpack, jest, eslint, and babel.
 Because of this, local development can be tricky. The easiest way to do local
@@ -185,8 +211,59 @@ or to test with an existing project you can do the following:
 3. Install the development version of frontend-build
    ``npm i --save-dev @edx/frontend-build@file:./frontend-build``.
 
+License
+=======
+
+The code in this repository is licensed under the AGPLv3 unless otherwise
+noted.
+
+Please see `LICENSE <LICENSE>`_ for details.
+
+Contributing
+============
+
+Contributions are very welcome.  Please read `How To Contribute`_ for details.
+
+.. _How To Contribute: https://openedx.org/r/how-to-contribute
+
+This project is currently accepting all types of contributions, bug fixes,
+security fixes, maintenance work, or new features.  However, please make sure
+to have a discussion about your new feature idea with the maintainers prior to
+beginning development to maximize the chances of your change being accepted.
+You can start a conversation by creating a new issue on this repo summarizing
+your idea.
+
+
+Getting Help
+===========
+
+If you're having trouble, we have discussion forums at
+https://discuss.openedx.org where you can connect with others in the community.
+
+Our real-time conversations are on Slack. You can request a `Slack
+invitation`_, then join our `community Slack workspace`_.  Because this is a
+frontend repository, the best place to discuss it would be in the `#wg-frontend
+channel`_.
+
+For anything non-trivial, the best path is to open an issue in this repository
+with as many details about the issue you are facing as you can provide.
+
+https://github.com/openedx/frontend-build/issues
+
+For more information about these options, see the `Getting Help`_ page.
+
+.. _Slack invitation: https://openedx.org/slack
+.. _community Slack workspace: https://openedx.slack.com/
+.. _#wg-frontend channel: https://openedx.slack.com/archives/C04BM6YC7A6
+.. _Getting Help: https://openedx.org/community/connect
+
+Reporting Security Issues
+=========================
+
+Please do not report security issues in public. Please email security@openedx.org.
+
 Optimization
------------
+============
 To increase optimization by reducing unused CSS, you can set ``USE_PURGECSS=true`` in ``.env`` or as ENV var in the corresponding MFE.
 However, note that doing this will increase build time by 30%. It's thus not recommended to use this option during development.
 On the other hand, enabling PurgeCSS will increase browser performance for the end user by as much as 20% (as measured by `lighthouse`_).  Operators are encouraged to do so for production deployments.
