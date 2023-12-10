@@ -15,13 +15,13 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@edx/brand": "npm:@edx/brand-openedx@1.2.0",
-    "@edx/frontend-platform": "4.6.0",
-    "@edx/paragon": "20.45.5",
+    "@edx/brand": "npm:@openedx/brand-openedx@1.2.3",
+    "@edx/frontend-platform": "6.1.2",
+    "@edx/paragon": "npm:@openedx/paragon@^22.0.0-alpha.22",
     "react": "17.0.2",
     "react-dom": "17.0.2",
     "react-redux": "7.2.9",
-    "react-router-dom": "5.3.4"
+    "react-router-dom": "6.20.1"
   },
   "devDependencies": {
     "@edx/browserslist-config": "1.2.0",

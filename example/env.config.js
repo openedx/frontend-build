@@ -6,7 +6,7 @@ module.exports = {
   PARAGON_THEME_URLS: {
     core: {
       urls: {
-        default: 'https://cdn.jsdelivr.net/npm/@edx/paragon@alphaa/dist/core.min.css',
+        default: 'https://cdn.jsdelivr.net/npm/@openedx/paragon@alphaa/dist/core.min.css',
         brandOverride: 'https://cdn.jsdelivr.net/npm/@edx/brand-edx.org@alpha/dist/core.min.css',
       },
     },
@@ -16,13 +16,13 @@ module.exports = {
     variants: {
       light: {
         urls: {
-          default: 'https://cdn.jsdelivr.net/npm/@edx/paragon@alpha/dist/light.min.css',
+          default: 'https://cdn.jsdelivr.net/npm/@openedx/paragon@alpha/dist/light.min.css',
           brandOverride: 'https://cdn.jsdelivr.net/npm/@edx/brand-edx.org@alpha/dist/light.min.css',
         },
       },
       dark: {
         urls: {
-          default: 'https://cdn.jsdelivr.net/npm/@edx/paragon@v21.0.0-alpha.40/dist/light.min.css',
+          default: 'https://cdn.jsdelivr.net/npm/@openedx/paragon@v21.0.0-alpha.40/dist/light.min.css',
           brandOverride: 'https://cdn.jsdelivr.net/npm/@edx/brand-edx.org@2.2.0-alpha.13/dist/light.min.css',
         },
       },
