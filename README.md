@@ -1,13 +1,5 @@
 # frontend-build
 
-## Warning: Package Moved
-
-While the Paragon design system will continue to receive updates, these updates
-will no longer be published at the @edx/frontend-build NPM package. Instead, the
-latest versions can be found with
-[@openedx/frontend-build](https://www.npmjs.com/package/@openedx/frontend-build) instead.
-
-
 [![Build
 Status](https://api.travis-ci.com/edx/frontend-build.svg?branch=master)](https://travis-ci.com/edx/frontend-build)
 ![npm\_version](https://img.shields.io/npm/v/@edx/frontend-build.svg)
