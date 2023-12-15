@@ -1,5 +1,5 @@
 {
-  "name": "@edx/frontend-build",
+  "name": "@openedx/frontend-build",
   "version": "1.0.0-semantically-released",
   "description": "Build tools, setup and config for frontend apps",
   "publishConfig": {
@@ -18,7 +18,7 @@
     "url": "git+https://github.com/openedx/frontend-build.git"
   },
   "keywords": [],
-  "author": "edX",
+  "author": "Open edX Community",
   "license": "AGPL-3.0",
   "bugs": {
     "url": "https://github.com/openedx/frontend-build/issues"
