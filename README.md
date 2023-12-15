@@ -2,9 +2,9 @@
 
 [![Build
 Status](https://api.travis-ci.com/edx/frontend-build.svg?branch=master)](https://travis-ci.com/edx/frontend-build)
-![npm\_version](https://img.shields.io/npm/v/@edx/frontend-build.svg)
+![npm\_version](https://img.shields.io/npm/v/@openedx/frontend-build.svg)
 [![Codecov](https://img.shields.io/codecov/c/github/edx/frontend-build)](https://codecov.io/gh/edx/frontend-build)
-[![license](https://img.shields.io/npm/l/@edx/frontend-build.svg)](https://github.com/edx-unsupported/frontend-base/blob/master/LICENSE)
+[![license](https://img.shields.io/npm/l/@openedx/frontend-build.svg)](https://github.com/edx-unsupported/frontend-base/blob/master/LICENSE)
 
 ## Purpose
 
@@ -62,7 +62,7 @@ package.json:
           ...
        },
        "devDependencies": {
-          "@edx/frontend-build": "1.0.0"
+          "@openedx/frontend-build": "1.0.0"
        }
     }
 
@@ -84,14 +84,14 @@ files or supplying your own wholesale.
 
 Method 1: Extend base config (babel.config.js):
 
-    const { createConfig } = require('@edx/frontend-build');
+    const { createConfig } = require('@openedx/frontend-build');
     module.exports = createConfig('babel', {
        /* option overrides or extensions */
     });
 
 Method 2: Custom manipulations (babel.config.js):
 
-    const { getBaseConfig } = require('@edx/frontend-build');
+    const { getBaseConfig } = require('@openedx/frontend-build');
     const config = getBaseConfig('babel');
 
     /* Custom config manipulations */
@@ -133,7 +133,7 @@ if you need to do this and are running into problems.
 The development webpack configuration allows engineers to create a
 \"module.config.js\" file containing local module overrides. This means
 that if you\'re developing a new feature in a shared library
-(\@edx/frontend-platform, \@edx/paragon, etc.), you can add the local
+(\@edx/frontend-platform, \@openedx/paragon, etc.), you can add the local
 location of that repository to your module.config.js file and the
 webpack build for your application will automatically pick it up and use
 it, rather than its node\_modules version of the file.
@@ -155,10 +155,10 @@ frontend-platform:
       dist: The sub-directory of the source code where it puts its build artifact.  Often "dist".
       */
       localModules: [
-        { moduleName: '@edx/brand', dir: '../src/brand-openedx' }, // replace with your brand checkout
-        { moduleName: '@edx/paragon/scss/core', dir: '../src/paragon', dist: 'scss/core' },
-        { moduleName: '@edx/paragon/icons', dir: '../src/paragon', dist: 'icons' },
-        { moduleName: '@edx/paragon', dir: '../src/paragon', dist: 'dist' },
+        { moduleName: '@openedx/brand', dir: '../src/brand-openedx' }, // replace with your brand checkout
+        { moduleName: '@openedx/paragon/scss/core', dir: '../src/paragon', dist: 'scss/core' },
+        { moduleName: '@openedx/paragon/icons', dir: '../src/paragon', dist: 'icons' },
+        { moduleName: '@openedx/paragon', dir: '../src/paragon', dist: 'dist' },
         { moduleName: '@edx/frontend-platform', dir: '../src/frontend-platform', dist: 'dist' },
       ],
     };
@@ -232,7 +232,7 @@ project you can do the following:
     modules folder
     `mv ../frontend-build ./ && rm -rf frontend-build/node_modules`
 3.  Install the development version of frontend-build
-    `npm i --save-dev @edx/frontend-build@file:./frontend-build`.
+    `npm i --save-dev @openedx/frontend-build@file:./frontend-build`.
 
 ## License
 
