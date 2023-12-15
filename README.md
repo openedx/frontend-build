@@ -3,7 +3,7 @@
 ## Warning: Package Moved
 
 While the Paragon design system will continue to receive updates, these updates
-will no longer be published at the @edx/paragon NPM package. Instead, the
+will no longer be published at the @edx/frontend-build NPM package. Instead, the
 latest versions can be found with
 [@openedx/frontend-build](https://www.npmjs.com/package/@openedx/frontend-build) instead.
 
