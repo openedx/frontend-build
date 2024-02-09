@@ -17,6 +17,14 @@ const presets = require('../lib/presets');
 const resolvePrivateEnvConfig = require('../lib/resolvePrivateEnvConfig');
 const getLocalAliases = require('./getLocalAliases');
 
+// Provides the env.config object that is available in local development so that devserver port number
+// can be assigned below. If no env.config exists (JS or JSX), then it provides an empty object. 
+const envConfigPathJs = path.resolve(process.cwd(),'./env.config.js');
+const envConfigPathJsx = path.resolve(process.cwd(), './env.config.jsx');
+const envConfig = fs.existsSync(envConfigPathJs) ? require(envConfigPathJs)
+                  : fs.existsSync(envConfigPathJsx) ? require(envConfigPathJsx)
+                  : {};
+
 // Add process env vars. Currently used only for setting the
 // server port and the publicPath
 dotenv.config({
@@ -174,7 +182,7 @@ module.exports = merge(commonConfig, {
   // reloading.
   devServer: {
     host: '0.0.0.0',
-    port: process.env.PORT || 8080,
+    port: envConfig.PORT || process.env.PORT || 8080,
     historyApiFallback: {
       index: path.join(PUBLIC_PATH, 'index.html'),
       disableDotRule: true,

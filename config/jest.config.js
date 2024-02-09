@@ -3,12 +3,13 @@ const fs = require('fs');
 
 const presets = require('../lib/presets');
 
-let envConfigPath = path.resolve(__dirname, './jest/fallback.env.config.js');
-const appEnvConfigPath = path.resolve(process.cwd(), './env.config.js');
+// This assigns the envConfigPath filepath based on whether env.config exists, otherwise it uses the fallback filepath.
+const appEnvConfigPathJs = path.resolve(process.cwd(), './env.config.js');
+const appEnvConfigPathJsx = path.resolve(process.cwd(), './env.config.jsx');
 
-if (fs.existsSync(appEnvConfigPath)) {
-  envConfigPath = appEnvConfigPath;
-}
+const envConfigPath = fs.existsSync(appEnvConfigPathJs) ? appEnvConfigPathJs
+                      : fs.existsSync(appEnvConfigPathJsx) ? appEnvConfigPathJsx
+                      : path.resolve(__dirname, './jest/fallback.env.config.js');
 
 module.exports = {
   testURL: 'http://localhost/',

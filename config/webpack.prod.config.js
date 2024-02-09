@@ -23,6 +23,23 @@ const HtmlWebpackNewRelicPlugin = require('../lib/plugins/html-webpack-new-relic
 const commonConfig = require('./webpack.common.config');
 const presets = require('../lib/presets');
 
+/** This condition confirms whether the MFE has a JS-based configuration file and creates a copy of the file based
+ * on the filepath given. If the environment variable exists, then an env.config.js(x) file will be created at the root
+ * directory and its env variables can be accessed with getConfig().
+ *
+ * https://github.com/openedx/frontend-build/blob/master/docs/0002-js-environment-config.md
+ * https://github.com/openedx/frontend-platform/blob/master/docs/decisions/0007-javascript-file-configuration.rst
+ */
+const envConfigPath = process.env.JS_CONFIG_FILEPATH;
+if (envConfigPath) {
+  // This handles the possibility that env.config will have either a JS or JSX extension
+  const envConfigFilename = envConfigPath.slice(envConfigPath.indexOf('env.config'));
+
+  fs.copyFile(process.env.JS_CONFIG_FILEPATH, envConfigFilename, (err) => {
+    if (err) { throw err; }
+  });
+}
+
 // Add process env vars. Currently used only for setting the PUBLIC_PATH.
 dotenv.config({
   path: path.resolve(process.cwd(), '.env'),
