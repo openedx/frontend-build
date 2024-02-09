@@ -12,6 +12,7 @@ const NewRelicSourceMapPlugin = require('@edx/new-relic-source-map-webpack-plugi
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const path = require('path');
+const fs = require('fs');
 const PostCssAutoprefixerPlugin = require('autoprefixer');
 const PostCssRTLCSS = require('postcss-rtlcss');
 const PostCssCustomMediaCSS = require('postcss-custom-media');
@@ -35,7 +36,7 @@ if (envConfigPath) {
   // This handles the possibility that env.config will have either a JS or JSX extension
   const envConfigFilename = envConfigPath.slice(envConfigPath.indexOf('env.config'));
 
-  fs.copyFile(process.env.JS_CONFIG_FILEPATH, envConfigFilename, (err) => {
+  fs.copyFile(envConfigPath, envConfigFilename, (err) => {
     if (err) { throw err; }
   });
 }
