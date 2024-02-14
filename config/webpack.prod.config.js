@@ -39,9 +39,9 @@ if (envConfigPath) {
   const envConfigFilename = envConfigPath.slice(envConfigPath.indexOf('env.config'));
   fs.copyFileSync(envConfigPath, envConfigFilename);
 
-  let newConfigFilepath = path.resolve(process.cwd(), envConfigFilename);
+  const newConfigFilepath = path.resolve(process.cwd(), envConfigFilename);
   envConfig = require(newConfigFilepath);
-};
+}
 
 // Add process env vars. Currently used only for setting the PUBLIC_PATH.
 dotenv.config({

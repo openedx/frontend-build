@@ -12,7 +12,7 @@ if (fs.existsSync(appEnvConfigPathJs)) {
   envConfigPath = appEnvConfigPathJs;
 } else if (fs.existsSync(appEnvConfigPathJsx)) {
   envConfigPath = appEnvConfigPathJsx;
-};
+}
 
 module.exports = {
   testURL: 'http://localhost/',
