@@ -70,7 +70,7 @@ switch (commandName) {
     break;
   case 'formatjs': {
     const commonArgs = [
-      '--format', 'node_modules/@edx/frontend-build/lib/formatter.js',
+      '--format', 'node_modules/@openedx/frontend-build/lib/formatter.js',
       '--ignore', 'src/**/*.json',
       '--out-file', './temp/babel-plugin-formatjs/Default.messages.json',
       '--', 'src/**/*.js*',
