@@ -217,9 +217,23 @@ locally. To serve a production build locally:
     attempt to run the build on the same port specified in the
     `env.config.js` file.
 
+## Creating a Production Build with env.config.js (using Tubular)
+
+To use a private `env.config.js` file during the production build, the Webpack Production config will look for an env
+variable `process.env.JS_CONFIG_FILEPATH`, which should represent a file path to the desired `env.config.js`.
+
+The only requirement is that the filepath end with `env.config.*`, where either `.js` or `.jsx` as the extension
+
+    // examples of acceptable filepaths
+
+    JS_CONFIG_FILEPATH="{HOME}/frontends/frontend-app-learner-dashboard/prod.env.config.js"
+
+    JS_CONFIG_FILEPATH="{HOME}/frontends/frontend-app-profile/stage.env.config.jsx"
+
 ## Requiring Jest to reference env.config.js
 
-Jest doesn't rely on webpack to merge the JS-based config into ConfigDocument, so to implement this in your MFE you would need to add it in your MFE's `setupTest.js`
+Jest doesn't rely on Webpack to merge the JS-based config into the Config Document,
+so to ensure Jest is aware of the environment variables in env.config, add the following to the MFE's `setupTest.js`
 
     import envConfig from '../env.config';
     import mergeConfig from '@edx/frontend-platform';
