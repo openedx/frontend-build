@@ -68,6 +68,18 @@ switch (commandName) {
     ensureConfigOption(presets.webpackDevServer);
     require('webpack-dev-server/bin/webpack-dev-server');
     break;
+  case 'formatjs': {
+    const commonArgs = [
+      '--format', 'node_modules/@openedx/frontend-build/lib/formatter.js',
+      '--ignore', 'src/**/*.json',
+      '--out-file', './temp/babel-plugin-formatjs/Default.messages.json',
+      '--', 'src/**/*.js*',
+    ];
+    process.argv = process.argv.concat(commonArgs);
+    ensureConfigOption(presets.formatjs);
+    require('@formatjs/cli/bin/formatjs');
+    break;
+  }
   case 'serve':
     require('../lib/scripts/serve');
     break;

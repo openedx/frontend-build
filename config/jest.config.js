@@ -31,7 +31,7 @@ module.exports = {
     'setupTest.js',
   ],
   transformIgnorePatterns: [
-    '/node_modules/(?!@edx)',
+    '/node_modules/(?!@(open)?edx)',
   ],
   transform: {
     '^.+\\.jsx?$': [
