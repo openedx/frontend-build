@@ -1,4 +1,9 @@
+const fs = require('fs');
+const path = require('path');
 const { babel } = require('../lib/presets');
+
+const defaultWebpackConfigPath = path.resolve(process.cwd(), './webpack.dev.config.js');
+const webpackConfigPath = fs.existsSync(defaultWebpackConfigPath) ? defaultWebpackConfigPath : path.resolve(__dirname, './webpack.dev.config.js');
 
 module.exports = {
   extends: '@edx/eslint-config',
@@ -7,6 +12,19 @@ module.exports = {
     requireConfigFile: true,
     babelOptions: {
       configFile: babel.resolvedFilepath || babel.defaultFilepath,
+    },
+  },
+  settings: {
+    'import/resolver': {
+      webpack: {
+        config: webpackConfigPath,
+      },
+      alias: {
+        map: [
+          ['@root_path', path.resolve(process.cwd(), '.')],
+        ],
+        extensions: ['.js', '.jsx', '.ts', '.tsx', '.json'],
+      },
     },
   },
   rules: {
@@ -35,7 +53,16 @@ module.exports = {
     }],
     'import/no-import-module-export': 'off',
     'react/function-component-definition': [2, { namedComponents: 'arrow-function' }],
+    'import/prefer-default-export': 'off',
   },
+  overrides: [
+    {
+      files: ['**/plugins/**/*.jsx'],
+      rules: {
+        'import/no-extraneous-dependencies': 'off',
+      },
+    },
+  ],
   globals: {
     newrelic: false,
   },

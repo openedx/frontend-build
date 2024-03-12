@@ -11,13 +11,15 @@ module.exports = {
   resolve: {
     alias: {
       'env.config': path.resolve(process.cwd(), './env.config'),
+      '@node_modules': path.join(process.cwd(), 'node_modules'),
+      '@root_path': path.join(process.cwd(), '.'),
     },
     fallback: {
       // This causes the system to return an empty object if it can't find an env.config.js file in
       // the application being built.
       'env.config': false,
     },
-    extensions: ['.js', '.jsx'],
+    extensions: ['.js', '.jsx', '.ts', '.tsx'],
   },
   ignoreWarnings: [
     // Ignore warnings raised by source-map-loader.

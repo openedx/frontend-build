@@ -38,7 +38,11 @@ module.exports = merge(commonConfig, {
     publicPath: PUBLIC_PATH,
   },
   resolve: {
-    alias: aliases,
+    alias: {
+      ...aliases,
+      '@node_modules': path.join(process.cwd(), 'node_modules'),
+      '@root_path': path.join(process.cwd(), '.'),
+    },
     extensions: ['.js', '.jsx', '.ts', '.tsx'],
   },
   module: {

@@ -64,6 +64,13 @@ module.exports = merge(commonConfig, {
     path: path.resolve(process.cwd(), 'dist'),
     publicPath: process.env.PUBLIC_PATH || '/',
   },
+  resolve: {
+    alias: {
+      '@node_modules': path.join(process.cwd(), 'node_modules'),
+      '@root_path': path.join(process.cwd(), '.'),
+    },
+    extensions: ['.js', '.jsx', '.ts', '.tsx'],
+  },
   module: {
     // Specify file-by-file rules to Webpack. Some file-types need a particular kind of loader.
     rules: [

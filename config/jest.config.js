@@ -21,6 +21,8 @@ module.exports = {
     '\\.(jpg|jpeg|png|gif|eot|otf|webp|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$': path.resolve(__dirname, 'jest/fileMock.js'),
     '\\.(css|scss)$': 'identity-obj-proxy',
     'env.config': envConfigPath,
+    '@node_modules/(.*)': '<rootDir>/node_modules/$1',
+    '@root_path/(.*)': '<rootDir>/$1',
   },
   collectCoverageFrom: [
     'src/**/*.{js,jsx}',
