@@ -55,14 +55,6 @@ module.exports = {
     'react/function-component-definition': [2, { namedComponents: 'arrow-function' }],
     'import/prefer-default-export': 'off',
   },
-  overrides: [
-    {
-      files: ['**/plugins/**/*.jsx'],
-      rules: {
-        'import/no-extraneous-dependencies': 'off',
-      },
-    },
-  ],
   globals: {
     newrelic: false,
   },
