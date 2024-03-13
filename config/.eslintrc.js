@@ -3,7 +3,7 @@ const path = require('path');
 const { babel } = require('../lib/presets');
 
 const defaultWebpackConfigPath = path.resolve(process.cwd(), './webpack.dev.config.js');
-const webpackConfigPath = fs.existsSync(defaultWebpackConfigPath) ? defaultWebpackConfigPath : path.resolve(__dirname, './webpack.dev.config.js');
+const webpackConfigPath = fs.existsSync(defaultWebpackConfigPath) ? defaultWebpackConfigPath : path.join(__dirname, 'webpack.dev.config.js');
 
 module.exports = {
   extends: '@edx/eslint-config',
@@ -19,11 +19,13 @@ module.exports = {
       webpack: {
         config: webpackConfigPath,
       },
+      node: {
+        extensions: ['.js', '.jsx', '.ts', '.tsx', '.json'],
+      },
       alias: {
         map: [
           ['@root_path', path.resolve(process.cwd(), '.')],
         ],
-        extensions: ['.js', '.jsx', '.ts', '.tsx', '.json'],
       },
     },
   },
