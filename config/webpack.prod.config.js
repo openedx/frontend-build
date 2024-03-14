@@ -26,8 +26,9 @@ const presets = require('../lib/presets');
 
 /**
  * This condition confirms whether the configuration for the MFE has switched to a JS-based configuration
- * as previously implemented in frontend-build and frontend-platform. If the environment variable JS_CONFIG_FILEPATH exists, then
- * an env.config.js(x) file will be created at the root directory and its env variables can be accessed with getConfig().
+ * as previously implemented in frontend-build and frontend-platform. If the environment variable JS_CONFIG_FILEPATH
+ * exists, then an env.config.js(x) file will be copied from the location referenced by the environment variable to the
+ * root directory. Its env variables can be accessed with getConfig().
  *
  * https://github.com/openedx/frontend-build/blob/master/docs/0002-js-environment-config.md
  * https://github.com/openedx/frontend-platform/blob/master/docs/decisions/0007-javascript-file-configuration.rst

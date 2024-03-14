@@ -217,12 +217,12 @@ locally. To serve a production build locally:
     attempt to run the build on the same port specified in the
     `env.config.js` file.
 
-## Creating a Production Build with env.config.js (using Tubular)
+## Creating a Production Build with env.config.js
 
 To use a private `env.config.js` file during the production build, the Webpack Production config will look for an env
 variable `process.env.JS_CONFIG_FILEPATH`, which should represent a file path to the desired `env.config.js`.
 
-The only requirement is that the filepath end with `env.config.*`, where either `.js` or `.jsx` as the extension
+The only requirement is that the filepath end with `env.config.*`, with either `.js` or `.jsx` as the extension.
 
     // examples of acceptable filepaths
 
