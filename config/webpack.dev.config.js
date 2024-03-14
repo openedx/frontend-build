@@ -7,7 +7,6 @@ const Dotenv = require('dotenv-webpack');
 const dotenv = require('dotenv');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const path = require('path');
-const fs = require('fs');
 const PostCssAutoprefixerPlugin = require('autoprefixer');
 const PostCssRTLCSS = require('postcss-rtlcss');
 const PostCssCustomMediaCSS = require('postcss-custom-media');
@@ -17,18 +16,6 @@ const commonConfig = require('./webpack.common.config');
 const presets = require('../lib/presets');
 const resolvePrivateEnvConfig = require('../lib/resolvePrivateEnvConfig');
 const getLocalAliases = require('./getLocalAliases');
-
-// Provides the env.config object that is available in local development so that devserver port number
-// can be assigned below. If no env.config exists (JS or JSX), then it provides an empty object.
-let envConfig = {};
-const envConfigPathJs = path.resolve(process.cwd(), './env.config.js');
-const envConfigPathJsx = path.resolve(process.cwd(), './env.config.jsx');
-
-if (fs.existsSync(envConfigPathJs)) {
-  envConfig = require(envConfigPathJs);
-} else if (fs.existsSync(envConfigPathJsx)) {
-  envConfig = require(envConfigPathJsx);
-}
 
 // Add process env vars. Currently used only for setting the
 // server port and the publicPath
@@ -187,7 +174,7 @@ module.exports = merge(commonConfig, {
   // reloading.
   devServer: {
     host: '0.0.0.0',
-    port: envConfig.PORT || process.env.PORT || 8080,
+    port: process.env.PORT || 8080,
     historyApiFallback: {
       index: path.join(PUBLIC_PATH, 'index.html'),
       disableDotRule: true,

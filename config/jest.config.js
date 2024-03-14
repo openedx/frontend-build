@@ -4,6 +4,7 @@ const fs = require('fs');
 const presets = require('../lib/presets');
 
 // This assigns the envConfigPath filepath based on whether env.config exists, otherwise it uses the fallback filepath.
+// If both env.config.js and env.config.jsx files exist, then the former will be used to populate the Config Document.
 let envConfigPath = path.resolve(__dirname, './jest/fallback.env.config.js');
 const appEnvConfigPathJs = path.resolve(process.cwd(), './env.config.js');
 const appEnvConfigPathJsx = path.resolve(process.cwd(), './env.config.jsx');
