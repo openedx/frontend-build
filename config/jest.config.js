@@ -12,7 +12,10 @@ if (fs.existsSync(appEnvConfigPath)) {
 }
 
 module.exports = {
-  testURL: 'http://localhost/',
+  testEnvironment: 'jsdom',
+  testEnvironmentOptions: {
+    url: 'http://localhost/',
+  },
   setupFiles: [
     path.resolve(__dirname, 'jest/setupTest.js'),
   ],
