@@ -20,8 +20,8 @@ The module.config.js file should have the form:
 
 Some working examples, as of the time of this writing:
 
-{ moduleName: '@edx/paragon/scss', dir: '../paragon', dist: 'scss' }
-{ moduleName: '@edx/paragon', dir: '../paragon', dist: 'dist' }
+{ moduleName: '@openedx/paragon/scss', dir: '../paragon', dist: 'scss' }
+{ moduleName: '@openedx/paragon', dir: '../paragon', dist: 'dist' }
 { moduleName: '@edx/frontend-platform', dir: '../frontend-platform', dist: 'dist' }
 
 */

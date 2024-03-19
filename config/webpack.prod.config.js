@@ -71,7 +71,7 @@ module.exports = merge(commonConfig, {
       // Babel is configured with the .babelrc file at the root of the project.
       {
         test: /\.(js|jsx|ts|tsx)$/,
-        exclude: /node_modules\/(?!@edx)/,
+        exclude: /node_modules\/(?!@(open)?edx)/,
         use: {
           loader: 'babel-loader',
           options: {
