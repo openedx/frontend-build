@@ -12,6 +12,7 @@ const NewRelicSourceMapPlugin = require('@edx/new-relic-source-map-webpack-plugi
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const path = require('path');
+const fs = require('fs');
 const PostCssAutoprefixerPlugin = require('autoprefixer');
 const PostCssRTLCSS = require('postcss-rtlcss');
 const PostCssCustomMediaCSS = require('postcss-custom-media');
@@ -22,6 +23,23 @@ const purgecss = require('@fullhuman/postcss-purgecss');
 const HtmlWebpackNewRelicPlugin = require('../lib/plugins/html-webpack-new-relic-plugin');
 const commonConfig = require('./webpack.common.config');
 const presets = require('../lib/presets');
+
+/**
+ * This condition confirms whether the configuration for the MFE has switched to a JS-based configuration
+ * as previously implemented in frontend-build and frontend-platform. If the environment variable JS_CONFIG_FILEPATH
+ * exists, then an env.config.js(x) file will be copied from the location referenced by the environment variable to the
+ * root directory. Its env variables can be accessed with getConfig().
+ *
+ * https://github.com/openedx/frontend-build/blob/master/docs/0002-js-environment-config.md
+ * https://github.com/openedx/frontend-platform/blob/master/docs/decisions/0007-javascript-file-configuration.rst
+ */
+
+const envConfigPath = process.env.JS_CONFIG_FILEPATH;
+
+if (envConfigPath) {
+  const envConfigFilename = envConfigPath.slice(envConfigPath.indexOf('env.config'));
+  fs.copyFileSync(envConfigPath, envConfigFilename);
+}
 
 // Add process env vars. Currently used only for setting the PUBLIC_PATH.
 dotenv.config({

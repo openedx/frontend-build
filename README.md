@@ -129,7 +129,6 @@ if you need to do this and are running into problems.
 
 ## Local module configuration for Webpack
 
-
 The development webpack configuration allows engineers to create a
 \"module.config.js\" file containing local module overrides. This means
 that if you\'re developing a new feature in a shared library
@@ -217,6 +216,31 @@ locally. To serve a production build locally:
 4.  Run `npm run serve` to serve your production build assets. It will
     attempt to run the build on the same port specified in the
     `env.config.js` file.
+
+## Creating a Production Build with env.config.js
+
+To use a private `env.config.js` file during the production build, the Webpack Production config will look for an env
+variable `process.env.JS_CONFIG_FILEPATH`, which should represent a file path to the desired `env.config.js`.
+
+The only requirement is that the filepath end with `env.config.*`, with either `.js` or `.jsx` as the extension.
+
+    // examples of acceptable filepaths
+
+    JS_CONFIG_FILEPATH="{HOME}/frontends/frontend-app-learner-dashboard/prod.env.config.js"
+
+    JS_CONFIG_FILEPATH="{HOME}/frontends/frontend-app-profile/stage.env.config.jsx"
+
+## Requiring Jest to reference env.config.js
+
+Jest doesn't rely on Webpack to merge the JS-based config into the Config Document,
+so to ensure Jest is aware of the environment variables in env.config, add the following to the MFE's `setupTest.js`
+
+    import envConfig from '../env.config';
+    import mergeConfig from '@edx/frontend-platform';
+
+    ...
+
+    mergeConfig(envConfig);
 
 ## Development
 
