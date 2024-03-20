@@ -34,7 +34,19 @@ exports[`Basic test should render 1`] = `
   </h2>
   <IconMock
     style={
-      Object {
+      {
+        "width": "10rem",
+      }
+    }
+  />
+  <h2>
+    TSX parsing tests
+  </h2>
+  <img
+    alt="appleFromTsx"
+    src="icon/mock/path"
+    style={
+      {
         "width": "10rem",
       }
     }
@@ -46,7 +58,7 @@ exports[`Basic test should render 1`] = `
     alt="apple"
     src="icon/mock/path"
     style={
-      Object {
+      {
         "width": "10rem",
       }
     }
@@ -55,7 +67,7 @@ exports[`Basic test should render 1`] = `
     alt="apple"
     src="icon/mock/path"
     style={
-      Object {
+      {
         "width": "10rem",
       }
     }
@@ -65,7 +77,7 @@ exports[`Basic test should render 1`] = `
     alt="apple"
     src="test-file-stub"
     style={
-      Object {
+      {
         "width": "10rem",
       }
     }

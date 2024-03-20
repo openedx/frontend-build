@@ -1,5 +1,6 @@
 const path = require('path');
 const fs = require('fs');
+const { jsWithTs: tsjPreset } = require('ts-jest/presets');
 
 const presets = require('../lib/presets');
 
@@ -11,7 +12,10 @@ if (fs.existsSync(appEnvConfigPath)) {
 }
 
 module.exports = {
-  testURL: 'http://localhost/',
+  testEnvironment: 'jsdom',
+  testEnvironmentOptions: {
+    url: 'http://localhost/',
+  },
   setupFiles: [
     path.resolve(__dirname, 'jest/setupTest.js'),
   ],
@@ -33,11 +37,12 @@ module.exports = {
     '/node_modules/(?!@(open)?edx)',
   ],
   transform: {
-    '^.+\\.[t|j]sx?$': [
+    '^.+\\.jsx?$': [
       'babel-jest',
       {
         configFile: presets.babel.resolvedFilepath,
       },
     ],
+    ...tsjPreset.transform,
   },
 };
