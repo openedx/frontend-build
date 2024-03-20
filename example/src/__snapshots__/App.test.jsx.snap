@@ -46,7 +46,7 @@ exports[`Basic test should render 1`] = `
     alt="appleFromTsx"
     src="icon/mock/path"
     style={
-      Object {
+      {
         "width": "10rem",
       }
     }
