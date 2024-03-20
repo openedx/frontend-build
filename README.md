@@ -218,6 +218,25 @@ locally. To serve a production build locally:
     attempt to run the build on the same port specified in the
     `env.config.js` file.
 
+## Local module configuration for TypeScript
+
+#. Create file in repository `tsconfig.json`, with a clause `"extends": "@openedx/frontend-build"`
+#. Set "rootDir" to the root of the source code folders
+#. Set "include" to wildcard patterns specifying the subdirectories/files under rootDir where source code can be found
+#. Include any wildcards under rootDir that should be excluded using "exclude"
+
+```Sample json
+{
+  "extends": "@openedx/frontend-build",
+  "compilerOptions": {
+    "rootDir": ".",
+    "outDir": "dist"
+  },
+  "include": ["src/**/*"],
+  "exclude": ["dist", "node_modules"]
+}
+```
+
 ## Development
 
 This project leverages the command line interface for webpack, jest,

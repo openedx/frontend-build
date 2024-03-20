@@ -40,6 +40,18 @@ exports[`Basic test should render 1`] = `
     }
   />
   <h2>
+    TSX parsing tests
+  </h2>
+  <img
+    alt="appleFromTsx"
+    src="icon/mock/path"
+    style={
+      Object {
+        "width": "10rem",
+      }
+    }
+  />
+  <h2>
     Asset import tests
   </h2>
   <img
