@@ -6,7 +6,7 @@ module.exports = {
   PARAGON_THEME_URLS: {
     core: {
       urls: {
-        default: 'https://cdn.jsdelivr.net/npm/@openedx/paragon@alphaa/dist/core.min.css',
+        default: 'https://cdn.jsdelivr.net/npm/@openedx/paragon@alpha/dist/core.min.css',
         brandOverride: 'https://cdn.jsdelivr.net/npm/@edx/brand-edx.org@alpha/dist/core.min.css',
       },
     },
