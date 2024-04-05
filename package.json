@@ -72,7 +72,7 @@
     "jest-environment-jsdom": "29.6.1",
     "mini-css-extract-plugin": "1.6.2",
     "postcss": "8.4.38",
-    "postcss-custom-media": "10.0.2",
+    "postcss-custom-media": "10.0.4",
     "postcss-loader": "7.3.4",
     "postcss-rtlcss": "5.1.0",
     "react-dev-utils": "12.0.1",
