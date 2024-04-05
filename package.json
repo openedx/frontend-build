@@ -33,7 +33,7 @@
     "@babel/plugin-syntax-dynamic-import": "7.8.3",
     "@babel/preset-env": "7.22.5",
     "@babel/preset-react": "7.22.5",
-    "@edx/eslint-config": "https://github.com/openedx/eslint-config/tarball/bilalqamar95/alpha-master-merge",
+    "@edx/eslint-config": "4.0.0",
     "@edx/new-relic-source-map-webpack-plugin": "2.1.0",
     "@edx/typescript-config": "1.0.1",
     "@formatjs/cli": "^6.0.3",
