@@ -7,6 +7,7 @@
   "include": [
     ".eslintrc.js",
     "config/.eslintrc.js",
+    "config/.eslintrc.next.js",
     "example/.eslintrc.js",
     "example/**/*",
     "lib",
