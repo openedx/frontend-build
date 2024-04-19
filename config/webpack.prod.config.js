@@ -20,6 +20,7 @@ const PostCssCustomMediaCSS = require('postcss-custom-media');
 const purgecss = require('@fullhuman/postcss-purgecss');
 
 const HtmlWebpackNewRelicPlugin = require('../lib/plugins/html-webpack-new-relic-plugin');
+const HtmlWebpackDatadogPlugin = require('../lib/plugins/datadog-logging-plugin');
 const commonConfig = require('./webpack.common.config');
 const presets = require('../lib/presets');
 
@@ -35,6 +36,9 @@ if (process.env.USE_PURGECSS) { // If USE_PURGECSS is set we append it.
   }));
 }
 const extraPlugins = [];
+if (process.env.ENABLE_DATADOG !== 'false') {
+  extraPlugins.push(new HtmlWebpackDatadogPlugin());
+}
 if (process.env.ENABLE_NEW_RELIC !== 'false') {
   // Enable NewRelic logging only if the account ID is properly defined
   extraPlugins.push(new HtmlWebpackNewRelicPlugin({
