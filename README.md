@@ -227,7 +227,7 @@ locally. To serve a production build locally:
 
 ```Sample json
 {
-  "extends": "@openedx/frontend-build",
+  "extends": "@edx/typescript-config",
   "compilerOptions": {
     "rootDir": ".",
     "outDir": "dist"
