@@ -11,10 +11,12 @@ const PostCssAutoprefixerPlugin = require('autoprefixer');
 const PostCssRTLCSS = require('postcss-rtlcss');
 const PostCssCustomMediaCSS = require('postcss-custom-media');
 const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin');
+const NewRelicSourceMapPlugin = require('@edx/new-relic-source-map-webpack-plugin');
 
 const commonConfig = require('./webpack.common.config');
 const presets = require('../lib/presets');
 const resolvePrivateEnvConfig = require('../lib/resolvePrivateEnvConfig');
+const HtmlWebpackNewRelicPlugin = require('../lib/plugins/html-webpack-new-relic-plugin');
 const getLocalAliases = require('./getLocalAliases');
 
 // Add process env vars. Currently used only for setting the
@@ -31,6 +33,27 @@ resolvePrivateEnvConfig('.env.private');
 const aliases = getLocalAliases();
 const PUBLIC_PATH = process.env.PUBLIC_PATH || '/';
 
+const extraPlugins = [];
+if (process.env.ENABLE_NEW_RELIC !== 'false') {
+  // Enable NewRelic logging only if the account ID is properly defined
+  extraPlugins.push(new HtmlWebpackNewRelicPlugin({
+    // This plugin fixes an issue where the newrelic script will break if
+    // not added directly to the HTML.
+    // We use non empty strings as defaults here to prevent errors for empty configs
+    accountID: process.env.NEW_RELIC_ACCOUNT_ID || 'undefined_account_id',
+    agentID: process.env.NEW_RELIC_AGENT_ID || 'undefined_agent_id',
+    trustKey: process.env.NEW_RELIC_TRUST_KEY || 'undefined_trust_key',
+    licenseKey: process.env.NEW_RELIC_LICENSE_KEY || 'undefined_license_key',
+    applicationID: process.env.NEW_RELIC_APP_ID || 'undefined_application_id',
+  }));
+  extraPlugins.push(new NewRelicSourceMapPlugin({
+    applicationId: process.env.NEW_RELIC_APP_ID,
+    apiKey: process.env.NEW_RELIC_ADMIN_KEY,
+    staticAssetUrl: process.env.BASE_URL,
+    // upload source maps in prod builds only
+    noop: typeof process.env.NEW_RELIC_ADMIN_KEY === 'undefined',
+  }));
+}
 module.exports = merge(commonConfig, {
   mode: 'development',
   devtool: 'eval-source-map',
@@ -169,6 +192,7 @@ module.exports = merge(commonConfig, {
       systemvars: true,
     }),
     new ReactRefreshWebpackPlugin(),
+    ...extraPlugins,
   ],
   // This configures webpack-dev-server which serves bundles from memory and provides live
   // reloading.
