@@ -116,31 +116,10 @@ module.exports = merge(commonConfig, {
             ],
           },
           {
-            loader: 'postcss-loader',
-            options: {
-              postcssOptions: {
-                plugins: [
-                  PostCssAutoprefixerPlugin(),
-                  PostCssRTLCSS(),
-                  PostCssCustomMediaCSS(),
-                ],
-              },
-            },
-          },
-          'resolve-url-loader',
-          {
-            loader: 'sass-loader', // compiles Sass to CSS
-            options: {
-              sourceMap: true,
-              sassOptions: {
-                includePaths: [
-                  path.join(process.cwd(), 'node_modules'),
-                  path.join(process.cwd(), 'src'),
-                ],
-                // silences compiler warnings regarding deprecation warnings
-                quietDeps: true,
-              },
-            },
+            use: [
+              'style-loader', // creates style nodes from JS strings
+              ...getStyleUseConfig(),
+            ],
           },
         ],
       },

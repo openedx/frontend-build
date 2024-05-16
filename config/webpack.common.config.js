@@ -46,6 +46,19 @@ module.exports = {
     },
     extensions: ['.js', '.jsx', '.ts', '.tsx'],
   },
+  optimization: {
+    splitChunks: {
+      chunks: 'all',
+      cacheGroups: {
+        ...getParagonCacheGroups(paragonThemeCss),
+        ...getParagonCacheGroups(brandThemeCss),
+      },
+    },
+  },
+  plugins: [
+    new RemoveEmptyScriptsPlugin(),
+    new ParagonWebpackPlugin(),
+  ],
   ignoreWarnings: [
     // Ignore warnings raised by source-map-loader.
     // some third party packages may ship miss-configured sourcemaps, that interrupts the build
