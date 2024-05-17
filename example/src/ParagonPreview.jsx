@@ -10,7 +10,8 @@ const ParagonPreview = () => {
       <h3>Exposed theme CSS files</h3>
       <p>
         <em>
-          Note: Depending on the versions of <code>@edx/paragon</code> and/or <code>@edx/brand</code> installed,
+          Note: Depending on the versions
+          of <code>@openedx/paragon</code> and/or <code>@openedx/brand-openedx</code> installed,
           it is expected that no exposed theme CSS assets be listed here.
         </em>
       </p>

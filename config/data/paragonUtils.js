@@ -9,7 +9,7 @@ const fs = require('fs');
  * @returns {string} Paragon dependency version of the consuming application
  */
 function getParagonVersion(dir, { isBrandOverride = false } = {}) {
-  const npmPackageName = isBrandOverride ? '@edx/brand' : '@edx/paragon';
+  const npmPackageName = isBrandOverride ? '@edx/brand' : '@openedx/paragon';
   const pathToPackageJson = `${dir}/node_modules/${npmPackageName}/package.json`;
   if (!fs.existsSync(pathToPackageJson)) {
     return undefined;
@@ -38,12 +38,12 @@ function getParagonVersion(dir, { isBrandOverride = false } = {}) {
  */
 
 /**
- * Attempts to extract the Paragon theme CSS from the locally installed `@edx/paragon` package.
+ * Attempts to extract the Paragon theme CSS from the locally installed `@openedx/paragon` package.
  * @param {string} dir Path to directory containing `node_modules`.
  * @returns {ParagonThemeCss}
  */
 function getParagonThemeCss(dir, { isBrandOverride = false } = {}) {
-  const npmPackageName = isBrandOverride ? '@edx/brand' : '@edx/paragon';
+  const npmPackageName = isBrandOverride ? '@edx/brand' : '@openedx/paragon';
   const pathToParagonThemeOutput = path.resolve(dir, 'node_modules', npmPackageName, 'dist', 'theme-urls.json');
 
   if (!fs.existsSync(pathToParagonThemeOutput)) {
@@ -128,8 +128,8 @@ function getParagonCacheGroups(paragonThemeCss) {
  * @param {ParagonThemeCss} paragonThemeCss The Paragon theme CSS metadata.
  * @returns {Object.<string, string>} The entry points for the Paragon theme CSS. Example: ```
  * {
- *   "paragon.theme.core": "/path/to/node_modules/@edx/paragon/dist/core.min.css",
- *   "paragon.theme.variants.light": "/path/to/node_modules/@edx/paragon/dist/light.min.css"
+ *   "paragon.theme.core": "/path/to/node_modules/@openedx/paragon/dist/core.min.css",
+ *   "paragon.theme.variants.light": "/path/to/node_modules/@openedx/paragon/dist/light.min.css"
  * }
  * ```
  */

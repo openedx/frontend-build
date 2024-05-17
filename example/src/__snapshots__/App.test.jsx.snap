@@ -126,11 +126,11 @@ exports[`Basic test should render 1`] = `
     <em>
       Note: Depending on the versions of 
       <code>
-        @edx/paragon
+        @openedx/paragon
       </code>
        and/or 
       <code>
-        @edx/brand
+        @openedx/brand-openedx
       </code>
        installed, it is expected that no exposed theme CSS assets be listed here.
     </em>

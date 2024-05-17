@@ -17,8 +17,8 @@ module.exports = {
     /**
      * The entry points for the Paragon theme CSS. Example: ```
      * {
-     *   "paragon.theme.core": "/path/to/node_modules/@edx/paragon/dist/core.min.css",
-     *   "paragon.theme.variants.light": "/path/to/node_modules/@edx/paragon/dist/light.min.css"
+     *   "paragon.theme.core": "/path/to/node_modules/@openedx/paragon/dist/core.min.css",
+     *   "paragon.theme.variants.light": "/path/to/node_modules/@openedx/paragon/dist/light.min.css"
      * }
      */
     ...getParagonEntryPoints(paragonThemeCss),
