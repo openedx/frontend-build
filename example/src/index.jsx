@@ -2,9 +2,9 @@ import ReactDOM from 'react-dom';
 import {
   AppProvider,
   ErrorPage,
-} from '@edx/frontend-platform/react';
-import { APP_INIT_ERROR, APP_READY, initialize } from '@edx/frontend-platform';
-import { subscribe } from '@edx/frontend-platform/pubSub';
+} from '@openedx/frontend-platform//react';
+import { APP_INIT_ERROR, APP_READY, initialize } from '@openedx/frontend-platform/';
+import { subscribe } from '@openedx/frontend-platform//pubSub';
 
 import App from './App';
 

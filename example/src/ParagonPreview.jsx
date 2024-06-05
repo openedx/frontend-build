@@ -1,5 +1,3 @@
-import React from 'react';
-
 const ParagonPreview = () => {
   if (!PARAGON_THEME) {
     return <p>Missing <code>PARAGON_THEME</code> global variable. Depending on configuration, this may be OK.</p>;
