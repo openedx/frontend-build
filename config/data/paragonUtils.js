@@ -40,6 +40,7 @@ function getParagonVersion(dir, { isBrandOverride = false } = {}) {
 /**
  * Attempts to extract the Paragon theme CSS from the locally installed `@openedx/paragon` package.
  * @param {string} dir Path to directory containing `node_modules`.
+ * @param {boolean} isBrandOverride
  * @returns {ParagonThemeCss}
  */
 function getParagonThemeCss(dir, { isBrandOverride = false } = {}) {
