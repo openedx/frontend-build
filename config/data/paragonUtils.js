@@ -9,7 +9,7 @@ const fs = require('fs');
  * @returns {string} Paragon dependency version of the consuming application
  */
 function getParagonVersion(dir, { isBrandOverride = false } = {}) {
-  const npmPackageName = isBrandOverride ? '@edx/brand' : '@openedx/paragon';
+  const npmPackageName = isBrandOverride ? '@openedx/brand' : '@openedx/paragon';
   const pathToPackageJson = `${dir}/node_modules/${npmPackageName}/package.json`;
   if (!fs.existsSync(pathToPackageJson)) {
     return undefined;
@@ -44,7 +44,7 @@ function getParagonVersion(dir, { isBrandOverride = false } = {}) {
  * @returns {ParagonThemeCss}
  */
 function getParagonThemeCss(dir, { isBrandOverride = false } = {}) {
-  const npmPackageName = isBrandOverride ? '@edx/brand' : '@openedx/paragon';
+  const npmPackageName = isBrandOverride ? '@openedx/brand' : '@openedx/paragon';
   const pathToParagonThemeOutput = path.resolve(dir, 'node_modules', npmPackageName, 'dist', 'theme-urls.json');
 
   if (!fs.existsSync(pathToParagonThemeOutput)) {
