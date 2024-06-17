@@ -60,29 +60,33 @@ function getParagonThemeCss(dir, { isBrandOverride = false } = {}) {
   const pathToCoreCss = path.resolve(dir, 'node_modules', npmPackageName, 'dist', themeCore.paths.minified);
   const coreCssExists = fs.existsSync(pathToCoreCss);
 
-  const validThemeVariantPaths = Object.entries(themeVariants || {}).filter(([, value]) => {
+  const themeVariantResults = Object.entries(themeVariants || {}).reduce((themeVariantAcc, [themeVariant, value]) => {
     const themeVariantCssDefault = path.resolve(dir, 'node_modules', npmPackageName, 'dist', value.paths.default);
     const themeVariantCssMinified = path.resolve(dir, 'node_modules', npmPackageName, 'dist', value.paths.minified);
-    return fs.existsSync(themeVariantCssDefault) && fs.existsSync(themeVariantCssMinified);
-  });
 
-  if (!coreCssExists || validThemeVariantPaths.length === 0) {
+    if (!fs.existsSync(themeVariantCssDefault) && !fs.existsSync(themeVariantCssMinified)) {
+      return themeVariantAcc;
+    }
+
+    return ({
+      ...themeVariantAcc,
+      [themeVariant]: {
+        filePath: themeVariantCssMinified,
+        entryName: isBrandOverride ? `brand.theme.variants.${themeVariant}` : `paragon.theme.variants.${themeVariant}`,
+        outputChunkName: isBrandOverride ? `brand-theme-variants-${themeVariant}` : `paragon-theme-variants-${themeVariant}`,
+      },
+    });
+  }, {});
+
+  if (!coreCssExists || themeVariantResults.length === 0) {
     return undefined;
   }
+
   const coreResult = {
     filePath: path.resolve(dir, pathToCoreCss),
     entryName: isBrandOverride ? 'brand.theme.core' : 'paragon.theme.core',
     outputChunkName: isBrandOverride ? 'brand-theme-core' : 'paragon-theme-core',
   };
-
-  const themeVariantResults = {};
-  validThemeVariantPaths.forEach(([themeVariant, value]) => {
-    themeVariantResults[themeVariant] = {
-      filePath: path.resolve(dir, 'node_modules', npmPackageName, 'dist', value.paths.minified),
-      entryName: isBrandOverride ? `brand.theme.variants.${themeVariant}` : `paragon.theme.variants.${themeVariant}`,
-      outputChunkName: isBrandOverride ? `brand-theme-variants-${themeVariant}` : `paragon-theme-variants-${themeVariant}`,
-    };
-  });
 
   return {
     core: fs.existsSync(pathToCoreCss) ? coreResult : undefined,
