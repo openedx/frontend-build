@@ -108,16 +108,18 @@ function getParagonThemeCss(dir, { isBrandOverride = false } = {}) {
  * @returns {Object.<string, CacheGroup>} The cache groups for the Paragon theme CSS.
  */
 function getParagonCacheGroups(paragonThemeCss) {
-  const cacheGroups = {};
   if (!paragonThemeCss) {
-    return cacheGroups;
+    return {};
   }
-  cacheGroups[paragonThemeCss.core.outputChunkName] = {
-    type: 'css/mini-extract',
-    name: paragonThemeCss.core.outputChunkName,
-    chunks: chunk => chunk.name === paragonThemeCss.core.entryName,
-    enforce: true,
+  const cacheGroups = {
+    [paragonThemeCss.core.outputChunkName]: {
+      type: 'css/mini-extract',
+      name: paragonThemeCss.core.outputChunkName,
+      chunks: chunk => chunk.name === paragonThemeCss.core.entryName,
+      enforce: true,
+    },
   };
+
   Object.values(paragonThemeCss.variants).forEach(({ entryName, outputChunkName }) => {
     cacheGroups[outputChunkName] = {
       type: 'css/mini-extract',
@@ -139,11 +141,11 @@ function getParagonCacheGroups(paragonThemeCss) {
  * ```
  */
 function getParagonEntryPoints(paragonThemeCss) {
-  const entryPoints = {};
   if (!paragonThemeCss) {
-    return entryPoints;
+    return {};
   }
-  entryPoints[paragonThemeCss.core.entryName] = path.resolve(process.cwd(), paragonThemeCss.core.filePath);
+
+  const entryPoints = { [paragonThemeCss.core.entryName]: path.resolve(process.cwd(), paragonThemeCss.core.filePath) };
   Object.values(paragonThemeCss.variants).forEach(({ filePath, entryName }) => {
     entryPoints[entryName] = path.resolve(process.cwd(), filePath);
   });
