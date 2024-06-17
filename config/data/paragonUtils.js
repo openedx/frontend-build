@@ -14,7 +14,7 @@ function getParagonVersion(dir, { isBrandOverride = false } = {}) {
   if (!fs.existsSync(pathToPackageJson)) {
     return undefined;
   }
-  return JSON.parse(fs.readFileSync(pathToPackageJson)).version;
+  return JSON.parse(fs.readFileSync(pathToPackageJson, 'utf-8')).version;
 }
 
 /**
@@ -50,7 +50,7 @@ function getParagonThemeCss(dir, { isBrandOverride = false } = {}) {
   if (!fs.existsSync(pathToParagonThemeOutput)) {
     return undefined;
   }
-  const paragonConfig = JSON.parse(fs.readFileSync(pathToParagonThemeOutput));
+  const paragonConfig = JSON.parse(fs.readFileSync(pathToParagonThemeOutput, 'utf-8'));
   const {
     core: themeCore,
     variants: themeVariants,
