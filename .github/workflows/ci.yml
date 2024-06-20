@@ -22,6 +22,10 @@ jobs:
         node-version: ${{ env.NODE_VER }}
     - name: Install dependencies
       run: npm ci
+    # The example dependencies are required in order to lint the files it contains without import/no-unresolved errors
+    - name: Install dependencies (example)
+      run: npm ci
+      working-directory: ./example
     - name: Lint
       run: npm run lint
     - name: Test
