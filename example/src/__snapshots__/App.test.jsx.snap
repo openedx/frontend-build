@@ -15,6 +15,7 @@ exports[`Basic test should render 1`] = `
   <h2>
     ES6 parsing tests
   </h2>
+  This should be a list of four apple varieties:
   <ul>
     <li>
       macintosh
@@ -30,8 +31,17 @@ exports[`Basic test should render 1`] = `
     </li>
   </ul>
   <h2>
+    ES2022 parsing tests
+  </h2>
+  This should say 4: 
+  4
+   
+  ✅
+  <h2>
     JSX parsing tests
   </h2>
+  You should see a cartoon apple here:
+  <br />
   <IconMock
     style={
       {
@@ -42,6 +52,8 @@ exports[`Basic test should render 1`] = `
   <h2>
     TSX parsing tests
   </h2>
+  You should see a cartoon apple here:
+  <br />
   <img
     alt="appleFromTsx"
     src="icon/mock/path"
@@ -54,6 +66,8 @@ exports[`Basic test should render 1`] = `
   <h2>
     Asset import tests
   </h2>
+  You should see two cartoon apples here:
+  <br />
   <img
     alt="apple"
     src="icon/mock/path"
@@ -73,6 +87,8 @@ exports[`Basic test should render 1`] = `
     }
   />
   <br />
+  And one apple photo here:
+  <br />
   <img
     alt="apple"
     src="test-file-stub"
@@ -91,9 +107,12 @@ exports[`Basic test should render 1`] = `
   <p>
     Test process.env variable: 
     foo
+     
+    ✅
   </p>
   <p>
     Non-existent process.env variable (nothing here is good): 
+    ✅
   </p>
   <h2>
     env.config.js tests
@@ -102,11 +121,11 @@ exports[`Basic test should render 1`] = `
     <span>
       env.config.js boolean test: 
     </span>
-    Good, false meant false.  We did not cast a boolean to a string.
+    Good, false meant false.  We did not cast a boolean to a string. ✅
   </p>
   <p>
     env.config.js integer test: 
-    It was an integer. Great.
+    It was an integer. Great. ✅
   </p>
   <h2>
     Right-to-left language handling tests

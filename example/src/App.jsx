@@ -15,27 +15,37 @@ export default function App() {
       <h2>SCSS parsing tests</h2>
       <h3>The Apples</h3> (&quot;The Apples&quot; should be red)
       <h2>ES6 parsing tests</h2>
+      This should be a list of four apple varieties:
       <ul>
         {allApples.map(apple => <li key={apple}>{apple}</li>)}
       </ul>
+      <h2>ES2022 parsing tests</h2>
+      This should say 4: {[1, 2, 3, 4, 5].at(-2)} {[1, 2, 3, 4, 5].at(-2) === 4 ? '✅' : '❌'}
       <h2>JSX parsing tests</h2>
+      You should see a cartoon apple here:<br />
       <Apple style={{ width: '10rem' }} />
       <h2>TSX parsing tests</h2>
+      You should see a cartoon apple here:<br />
       <Image src={appleUrl} alt="appleFromTsx" style={{ width: '10rem' }} />
       <h2>Asset import tests</h2>
+      You should see two cartoon apples here:<br />
       <img src={appleUrl} alt="apple" style={{ width: '10rem' }} />
       <img src={appleUrl} alt="apple" style={{ width: '10rem' }} />
       <br />
+      And one apple photo here:<br />
       <img src={appleImg} alt="apple" style={{ width: '10rem' }} />
       <p>Photo by Louis Hansel @shotsoflouis on Unsplash</p>
       <h2>process.env tests</h2>
-      <p>Test process.env variable: {process.env.TEST_VARIABLE}</p>
-      <p>Non-existent process.env variable (nothing here is good): {process.env.I_AM_NOT_HERE}</p>
+      <p>Test process.env variable: {process.env.TEST_VARIABLE} {process.env.TEST_VARIABLE === 'foo' ? '✅' : '❌'}</p>
+      <p>
+        Non-existent process.env variable (nothing here is good): {process.env.I_AM_NOT_HERE}
+        {process.env.I_AM_NOT_HERE === undefined ? '✅' : '❌'}
+      </p>
       <h2>env.config.js tests</h2>
       <p><span>env.config.js boolean test: </span>
         {config.FALSE_VALUE === false ? config.CORRECT_BOOL_VALUE : config.INCORRECT_BOOL_VALUE}
       </p>
-      <p>env.config.js integer test: {Number.isInteger(config.INTEGER_VALUE) ? 'It was an integer. Great.' : 'It was not an integer! Why not? '}</p>
+      <p>env.config.js integer test: {Number.isInteger(config.INTEGER_VALUE) ? 'It was an integer. Great. ✅' : 'It was not an integer! Why not? ❌'}</p>
       <h2>Right-to-left language handling tests</h2>
       <p className="text-align-right">I&apos;m aligned right, but left in RTL.</p>
     </div>
