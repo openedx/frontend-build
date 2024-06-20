@@ -3,7 +3,6 @@
 
 const ImageMinimizerPlugin = require('image-minimizer-webpack-plugin');
 const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
-const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const { merge } = require('webpack-merge');
 const CssNano = require('cssnano');
 const Dotenv = require('dotenv-webpack');
@@ -62,6 +61,7 @@ module.exports = merge(commonConfig, {
     filename: '[name].[chunkhash].js',
     path: path.resolve(process.cwd(), 'dist'),
     publicPath: process.env.PUBLIC_PATH || '/',
+    clean: true, // Clean the output directory before emit. Built-in replacement of CleanWebpackPlugin.
   },
   module: {
     // Specify file-by-file rules to Webpack. Some file-types need a particular kind of loader.
@@ -205,8 +205,6 @@ module.exports = merge(commonConfig, {
   },
   // Specify additional processing or side-effects done on the Webpack output bundles as a whole.
   plugins: [
-    // Cleans the dist directory before each build
-    new CleanWebpackPlugin(),
     // Writes the extracted CSS from each entry to a file in the output directory.
     new MiniCssExtractPlugin({
       filename: '[name].[chunkhash].css',

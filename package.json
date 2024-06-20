@@ -39,7 +39,6 @@
     "@typescript-eslint/parser": "^5.58.0",
     "autoprefixer": "10.4.19",
     "chalk": "4.1.2",
-    "clean-webpack-plugin": "4.0.0",
     "css-loader": "5.2.7",
     "cssnano": "6.0.3",
     "dotenv": "8.6.0",
