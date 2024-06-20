@@ -26,7 +26,6 @@
   "homepage": "https://github.com/openedx/frontend-build#readme",
   "dependencies": {
     "@edx/new-relic-source-map-webpack-plugin": "2.1.0",
-    "@edx/typescript-config": "1.0.1",
     "@formatjs/cli": "^6.0.3",
     "@formatjs/swc-plugin-experimental": "^0.4.0",
     "@fullhuman/postcss-purgecss": "5.0.0",
@@ -60,7 +59,6 @@
     "source-map-loader": "4.0.2",
     "style-loader": "3.3.4",
     "swc-loader": "^0.2.6",
-    "typescript": "4.9.5",
     "url-loader": "4.1.1",
     "webpack": "^5.89.0",
     "webpack-bundle-analyzer": "^4.10.1",
@@ -70,6 +68,7 @@
   },
   "devDependencies": {
     "@edx/eslint-config": "4.0.0",
+    "@edx/typescript-config": "1.0.1",
     "@types/jest": "29.5.12",
     "@types/react": "^17.0.0",
     "@types/react-dom": "^17.0.11",
@@ -85,7 +84,8 @@
     "eslint-plugin-react-hooks": "4.6.0",
     "jest": "29.6.1",
     "jest-environment-jsdom": "29.6.1",
-    "ts-jest": "29.1.4"
+    "ts-jest": "29.1.4",
+    "typescript": "4.9.5"
   },
   "peerDependencies": {
     "react": "^16.9.0 || ^17.0.0"
