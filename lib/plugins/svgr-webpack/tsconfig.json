@@ -1,0 +1,11 @@
+{
+    "compilerOptions": {
+        "target": "ES2022",
+        "rootDir": ".",
+        "outDir": ".",
+        "moduleResolution": "Node16",
+        "module": "Node16"
+    },
+    "files": ["index.ts"],
+    "include": ["index.ts"]
+}

@@ -152,9 +152,23 @@ module.exports = merge(commonConfig, {
         ],
       },
       {
+        // Use SVGR to convert SVG to React components (when used in JSX files)
         test: /.svg(\?v=\d+\.\d+\.\d+)?$/,
         issuer: /\.jsx?$/,
-        use: ['@svgr/webpack'],
+        use: [
+          // Second, convert JSX to JS:
+          {
+            loader: 'swc-loader',
+            options: {
+              jsc: {
+                parser: { syntax: 'ecmascript', jsx: true },
+                transform: { react: { runtime: 'automatic' } },
+              },
+            },
+          },
+          // First, convert SVG to JSX:
+          { loader: path.resolve(__dirname, '../lib/plugins/svgr-webpack/index') },
+        ],
       },
       // Webpack, by default, uses the url-loader for images and fonts that are required/included by
       // files it processes, which just base64 encodes them and inlines them in the javascript
