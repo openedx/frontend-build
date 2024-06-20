@@ -54,6 +54,7 @@ switch (commandName) {
     break;
   case 'jest':
     ensureConfigOption(presets.jest);
+    // eslint-disable-next-line import/no-extraneous-dependencies
     require('jest/bin/jest');
     break;
   case 'webpack':
