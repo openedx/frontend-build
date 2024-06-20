@@ -13,7 +13,6 @@ const PostCssCustomMediaCSS = require('postcss-custom-media');
 const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin');
 
 const commonConfig = require('./webpack.common.config');
-const presets = require('../lib/presets');
 const resolvePrivateEnvConfig = require('../lib/resolvePrivateEnvConfig');
 const getLocalAliases = require('./getLocalAliases');
 
@@ -44,22 +43,29 @@ module.exports = merge(commonConfig, {
   module: {
     // Specify file-by-file rules to Webpack. Some file-types need a particular kind of loader.
     rules: [
-      // The babel-loader transforms newer ES2015+ syntax to older ES5 for older browsers.
-      // Babel is configured with the .babelrc file at the root of the project.
+      // The swc-loader transforms JSX and TS[X] to plain JavaScript
       {
         test: /\.(js|jsx|ts|tsx)$/,
         exclude: /node_modules\/(?!@(open)?edx)/,
         use: {
-          loader: 'babel-loader',
+          loader: 'swc-loader',
           options: {
-            configFile: presets['babel-typescript'].resolvedFilepath,
-            // Caches result of loader to the filesystem. Future builds will attempt to read
-            // from the cache to avoid needing to run the expensive recompilation process
-            // on each run.
-            cacheDirectory: true,
-            plugins: [
-              require.resolve('react-refresh/babel'),
-            ],
+            jsc: {
+              parser: {
+                syntax: 'typescript',
+                tsx: true,
+              },
+              transform: {
+                react: {
+                  runtime: 'automatic',
+                },
+              },
+              experimental: {
+                plugins: [
+                  ['@formatjs/swc-plugin-experimental', {}],
+                ],
+              },
+            },
           },
         },
       },

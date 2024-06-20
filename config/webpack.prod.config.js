@@ -21,7 +21,6 @@ const purgecss = require('@fullhuman/postcss-purgecss');
 
 const HtmlWebpackNewRelicPlugin = require('../lib/plugins/html-webpack-new-relic-plugin');
 const commonConfig = require('./webpack.common.config');
-const presets = require('../lib/presets');
 
 // Add process env vars. Currently used only for setting the PUBLIC_PATH.
 dotenv.config({
@@ -67,15 +66,29 @@ module.exports = merge(commonConfig, {
   module: {
     // Specify file-by-file rules to Webpack. Some file-types need a particular kind of loader.
     rules: [
-      // The babel-loader transforms newer ES2015+ syntax to older ES5 for older browsers.
-      // Babel is configured with the .babelrc file at the root of the project.
+      // The swc-loader transforms JSX and TS[X] to plain JavaScript
       {
         test: /\.(js|jsx|ts|tsx)$/,
         exclude: /node_modules\/(?!@(open)?edx)/,
         use: {
-          loader: 'babel-loader',
+          loader: 'swc-loader',
           options: {
-            configFile: presets['babel-typescript'].resolvedFilepath,
+            jsc: {
+              parser: {
+                syntax: 'typescript',
+                tsx: true,
+              },
+              transform: {
+                react: {
+                  runtime: 'automatic',
+                },
+              },
+              experimental: {
+                plugins: [
+                  ['@formatjs/swc-plugin-experimental', {}],
+                ],
+              },
+            },
           },
         },
       },

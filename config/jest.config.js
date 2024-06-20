@@ -1,8 +1,5 @@
 const path = require('path');
 const fs = require('fs');
-const { jsWithTs: tsjPreset } = require('ts-jest/presets');
-
-const presets = require('../lib/presets');
 
 let envConfigPath = path.resolve(__dirname, './jest/fallback.env.config.js');
 const appEnvConfigPath = path.resolve(process.cwd(), './env.config.js');
@@ -12,6 +9,8 @@ if (fs.existsSync(appEnvConfigPath)) {
 }
 
 module.exports = {
+  // TypeScript and JavaScript files (.ts, .tsx, .js, .jsx) will be transformed by ts-jest to CommonJS syntax.
+  preset: 'ts-jest/presets/js-with-ts',
   testEnvironment: 'jsdom',
   testEnvironmentOptions: {
     url: 'http://localhost/',
@@ -36,13 +35,4 @@ module.exports = {
   transformIgnorePatterns: [
     '/node_modules/(?!@(open)?edx)',
   ],
-  transform: {
-    '^.+\\.jsx?$': [
-      'babel-jest',
-      {
-        configFile: presets.babel.resolvedFilepath,
-      },
-    ],
-    ...tsjPreset.transform,
-  },
 };

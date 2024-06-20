@@ -6,8 +6,7 @@
   "scripts": {
     "test": "../bin/fedx-scripts.js jest ./src",
     "build": "../bin/fedx-scripts.js webpack",
-    "lint": "../bin/fedx-scripts.js eslint . --ext .jsx,.js",
-    "babel": "../bin/fedx-scripts.js babel src --out-dir dist/babel --source-maps --ignore **/*.test.jsx,**/*.test.js --copy-files",
+    "lint": "../bin/fedx-scripts.js eslint . --ext .jsx,.js,.tsx,.ts",
     "start": "../bin/fedx-scripts.js webpack-dev-server",
     "serve": "../bin/fedx-scripts.js serve"
   },

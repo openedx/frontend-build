@@ -73,8 +73,6 @@ This package contains a set of configuration presets:
 -   webpack-prod (or webpack)
 -   webpack-dev (or webpack-dev-server)
 -   webpack-dev-stage (for running development apps against stage apis)
--   babel
--   babel-preserve-modules
 -   jest
 -   eslint
 
@@ -82,17 +80,17 @@ If you need to extend or modify a configuration you can add your own
 configuration files, either by extending frontend-build\'s configuration
 files or supplying your own wholesale.
 
-Method 1: Extend base config (babel.config.js):
+Method 1: Extend base config (jest.config.js):
 
     const { createConfig } = require('@openedx/frontend-build');
-    module.exports = createConfig('babel', {
+    module.exports = createConfig('jest', {
        /* option overrides or extensions */
     });
 
-Method 2: Custom manipulations (babel.config.js):
+Method 2: Custom manipulations (jest.config.js):
 
     const { getBaseConfig } = require('@openedx/frontend-build');
-    const config = getBaseConfig('babel');
+    const config = getBaseConfig('jest');
 
     /* Custom config manipulations */
 
@@ -103,7 +101,6 @@ files in your project.
 
 -   eslint: `<project_root>/.eslintrc.js`
 -   jest: `<project_root>/jest.config.js`
--   babel: `<project_root>/babel.config.js`
 -   webpack-prod: `<project_root>/webpack.prod.config.js`
 -   webpack-dev-server: `<project_root>/webpack.dev.config.js`
 
@@ -118,14 +115,6 @@ prefer a different location. Example package.json:
        }
     }
 
-Note, specifying a custom config location for babel may cause issues
-with other tools in frontend-build. eslint, jest, webpack, and
-webpack-dev-server configuration presets rely upon the babel config and
-resolve the location of the config file according to the default
-locations described above. If you need to move the babel config file to
-a custom location, you may also need to customize references to its
-location in other configuration files. Please reach out to the FedX team
-if you need to do this and are running into problems.
 
 ## Local module configuration for Webpack
 
@@ -240,7 +229,7 @@ locally. To serve a production build locally:
 ## Development
 
 This project leverages the command line interface for webpack, jest,
-eslint, and babel. Because of this, local development can be tricky. The
+ and eslint. Because of this, local development can be tricky. The
 easiest way to do local development on this project is to either run
 scripts inside the project in example or to test with an existing
 project you can do the following:

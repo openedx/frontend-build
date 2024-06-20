@@ -1,14 +1,9 @@
-const { babel } = require('../lib/presets');
-
 module.exports = {
   extends: '@edx/eslint-config',
   plugins: ['@typescript-eslint'],
   parser: '@typescript-eslint/parser',
   parserOptions: {
     requireConfigFile: true,
-    babelOptions: {
-      configFile: babel.resolvedFilepath || babel.defaultFilepath,
-    },
   },
   rules: {
     'import/no-extraneous-dependencies': [

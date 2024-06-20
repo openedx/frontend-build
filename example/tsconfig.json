@@ -1,8 +1,10 @@
 {
   "extends": "../tsconfig.json",
   "compilerOptions": {
-    "rootDir": ".",
-    "outDir": "dist"
+    "rootDir": "..", // Needs to be .. so we can transform ../config/jest/*.js
+    "outDir": "dist",
+    "allowJs": true,
+    "jsx": "react-jsx"
   },
   "include": [
     ".eslintrc.js",

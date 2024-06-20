@@ -22,7 +22,7 @@ This mechanism has a few important drawbacks:
 
 # Decision
 
-We'd like to replace our `process.env` configuration with JavaScript-based configuration.  There is precedent for this in the frontend ecosystem - most libraries allow themselves to be configured by both JSON and JS files.  Eslint, Babel, Webpack, Commitlint, and many others all support this.  Using JS in particular is a powerful choice, as it allows the configuration file to import/require other resources, and lets us configure all the complex data types mentioned above.
+We'd like to replace our `process.env` configuration with JavaScript-based configuration.  There is precedent for this in the frontend ecosystem - most libraries allow themselves to be configured by both JSON and JS files.  Eslint, Webpack, Commitlint, and many others all support this.  Using JS in particular is a powerful choice, as it allows the configuration file to import/require other resources, and lets us configure all the complex data types mentioned above.
 
 We will still support `process.env`-based configuration for the time being.  Today, [frontend-platform](https://github.com/openedx/frontend-platform) is responsible for ingesting the `process.env` variables defined here in frontend-build, and we expect that we'll create a new configuration service in that library to handle this new type of configuration seamlessly and in a backwards compatible way.
 

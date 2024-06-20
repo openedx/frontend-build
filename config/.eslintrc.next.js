@@ -1,15 +1,10 @@
 // This file will be removed and replace "eslintrc.js" once all MFEs are ready
-const { babel } = require('../lib/presets');
 
 module.exports = {
   plugins: ['formatjs'],
   extends: '@edx/eslint-config',
-  parser: '@babel/eslint-parser',
   parserOptions: {
     requireConfigFile: true,
-    babelOptions: {
-      configFile: babel.resolvedFilepath || babel.defaultFilepath,
-    },
   },
   rules: {
     'import/no-extraneous-dependencies': [
