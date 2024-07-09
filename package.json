@@ -13,6 +13,12 @@
     "lint": "eslint . --no-eslintrc -c .eslintrc.js",
     "test": "bash ./smoke-test.sh"
   },
+  "files": [
+    "/bin",
+    "/config",
+    "/lib",
+    "tsconfig.json"
+  ],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/openedx/frontend-build.git"
