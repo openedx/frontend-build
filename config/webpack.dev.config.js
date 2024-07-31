@@ -4,6 +4,7 @@ const ImageMinimizerPlugin = require('image-minimizer-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const { merge } = require('webpack-merge');
 const Dotenv = require('dotenv-webpack');
+const dotenv = require('dotenv');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const path = require('path');
 const PostCssAutoprefixerPlugin = require('autoprefixer');
@@ -15,6 +16,12 @@ const commonConfig = require('./webpack.common.config');
 const presets = require('../lib/presets');
 const resolvePrivateEnvConfig = require('../lib/resolvePrivateEnvConfig');
 const getLocalAliases = require('./getLocalAliases');
+
+// Add process env vars. Currently used only for setting the
+// server port and the publicPath
+dotenv.config({
+  path: path.resolve(process.cwd(), '.env.development'),
+});
 
 // Allow private/local overrides of env vars from .env.development for config settings
 // that you'd like to persist locally during development, without the risk of checking
