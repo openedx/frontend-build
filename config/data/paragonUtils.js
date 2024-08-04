@@ -2,6 +2,17 @@ const path = require('path');
 const fs = require('fs');
 
 /**
+ * Retrieves the name of the brand package from the given directory.
+ *
+ * @param {string} dir - The directory path containing the package.json file.
+ * @return {string} The name of the brand package, or an empty string if not found.
+ */
+function getBrandPackageName(dir) {
+  const appDependencies = JSON.parse(fs.readFileSync(path.resolve(dir, 'package.json'), 'utf-8')).dependencies;
+  return Object.keys(appDependencies).find((key) => key.match(/@(open)?edx\/brand/)) || '';
+}
+
+/**
  * Attempts to extract the Paragon version from the `node_modules` of
  * the consuming application.
  *
@@ -9,7 +20,7 @@ const fs = require('fs');
  * @returns {string} Paragon dependency version of the consuming application
  */
 function getParagonVersion(dir, { isBrandOverride = false } = {}) {
-  const npmPackageName = isBrandOverride ? '@openedx/brand' : '@openedx/paragon';
+  const npmPackageName = isBrandOverride ? getBrandPackageName(dir) : '@openedx/paragon';
   const pathToPackageJson = `${dir}/node_modules/${npmPackageName}/package.json`;
   if (!fs.existsSync(pathToPackageJson)) {
     return undefined;
@@ -44,7 +55,7 @@ function getParagonVersion(dir, { isBrandOverride = false } = {}) {
  * @returns {ParagonThemeCss}
  */
 function getParagonThemeCss(dir, { isBrandOverride = false } = {}) {
-  const npmPackageName = isBrandOverride ? '@openedx/brand' : '@openedx/paragon';
+  const npmPackageName = isBrandOverride ? getBrandPackageName(dir) : '@openedx/paragon';
   const pathToParagonThemeOutput = path.resolve(dir, 'node_modules', npmPackageName, 'dist', 'theme-urls.json');
 
   if (!fs.existsSync(pathToParagonThemeOutput)) {
