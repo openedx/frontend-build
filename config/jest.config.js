@@ -27,7 +27,7 @@ module.exports = {
     'env.config': envConfigPath,
   },
   collectCoverageFrom: [
-    'src/**/*.{js,jsx}',
+    'src/**/*.{js,jsx,ts,tsx}',
   ],
   coveragePathIgnorePatterns: [
     '/node_modules/',
