@@ -1,7 +1,7 @@
 // This is the dev Webpack config. All settings here should prefer a fast build
 // time at the expense of creating larger, unoptimized bundles.
 const ImageMinimizerPlugin = require('image-minimizer-webpack-plugin');
-
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const { merge } = require('webpack-merge');
 const Dotenv = require('dotenv-webpack');
 const dotenv = require('dotenv');
@@ -30,6 +30,45 @@ resolvePrivateEnvConfig('.env.private');
 
 const aliases = getLocalAliases();
 const PUBLIC_PATH = process.env.PUBLIC_PATH || '/';
+
+function getStyleUseConfig() {
+  return [
+    {
+      loader: 'css-loader', // translates CSS into CommonJS
+      options: {
+        sourceMap: true,
+        modules: {
+          compileType: 'icss',
+        },
+      },
+    },
+    {
+      loader: 'postcss-loader',
+      options: {
+        postcssOptions: {
+          plugins: [
+            PostCssAutoprefixerPlugin(),
+            PostCssRTLCSS(),
+            PostCssCustomMediaCSS(),
+          ],
+        },
+      },
+    },
+    'resolve-url-loader',
+    {
+      loader: 'sass-loader', // compiles Sass to CSS
+      options: {
+        sourceMap: true,
+        sassOptions: {
+          includePaths: [
+            path.join(process.cwd(), 'node_modules'),
+            path.join(process.cwd(), 'src'),
+          ],
+        },
+      },
+    },
+  ];
+}
 
 module.exports = merge(commonConfig, {
   mode: 'development',
@@ -68,43 +107,19 @@ module.exports = merge(commonConfig, {
       // flash-of-unstyled-content issues in development.
       {
         test: /(.scss|.css)$/,
-        use: [
-          'style-loader', // creates style nodes from JS strings
+        oneOf: [
           {
-            loader: 'css-loader', // translates CSS into CommonJS
-            options: {
-              sourceMap: true,
-              modules: {
-                compileType: 'icss',
-              },
-            },
+            resource: /(@openedx\/paragon|@(open)?edx\/brand)/,
+            use: [
+              MiniCssExtractPlugin.loader,
+              ...getStyleUseConfig(),
+            ],
           },
           {
-            loader: 'postcss-loader',
-            options: {
-              postcssOptions: {
-                plugins: [
-                  PostCssAutoprefixerPlugin(),
-                  PostCssRTLCSS(),
-                  PostCssCustomMediaCSS(),
-                ],
-              },
-            },
-          },
-          'resolve-url-loader',
-          {
-            loader: 'sass-loader', // compiles Sass to CSS
-            options: {
-              sourceMap: true,
-              sassOptions: {
-                includePaths: [
-                  path.join(process.cwd(), 'node_modules'),
-                  path.join(process.cwd(), 'src'),
-                ],
-                // silences compiler warnings regarding deprecation warnings
-                quietDeps: true,
-              },
-            },
+            use: [
+              'style-loader', // creates style nodes from JS strings
+              ...getStyleUseConfig(),
+            ],
           },
         ],
       },
@@ -156,10 +171,15 @@ module.exports = merge(commonConfig, {
   },
   // Specify additional processing or side-effects done on the Webpack output bundles as a whole.
   plugins: [
+    // Writes the extracted CSS from each entry to a file in the output directory.
+    new MiniCssExtractPlugin({
+      filename: '[name].css',
+    }),
     // Generates an HTML file in the output directory.
     new HtmlWebpackPlugin({
       inject: true, // Appends script tags linking to the webpack bundles at the end of the body
       template: path.resolve(process.cwd(), 'public/index.html'),
+      chunks: ['app'],
       FAVICON_URL: process.env.FAVICON_URL || null,
       OPTIMIZELY_PROJECT_ID: process.env.OPTIMIZELY_PROJECT_ID || null,
       NODE_ENV: process.env.NODE_ENV || null,
