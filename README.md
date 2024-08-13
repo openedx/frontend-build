@@ -155,7 +155,7 @@ frontend-platform:
       dist: The sub-directory of the source code where it puts its build artifact.  Often "dist".
       */
       localModules: [
-        { moduleName: '@openedx/brand', dir: '../src/brand-openedx' }, // replace with your brand checkout
+        { moduleName: '@edx/brand', dir: '../src/brand-openedx' }, // replace with your brand checkout
         { moduleName: '@openedx/paragon/scss/core', dir: '../src/paragon', dist: 'scss/core' },
         { moduleName: '@openedx/paragon/icons', dir: '../src/paragon', dist: 'icons' },
         { moduleName: '@openedx/paragon', dir: '../src/paragon', dist: 'dist' },
