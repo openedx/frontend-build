@@ -116,5 +116,131 @@ exports[`Basic test should render 1`] = `
   >
     I'm aligned right, but left in RTL.
   </p>
+  <h2>
+    Paragon
+  </h2>
+  <div
+    className="pgn__vstack pgn__stack-gap--4.5"
+  >
+    <div>
+      <h3>
+        Component preview
+      </h3>
+      <div
+        className="px-3 py-2 bg-light-200"
+      >
+        <button
+          className="btn btn-primary"
+          disabled={false}
+          type="button"
+        >
+          Hello world
+        </button>
+      </div>
+    </div>
+    <div>
+      <h3>
+        Exposed theme CSS files
+      </h3>
+      <p>
+        <em>
+          Note: Depending on the versions of 
+          <code>
+            @openedx/paragon
+          </code>
+           and/or 
+          <code>
+            @edx/brand
+          </code>
+           installed, it is expected that no exposed theme CSS assets be listed here.
+        </em>
+      </p>
+      <ul
+        className="mb-0"
+      >
+        <li>
+          <a
+            href="/core.min.css"
+            rel="noopener noreferrer"
+            target="_blank"
+          >
+            core.min.css
+          </a>
+        </li>
+        <li>
+          <a
+            href="/light.min.css"
+            rel="noopener noreferrer"
+            target="_blank"
+          >
+            light.min.css
+          </a>
+        </li>
+        <li>
+          <a
+            href="/core.min.css"
+            rel="noopener noreferrer"
+            target="_blank"
+          >
+            core.min.css
+          </a>
+        </li>
+        <li>
+          <a
+            href="/light.min.css"
+            rel="noopener noreferrer"
+            target="_blank"
+          >
+            light.min.css
+          </a>
+        </li>
+      </ul>
+    </div>
+    <div>
+      <h3>
+        Contents of 
+        <code>
+          PARAGON_THEME
+        </code>
+         global variable
+      </h3>
+      <pre>
+        {
+  "paragon": {
+    "version": "1.0.0",
+    "themeUrls": {
+      "core": {
+        "fileName": "core.min.css"
+      },
+      "defaults": {
+        "light": "light"
+      },
+      "variants": {
+        "light": {
+          "fileName": "light.min.css"
+        }
+      }
+    }
+  },
+  "brand": {
+    "version": "1.0.0",
+    "themeUrls": {
+      "core": {
+        "fileName": "core.min.css"
+      },
+      "defaults": {
+        "light": "light"
+      },
+      "variants": {
+        "light": {
+          "fileName": "light.min.css"
+        }
+      }
+    }
+  }
+}
+      </pre>
+    </div>
+  </div>
 </div>
 `;
