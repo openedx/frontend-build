@@ -45,4 +45,7 @@ module.exports = {
     ],
     ...tsjPreset.transform,
   },
+  watchPathIgnorePatterns: [
+    '/node_modules/',
+  ],
 };
