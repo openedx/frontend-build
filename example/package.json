@@ -15,7 +15,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@openedx/paragon": "22.7.0",
+    "@openedx/paragon": "23.0.0-alpha.3",
     "react": "16.14.0",
     "react-dom": "16.14.0"
   },
