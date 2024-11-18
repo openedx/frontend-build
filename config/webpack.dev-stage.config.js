@@ -160,7 +160,7 @@ module.exports = merge(commonConfig, {
       chunks: ['app'],
       FAVICON_URL: process.env.FAVICON_URL || null,
       OPTIMIZELY_PROJECT_ID: process.env.OPTIMIZELY_PROJECT_ID || null,
-      ROBOT_CONTENT_TAG: process.env.ROBOT_CONTENT_TAG || null, // Configures "content" value of a "robots" meta tag
+      META_TAG_ROBOTS_CONTENT_ATTR: process.env.META_TAG_ROBOTS_CONTENT_ATTR || null,
       NODE_ENV: process.env.NODE_ENV || null,
     }),
     new Dotenv({
