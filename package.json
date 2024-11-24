@@ -81,7 +81,7 @@
     "postcss": "8.4.47",
     "postcss-custom-media": "10.0.8",
     "postcss-loader": "7.3.4",
-    "postcss-rtlcss": "5.1.2",
+    "postcss-rtlcss": "5.5.1",
     "react-dev-utils": "12.0.1",
     "react-refresh": "0.14.2",
     "resolve-url-loader": "5.0.0",
