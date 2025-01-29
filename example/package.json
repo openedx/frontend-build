@@ -16,10 +16,10 @@
   "license": "ISC",
   "dependencies": {
     "@openedx/paragon": "22.7.0",
-    "react": "16.14.0",
-    "react-dom": "16.14.0"
+    "react": "17.0.2",
+    "react-dom": "17.0.2"
   },
   "devDependencies": {
-    "react-test-renderer": "16.14.0"
+    "react-test-renderer": "17.0.2"
   }
 }
