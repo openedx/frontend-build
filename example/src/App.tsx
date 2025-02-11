@@ -1,13 +1,15 @@
+// @ts-ignore
 import config from 'env.config';
 import Image from './Image';
+// @ts-ignore
 import appleUrl, { ReactComponent as Apple } from './apple.svg';
+// @ts-ignore
 import appleImg from './apple.jpg';
 
 import './style.scss';
 import ParagonPreview from './ParagonPreview';
 
-// eslint-disable-next-line react/function-component-definition
-export default function App() {
+const App = () => {
   const newEnglandApples = ['macintosh', 'granny smith'];
   const allApples = [...newEnglandApples, 'fuji', 'golden delicious'];
   return (
@@ -42,4 +44,6 @@ export default function App() {
       <ParagonPreview />
     </div>
   );
-}
+};
+
+export default App;
