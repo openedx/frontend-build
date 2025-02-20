@@ -140,7 +140,7 @@ module.exports = merge(commonConfig, {
       },
       {
         test: /.svg(\?v=\d+\.\d+\.\d+)?$/,
-        issuer: /\.jsx?$/,
+        issuer: /\.(jsx?|tsx?)$/,
         use: ['@svgr/webpack'],
       },
       // Webpack, by default, uses the url-loader for images and fonts that are required/included by

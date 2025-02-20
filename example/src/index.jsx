@@ -1,4 +1,5 @@
-import ReactDOM from 'react-dom';
+import { StrictMode } from 'react';
+import { createRoot } from 'react-dom/client';
 import App from './App';
 
 // This line is to emulate what frontend-platform does when i18n initializes.
@@ -7,7 +8,6 @@ import App from './App';
 // document.  See: https://github.com/openedx/frontend-platform/blob/master/src/i18n/lib.js#L186
 global.document.getElementsByTagName('html')[0].setAttribute('dir', 'ltr');
 
-ReactDOM.render(
-  <App />,
-  document.getElementById('root'),
-);
+const rootContainer = document.getElementById('root');
+const root = createRoot(rootContainer);
+root.render(<StrictMode><App /></StrictMode>);

@@ -1,0 +1,228 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Basic test should render 1`] = `
+<div>
+  <div>
+    <h1>
+      Test page
+    </h1>
+    <h2>
+      SCSS parsing tests
+    </h2>
+    <h3>
+      The Apples
+    </h3>
+     ("The Apples" should be red)
+    <h2>
+      ES6 parsing tests
+    </h2>
+    <ul>
+      <li>
+        macintosh
+      </li>
+      <li>
+        granny smith
+      </li>
+      <li>
+        fuji
+      </li>
+      <li>
+        golden delicious
+      </li>
+    </ul>
+    <h2>
+      JSX parsing tests
+    </h2>
+    <div
+      data-testid="IconMock"
+      style="width: 10rem;"
+    />
+    <h2>
+      TSX parsing tests
+    </h2>
+    <img
+      alt="appleFromTsx"
+      src="icon/mock/path"
+      style="width: 10rem;"
+    />
+    <h2>
+      Asset import tests
+    </h2>
+    <img
+      alt="apple"
+      src="icon/mock/path"
+      style="width: 10rem;"
+    />
+    <img
+      alt="apple"
+      src="icon/mock/path"
+      style="width: 10rem;"
+    />
+    <br />
+    <img
+      alt="apple"
+      src="test-file-stub"
+      style="width: 10rem;"
+    />
+    <p>
+      Photo by Louis Hansel @shotsoflouis on Unsplash
+    </p>
+    <h2>
+      process.env tests
+    </h2>
+    <p>
+      Test process.env variable: 
+      foo
+    </p>
+    <p>
+      Non-existent process.env variable (nothing here is good): 
+    </p>
+    <h2>
+      env.config.js tests
+    </h2>
+    <p>
+      <span>
+        env.config.js boolean test: 
+      </span>
+      Good, false meant false.  We did not cast a boolean to a string.
+    </p>
+    <p>
+      env.config.js integer test: 
+      It was an integer. Great.
+    </p>
+    <h2>
+      Right-to-left language handling tests
+    </h2>
+    <p
+      class="text-align-right"
+    >
+      I'm aligned right, but left in RTL.
+    </p>
+    <h2>
+      Paragon
+    </h2>
+    <div
+      class="pgn__vstack pgn__stack-gap--4.5"
+    >
+      <div>
+        <h3>
+          Component preview
+        </h3>
+        <div
+          class="px-3 py-2 bg-light-200"
+        >
+          <button
+            class="btn btn-primary"
+            type="button"
+          >
+            Hello world
+          </button>
+        </div>
+      </div>
+      <div>
+        <h3>
+          Exposed theme CSS files
+        </h3>
+        <p>
+          <em>
+            Note: Depending on the versions of 
+            <code>
+              @openedx/paragon
+            </code>
+             and/or 
+            <code>
+              @edx/brand
+            </code>
+             installed, it is expected that no exposed theme CSS assets be listed here.
+          </em>
+        </p>
+        <ul
+          class="mb-0"
+        >
+          <li>
+            <a
+              href="/core.min.css"
+              rel="noopener noreferrer"
+              target="_blank"
+            >
+              core.min.css
+            </a>
+          </li>
+          <li>
+            <a
+              href="/light.min.css"
+              rel="noopener noreferrer"
+              target="_blank"
+            >
+              light.min.css
+            </a>
+          </li>
+          <li>
+            <a
+              href="/core.min.css"
+              rel="noopener noreferrer"
+              target="_blank"
+            >
+              core.min.css
+            </a>
+          </li>
+          <li>
+            <a
+              href="/light.min.css"
+              rel="noopener noreferrer"
+              target="_blank"
+            >
+              light.min.css
+            </a>
+          </li>
+        </ul>
+      </div>
+      <div>
+        <h3>
+          Contents of 
+          <code>
+            PARAGON_THEME
+          </code>
+           global variable
+        </h3>
+        <pre>
+          {
+  "paragon": {
+    "version": "1.0.0",
+    "themeUrls": {
+      "core": {
+        "fileName": "core.min.css"
+      },
+      "defaults": {
+        "light": "light"
+      },
+      "variants": {
+        "light": {
+          "fileName": "light.min.css"
+        }
+      }
+    }
+  },
+  "brand": {
+    "version": "1.0.0",
+    "themeUrls": {
+      "core": {
+        "fileName": "core.min.css"
+      },
+      "defaults": {
+        "light": "light"
+      },
+      "variants": {
+        "light": {
+          "fileName": "light.min.css"
+        }
+      }
+    }
+  }
+}
+        </pre>
+      </div>
+    </div>
+  </div>
+</div>
+`;
