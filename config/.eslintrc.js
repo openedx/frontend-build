@@ -1,7 +1,7 @@
 const { babel } = require('../lib/presets');
 
 module.exports = {
-  extends: '@edx/eslint-config',
+  extends: ['@edx/eslint-config'],
   plugins: ['@typescript-eslint'],
   parser: '@typescript-eslint/parser',
   parserOptions: {
@@ -43,5 +43,6 @@ module.exports = {
   },
   ignorePatterns: [
     'module.config.js',
+    'env.config.*',
   ],
 };
