@@ -9,5 +9,7 @@ import App from './App';
 global.document.getElementsByTagName('html')[0].setAttribute('dir', 'ltr');
 
 const rootContainer = document.getElementById('root');
-const root = createRoot(rootContainer);
-root.render(<StrictMode><App /></StrictMode>);
+if (rootContainer) {
+  const root = createRoot(rootContainer);
+  root.render(<StrictMode><App /></StrictMode>);
+}

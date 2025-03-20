@@ -31,16 +31,18 @@ resolvePrivateEnvConfig('.env.private');
 const aliases = getLocalAliases();
 const PUBLIC_PATH = process.env.PUBLIC_PATH || '/';
 
-function getStyleUseConfig() {
+function getStyleUseConfig({ isModule = false } = {}) {
+  const cssLoaderOptions = {
+    sourceMap: true,
+    ...(isModule
+      ? { modules: true }
+      : { modules: { compileType: 'icss' } }
+    ),
+  };
   return [
     {
       loader: 'css-loader', // translates CSS into CommonJS
-      options: {
-        sourceMap: true,
-        modules: {
-          compileType: 'icss',
-        },
-      },
+      options: cssLoaderOptions,
     },
     {
       loader: 'postcss-loader',
@@ -66,7 +68,7 @@ function getStyleUseConfig() {
           ],
           // Silences compiler deprecation warnings. They mostly come from bootstrap and/or paragon.
           quietDeps: true,
-          silenceDeprecations: ['abs-percent', 'color-functions', 'import', 'mixed-decls', 'global-builtin'],
+          silenceDeprecations: ['abs-percent', 'color-functions', 'import', 'mixed-decls', 'global-builtin', 'legacy-js-api'],
         },
       },
     },
@@ -116,6 +118,13 @@ module.exports = merge(commonConfig, {
             use: [
               MiniCssExtractPlugin.loader,
               ...getStyleUseConfig(),
+            ],
+          },
+          {
+            resource: /\.module\.(scss|css)$/,
+            use: [
+              'style-loader', // creates style nodes from JS strings
+              ...getStyleUseConfig({ isModule: true }),
             ],
           },
           {
