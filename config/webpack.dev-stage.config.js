@@ -102,7 +102,7 @@ module.exports = merge(commonConfig, {
                 ],
                 // Silences compiler deprecation warnings. They mostly come from bootstrap and/or paragon.
                 quietDeps: true,
-                silenceDeprecations: ['abs-percent', 'color-functions', 'import', 'mixed-decls', 'global-builtin'],
+                silenceDeprecations: ['abs-percent', 'color-functions', 'import', 'mixed-decls', 'global-builtin', 'legacy-js-api'],
               },
             },
           },
