@@ -6,16 +6,40 @@ import appleUrl, { ReactComponent as Apple } from './apple.svg';
 // @ts-ignore
 import appleImg from './apple.jpg';
 
-import './style.scss';
 import ParagonPreview from './ParagonPreview';
+
+// Without CSS modules support
+// @ts-ignore
+import defaultStyles from './style.scss';
+
+// With CSS modules support
+// @ts-ignore
+import moduleStyles from './example.module.scss';
+
+// @ts-ignore
+import exampleStyles from './example.scss';
+
+console.log('defaultStyles', defaultStyles);
+console.log('moduleStyles', moduleStyles);
+console.log('exampleStyles', exampleStyles);
 
 const App = () => {
   const newEnglandApples = ['macintosh', 'granny smith'];
   const allApples = [...newEnglandApples, 'fuji', 'golden delicious'];
+
+  const stylesConfig = {
+    defaultStyles,
+    moduleStyles,
+    exampleStyles,
+  };
+
   return (
     <div>
       <h1>Test page</h1>
       <h2>SCSS parsing tests</h2>
+      <pre>
+        {JSON.stringify(stylesConfig, null, 2)}
+      </pre>
       <h3>The Apples</h3> (&quot;The Apples&quot; should be red)
       <h2>ES6 parsing tests</h2>
       <ul>
@@ -41,6 +65,11 @@ const App = () => {
       <p>env.config.js integer test: {Number.isInteger(config.INTEGER_VALUE) ? 'It was an integer. Great.' : 'It was not an integer! Why not? '}</p>
       <h2>Right-to-left language handling tests</h2>
       <p className="text-align-right">I&apos;m aligned right, but left in RTL.</p>
+      {/* <p className="text-align-right">I&apos;m aligned right, but left in RTL.</p> */}
+      {/* <div className="style-modified">
+        <p className="text-align-right">I&apos;m aligned right, but left in RTL.</p>
+      </div> */}
+      {/* <p className={moduleStyles['text-align-right']}>I&apos;m aligned right, but left in RTL.</p> */}
       <ParagonPreview />
     </div>
   );
