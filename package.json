@@ -10,7 +10,9 @@
     "fedx-scripts": "./bin/fedx-scripts.js"
   },
   "scripts": {
-    "lint": "eslint . --no-eslintrc -c .eslintrc.js",
+    "lint": "npm run lint:root && npm run lint:example",
+    "lint:root": "eslint . --no-eslintrc -c .eslintrc.js",
+    "lint:example": "cd example && npm run lint",
     "test": "bash ./smoke-test.sh"
   },
   "files": [
@@ -64,6 +66,7 @@
     "eslint": "8.44.0",
     "eslint-config-airbnb": "19.0.4",
     "eslint-config-airbnb-typescript": "^17.0.0",
+    "eslint-import-resolver-typescript": "^4.2.1",
     "eslint-plugin-formatjs": "^4.12.2",
     "eslint-plugin-import": "2.31.0",
     "eslint-plugin-jsx-a11y": "6.7.1",
@@ -91,6 +94,7 @@
     "source-map-loader": "4.0.2",
     "style-loader": "3.3.4",
     "ts-jest": "29.1.4",
+    "tsconfig-paths-webpack-plugin": "^4.2.0",
     "typescript": "4.9.5",
     "url-loader": "4.1.1",
     "webpack": "^5.97.1",
