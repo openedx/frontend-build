@@ -7,4 +7,5 @@ module.exports = createConfig('eslint', {
     'global-require': 'off',
     'no-template-curly-in-string': 'off',
   },
+  ignorePatterns: ['example/**/*'],
 });

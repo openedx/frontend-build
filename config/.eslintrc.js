@@ -37,6 +37,11 @@ module.exports = {
     'import/no-import-module-export': 'off',
     'react/function-component-definition': [2, { namedComponents: 'arrow-function' }],
   },
+  settings: {
+    'import/resolver': {
+      typescript: {},
+    },
+  },
   globals: {
     newrelic: false,
     PARAGON_THEME: false,

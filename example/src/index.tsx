@@ -1,6 +1,6 @@
 import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
-import App from './App';
+import App from '@src/App';
 
 // This line is to emulate what frontend-platform does when i18n initializes.
 // It's necessary because our stylesheet is generated with `[dir="ltr"]` as a prefix on all
@@ -9,5 +9,7 @@ import App from './App';
 global.document.getElementsByTagName('html')[0].setAttribute('dir', 'ltr');
 
 const rootContainer = document.getElementById('root');
-const root = createRoot(rootContainer);
-root.render(<StrictMode><App /></StrictMode>);
+if (rootContainer) {
+  const root = createRoot(rootContainer);
+  root.render(<StrictMode><App /></StrictMode>);
+}
