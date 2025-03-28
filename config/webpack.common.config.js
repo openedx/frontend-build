@@ -1,3 +1,4 @@
+const fs = require('fs');
 const path = require('path');
 const RemoveEmptyScriptsPlugin = require('webpack-remove-empty-scripts');
 const TsconfigPathsPlugin = require('tsconfig-paths-webpack-plugin');
@@ -11,6 +12,14 @@ const {
 
 const paragonThemeCss = getParagonThemeCss(process.cwd());
 const brandThemeCss = getParagonThemeCss(process.cwd(), { isBrandOverride: true });
+
+const tsconfigPath = path.resolve(process.cwd(), 'tsconfig.json');
+const resolvePlugins = [];
+
+// Conditionally add TsconfigPathsPlugin if tsconfig.json exists
+if (fs.existsSync(tsconfigPath)) {
+  resolvePlugins.push(new TsconfigPathsPlugin({ configFile: tsconfigPath }));
+}
 
 module.exports = {
   entry: {
@@ -46,9 +55,7 @@ module.exports = {
       'env.config': false,
     },
     extensions: ['.js', '.jsx', '.ts', '.tsx'],
-    plugins: [
-      new TsconfigPathsPlugin(),
-    ],
+    plugins: resolvePlugins,
   },
   optimization: {
     splitChunks: {

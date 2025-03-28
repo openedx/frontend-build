@@ -1,6 +1,6 @@
 import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
-import App from '@/App';
+import App from '@src/App';
 
 // This line is to emulate what frontend-platform does when i18n initializes.
 // It's necessary because our stylesheet is generated with `[dir="ltr"]` as a prefix on all
