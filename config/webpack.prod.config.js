@@ -112,7 +112,9 @@ module.exports = merge(commonConfig, {
             options: {
               postcssOptions: {
                 plugins: [
-                  PostCssAutoprefixerPlugin(),
+                  PostCssAutoprefixerPlugin({
+                    remove: false, // Prevents removing vendor prefixes
+                  }),
                   PostCssRTLCSS(),
                   PostCssCustomMediaCSS(),
                   CssNano(),
