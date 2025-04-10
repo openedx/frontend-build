@@ -69,8 +69,12 @@ switch (commandName) {
     require('webpack-dev-server/bin/webpack-dev-server');
     break;
   case 'formatjs': {
-    // To extract more messages on other source folders use:
-    // --include=plugins --include=plugins2
+    // The include option is used to specify which additional source folders to extract messages from.
+    // To extract more messages on other source folders use: --include=plugins --include=plugins2
+    // The intention use case is to allow extraction from the 'plugins' directory on 'frontend-app-authoring'.
+    // That plugins folder were kept outside the src folder to ensure they remain independent and
+    // can function without relying on the MFE environment's special features.
+    // This approach allows them to be packaged separately as NPM packages.
     const additionalSrcFolders = [];
     process.argv.forEach((val, index) => {
       // if val starts with --include= then add the value to additionalSrcFolders
