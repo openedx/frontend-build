@@ -69,11 +69,27 @@ switch (commandName) {
     require('webpack-dev-server/bin/webpack-dev-server');
     break;
   case 'formatjs': {
+    // To extract more messages on other source folders use:
+    // --include=plugins --include=plugins2
+    const additionalSrcFolders = [];
+    process.argv.forEach((val, index) => {
+      // if val starts with --include= then add the value to additionalSrcFolders
+      if (val.startsWith('--include=')) {
+        additionalSrcFolders.push(val.split('=')[1]);
+        // remove the value from process.argv
+        process.argv.splice(index, 1);
+      }
+    });
+    const srcFolders = ['src'].concat(additionalSrcFolders);
+    let srcFoldersString = srcFolders.join(',');
+    if (srcFolders.length > 1) {
+      srcFoldersString = `{${srcFoldersString}}`;
+    }
     const commonArgs = [
       '--format', 'node_modules/@openedx/frontend-build/lib/formatter.js',
-      '--ignore', 'src/**/*.json',
+      '--ignore', `${srcFoldersString}/**/*.json`,
       '--out-file', './temp/babel-plugin-formatjs/Default.messages.json',
-      '--', 'src/**/*.js*',
+      '--', `${srcFoldersString}/**/*.js*`,
     ];
     process.argv = process.argv.concat(commonArgs);
     ensureConfigOption(presets.formatjs);
