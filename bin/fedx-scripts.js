@@ -88,8 +88,9 @@ switch (commandName) {
     const commonArgs = [
       '--format', 'node_modules/@openedx/frontend-build/lib/formatter.js',
       '--ignore', `${srcFoldersString}/**/*.json`,
+      '--ignore', `${srcFoldersString}/**/*.d.ts`,
       '--out-file', './temp/babel-plugin-formatjs/Default.messages.json',
-      '--', `${srcFoldersString}/**/*.js*`,
+      '--', `${srcFoldersString}/**/*.{j,t}s*`,
     ];
     process.argv = process.argv.concat(commonArgs);
     ensureConfigOption(presets.formatjs);
