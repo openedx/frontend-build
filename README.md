@@ -11,10 +11,10 @@ Status](https://api.travis-ci.com/edx/frontend-build.svg?branch=master)](https:/
 The purpose of this package is to provide a common sense foundation and
 setup for frontend projects including:
 
--   linting (eslint)
--   testing (jest)
--   development server (webpack-dev-server)
--   build (webpack)
+- linting (eslint)
+- testing (jest)
+- development server (webpack-dev-server)
+- build (webpack)
 
 This package can serve as a single dev dependency replacing a large
 number of dev and build dependencies. It aims to provide common sense
@@ -23,22 +23,20 @@ can extended or overridden where needed.
 
 ## Cloning and Startup
 
-``` {.}
 1. Clone your new repo:
 
-  ``git clone https://github.com/openedx/frontend-build.git``
+    git clone https://github.com/openedx/frontend-build.git
 
-2. Use node v18.x.
+2. Use node v18.x:
 
-  The current version of the micro-frontend build scripts support node 18.
-  Using other major versions of node *may* work, but this is unsupported.  For
-  convenience, this repository includes an .nvmrc file to help in setting the
-  correct node version via `nvm <https://github.com/nvm-sh/nvm>`_.
+> The current version of the micro-frontend build scripts support node 18.
+> Using other major versions of node *may* work, but this is unsupported.  For
+> convenience, this repository includes an .nvmrc file to help in setting the
+> correct node version via `nvm <https://github.com/nvm-sh/nvm>`_.
 
 3. Install npm dependencies:
 
-  ``cd frontend-build && npm ci``
-```
+    cd frontend-build && npm ci
 
 ## Usage
 
@@ -70,26 +68,26 @@ package.json:
 
 This package contains a set of configuration presets:
 
--   webpack-prod (or webpack)
--   webpack-dev (or webpack-dev-server)
--   webpack-dev-stage (for running development apps against stage apis)
--   babel
--   babel-preserve-modules
--   jest
--   eslint
+- webpack-prod (or webpack)
+- webpack-dev (or webpack-dev-server)
+- webpack-dev-stage (for running development apps against stage apis)
+- babel
+- babel-preserve-modules
+- jest
+- eslint
 
 If you need to extend or modify a configuration you can add your own
 configuration files, either by extending frontend-build\'s configuration
 files or supplying your own wholesale.
 
-Method 1: Extend base config (babel.config.js):
+### Method 1: Extend base config (babel.config.js)
 
     const { createConfig } = require('@openedx/frontend-build');
     module.exports = createConfig('babel', {
        /* option overrides or extensions */
     });
 
-Method 2: Custom manipulations (babel.config.js):
+### Method 2: Custom manipulations (babel.config.js)
 
     const { getBaseConfig } = require('@openedx/frontend-build');
     const config = getBaseConfig('babel');
@@ -101,11 +99,11 @@ Method 2: Custom manipulations (babel.config.js):
 Frontend build will look in the following locations for configuration
 files in your project.
 
--   eslint: `<project_root>/.eslintrc.js`
--   jest: `<project_root>/jest.config.js`
--   babel: `<project_root>/babel.config.js`
--   webpack-prod: `<project_root>/webpack.prod.config.js`
--   webpack-dev-server: `<project_root>/webpack.dev.config.js`
+- eslint: `<project_root>/.eslintrc.js`
+- jest: `<project_root>/jest.config.js`
+- babel: `<project_root>/babel.config.js`
+- webpack-prod: `<project_root>/webpack.prod.config.js`
+- webpack-dev-server: `<project_root>/webpack.dev.config.js`
 
 You may specify custom config file locations via the command line if you
 prefer a different location. Example package.json:
@@ -138,8 +136,7 @@ location of that repository to your module.config.js file and the
 webpack build for your application will automatically pick it up and use
 it, rather than its node\_modules version of the file.
 
-**NOTE: This module.config.js file should be added to your**
-[.gitignore]{.title-ref}.
+**NOTE: This module.config.js file should be added to your `.gitignore`.**
 
 An example module.config.js file looks like the following. You can copy
 this into your application to use local versions of paragon and
@@ -173,19 +170,17 @@ frontend-platform:
 
 ## Notes
 
--   The \"dir\" and \"dist\" keys give you granular control over the
-    shape of your repository\'s distribution. Paragon, for instance,
-    needs two separate entries to pick up both JS and SCSS imports.
--   The directory location `../src` (relative to the root of your
-    frontend app repository) is recommended for shared NPM package
-    repositories, since it will work whether or not you are running your
-    frontend via devstack. If you are *not* running your frontend via
-    devstack, then you can place your shared libraries anywhere in your
-    file system, updating the \"dir\" key accordingly. To learn more,
-    see [this devstack ADR on local
-    packages](https://github.com/openedx/devstack/tree/master/docs/decisions/0005-frontend-package-mounts.rst).
--   This mechanism uses Webpack resolve aliases, as documented here:
-    <https://webpack.js.org/configuration/resolve/#resolvealias>
+- The \"dir\" and \"dist\" keys give you granular control over the
+  shape of your repository\'s distribution. Paragon, for instance,
+  needs two separate entries to pick up both JS and SCSS imports.
+- The directory location `../src` (relative to the root of your frontend app repository)
+  is recommended for shared NPM package repositories, since it will work whether or
+  not you are running your frontend via devstack. If you are *not* running your
+  frontend via devstack, then you can place your shared libraries anywhere in your
+  file system, updating the \"dir\" key accordingly. To learn more, see [this devstack
+  ADR on local
+  packages](https://github.com/openedx/devstack/tree/master/docs/decisions/0005-frontend-package-mounts.rst).
+- This mechanism uses Webpack resolve aliases, as documented here: https://webpack.js.org/configuration/resolve/#resolvealias
 
 ## Override default .env.development environment variables with .env.private
 
@@ -196,8 +191,8 @@ that should never be checked into a repository. For example, a
 (e.g., Algolia) that you\'d like to use during development but want to
 ensure these secrets are not checked into Git.
 
-You may create a [.env.private]{.title-ref} with any overrides of the
-environment settings configured in [.env.development]{.title-ref}.
+You may create a `.env.private` with any overrides of the
+environment settings configured in `.env.development`.
 
 **Note: .env.private should be added to your project\'s .gitignore so it
 does not get checked in.**
@@ -295,8 +290,7 @@ Help](https://openedx.org/community/connect) page.
 
 ## Reporting Security Issues
 
-Please do not report security issues in public. Please email
-<security@openedx.org>.
+Please do not report security issues in public. Please email security@openedx.org.
 
 ## Optimization
 

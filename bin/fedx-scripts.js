@@ -58,6 +58,7 @@ switch (commandName) {
     break;
   case 'jest':
     ensureConfigOption(presets.jest);
+    // eslint-disable-next-line import/no-extraneous-dependencies
     require('jest/bin/jest');
     break;
   case 'webpack':
@@ -66,6 +67,7 @@ switch (commandName) {
     break;
   case 'webpack-dev-server':
     ensureConfigOption(presets.webpackDevServer);
+    // eslint-disable-next-line import/no-extraneous-dependencies
     require('webpack-dev-server/bin/webpack-dev-server');
     break;
   case 'formatjs': {
