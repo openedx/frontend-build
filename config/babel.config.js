@@ -33,7 +33,6 @@ module.exports = {
         // lodash
         lodash: {
           transform: 'lodash/${member}',
-          skipDefaultConversion: true,
         },
       },
     ],
