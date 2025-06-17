@@ -8,7 +8,6 @@ const { merge } = require('webpack-merge');
 const CssNano = require('cssnano');
 const Dotenv = require('dotenv-webpack');
 const dotenv = require('dotenv');
-const NewRelicSourceMapPlugin = require('@edx/new-relic-source-map-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const path = require('path');
@@ -46,13 +45,6 @@ if (process.env.ENABLE_NEW_RELIC !== 'false') {
     trustKey: process.env.NEW_RELIC_TRUST_KEY || 'undefined_trust_key',
     licenseKey: process.env.NEW_RELIC_LICENSE_KEY || 'undefined_license_key',
     applicationID: process.env.NEW_RELIC_APP_ID || 'undefined_application_id',
-  }));
-  extraPlugins.push(new NewRelicSourceMapPlugin({
-    applicationId: process.env.NEW_RELIC_APP_ID,
-    apiKey: process.env.NEW_RELIC_ADMIN_KEY,
-    staticAssetUrl: process.env.BASE_URL,
-    // upload source maps in prod builds only
-    noop: typeof process.env.NEW_RELIC_ADMIN_KEY === 'undefined',
   }));
 }
 
