@@ -42,7 +42,6 @@
     "@babel/preset-env": "7.24.8",
     "@babel/preset-react": "7.26.3",
     "@edx/eslint-config": "^4.3.0",
-    "@edx/new-relic-source-map-webpack-plugin": "2.1.0",
     "@edx/typescript-config": "1.1.0",
     "@formatjs/cli": "^6.0.3",
     "@fullhuman/postcss-purgecss": "5.0.0",
