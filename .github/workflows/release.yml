@@ -6,6 +6,11 @@ on:
     - next
     - beta
     - alpha
+
+permissions:
+  id-token: write  # Required for OIDC
+  contents: write  # For Semantic Release tagging
+
 jobs:
   release:
     name: Release
@@ -26,9 +31,6 @@ jobs:
     - name: Test
       run: npm run test
     - name: Release
-      uses: cycjimmy/semantic-release-action@v2
-      with:
-        semantic_version: 16
+      run: npx semantic-release@25
       env:
-        GITHUB_TOKEN: ${{ secrets.OPENEDX_SEMANTIC_RELEASE_GITHUB_TOKEN}}
-        NPM_TOKEN: ${{ secrets.OPENEDX_SEMANTIC_RELEASE_NPM_TOKEN }}
+        GITHUB_TOKEN: ${{ secrets.OPENEDX_SEMANTIC_RELEASE_GITHUB_TOKEN }}
