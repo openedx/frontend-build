@@ -48,7 +48,7 @@
     "@fullhuman/postcss-purgecss": "5.0.0",
     "@pmmmwh/react-refresh-webpack-plugin": "0.5.15",
     "@svgr/webpack": "8.1.0",
-    "@types/jest": "29.5.12",
+    "@types/jest": "29.5.14",
     "@typescript-eslint/eslint-plugin": "^5.58.0",
     "@typescript-eslint/parser": "^5.58.0",
     "autoprefixer": "10.4.20",
