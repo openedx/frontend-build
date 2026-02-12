@@ -60,7 +60,7 @@
     "chalk": "4.1.2",
     "clean-webpack-plugin": "4.0.0",
     "css-loader": "5.2.7",
-    "cssnano": "6.0.3",
+    "cssnano": "6.1.2",
     "dotenv": "8.6.0",
     "dotenv-webpack": "8.0.1",
     "eslint": "8.44.0",
