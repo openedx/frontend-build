@@ -68,7 +68,7 @@ function getStyleUseConfig() {
           ],
           // Silences compiler deprecation warnings. They mostly come from bootstrap and/or paragon.
           quietDeps: true,
-          silenceDeprecations: ['abs-percent', 'color-functions', 'import', 'mixed-decls', 'global-builtin', 'legacy-js-api'],
+          silenceDeprecations: ['abs-percent', 'color-functions', 'import', 'global-builtin', 'legacy-js-api'],
         },
       },
     },
