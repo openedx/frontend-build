@@ -11,25 +11,25 @@ jobs:
     name: Syncing branches
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4.3.1
       - name: Set up Node
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4.4.0
         with:
           node-version: 18
       - name: Create Pull Request
         id: cpr
-        uses: tretuna/sync-branches@1.4.0
+        uses: tretuna/sync-branches@ea58ab6e406fd3ad016a064b31270bbb41127f41 # 1.4.0
         with:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           FROM_BRANCH: master
           TO_BRANCH: alpha
       - name: Auto-approve pull request for dependent project usages
-        uses: hmarr/auto-approve-action@v2
+        uses: hmarr/auto-approve-action@b40d6c9ed2fa10c9a2749eca7eb004418a705501 # v2
         with:
           pull-request-number: ${{ steps.cpr.outputs.PULL_REQUEST_NUMBER }}
           github-token: ${{ secrets.requirements_bot_github_token }}
       - name: Enable Pull Request Automerge
-        uses: peter-evans/enable-pull-request-automerge@v3
+        uses: peter-evans/enable-pull-request-automerge@a660677d5469627102a1c1e11409dd063606628d # v3.0.0
         with:
           pull-request-number: ${{ steps.cpr.outputs.PULL_REQUEST_NUMBER }}
           token: ${{ secrets.requirements_bot_github_token }}
