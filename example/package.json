@@ -6,7 +6,7 @@
   "scripts": {
     "test": "../bin/fedx-scripts.js jest ./src",
     "build": "../bin/fedx-scripts.js webpack",
-    "lint": "../bin/fedx-scripts.js eslint . --ext .jsx,.js",
+    "lint": "../bin/fedx-scripts.js eslint --ext .jsx --ext .js --ext .ts --ext .tsx",
     "babel": "../bin/fedx-scripts.js babel src --out-dir dist/babel --source-maps --ignore **/*.test.jsx,**/*.test.js --copy-files",
     "start": "../bin/fedx-scripts.js webpack-dev-server",
     "serve": "../bin/fedx-scripts.js serve"
@@ -14,12 +14,17 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
+  "browserslist": {
+    "extends": "@edx/browserslist-config"
+  },
   "dependencies": {
-    "@openedx/paragon": "22.7.0",
-    "react": "16.14.0",
-    "react-dom": "16.14.0"
+    "@openedx/paragon": "22.15.3",
+    "react": "18.3.1",
+    "react-dom": "18.3.1"
   },
   "devDependencies": {
-    "react-test-renderer": "16.14.0"
+    "@edx/browserslist-config": "1.5.1",
+    "@testing-library/dom": "10.4.0",
+    "@testing-library/react": "16.2.0"
   }
 }

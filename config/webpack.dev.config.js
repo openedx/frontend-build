@@ -47,7 +47,9 @@ function getStyleUseConfig() {
       options: {
         postcssOptions: {
           plugins: [
-            PostCssAutoprefixerPlugin(),
+            PostCssAutoprefixerPlugin({
+              remove: false, // Prevents removing vendor prefixes
+            }),
             PostCssRTLCSS(),
             PostCssCustomMediaCSS(),
           ],
@@ -64,8 +66,9 @@ function getStyleUseConfig() {
             path.join(process.cwd(), 'node_modules'),
             path.join(process.cwd(), 'src'),
           ],
-          // silences compiler warnings regarding deprecation warnings
+          // Silences compiler deprecation warnings. They mostly come from bootstrap and/or paragon.
           quietDeps: true,
+          silenceDeprecations: ['abs-percent', 'color-functions', 'import', 'global-builtin', 'legacy-js-api'],
         },
       },
     },
@@ -127,7 +130,7 @@ module.exports = merge(commonConfig, {
       },
       {
         test: /.svg(\?v=\d+\.\d+\.\d+)?$/,
-        issuer: /\.jsx?$/,
+        issuer: /\.(jsx?|tsx?)$/,
         use: ['@svgr/webpack'],
       },
       // Webpack, by default, uses the url-loader for images and fonts that are required/included by
@@ -184,6 +187,7 @@ module.exports = merge(commonConfig, {
       chunks: ['app'],
       FAVICON_URL: process.env.FAVICON_URL || null,
       OPTIMIZELY_PROJECT_ID: process.env.OPTIMIZELY_PROJECT_ID || null,
+      META_TAG_ROBOTS_CONTENT_ATTR: process.env.META_TAG_ROBOTS_CONTENT_ATTR || null,
       NODE_ENV: process.env.NODE_ENV || null,
     }),
     new Dotenv({
