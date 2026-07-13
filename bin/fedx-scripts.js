@@ -69,11 +69,32 @@ switch (commandName) {
     require('webpack-dev-server/bin/webpack-dev-server');
     break;
   case 'formatjs': {
+    // The include option is used to specify which additional source folders to extract messages from.
+    // To extract more messages on other source folders use: --include=plugins --include=plugins2
+    // The intention use case is to allow extraction from the 'plugins' directory on 'frontend-app-authoring'.
+    // That plugins folder were kept outside the src folder to ensure they remain independent and
+    // can function without relying on the MFE environment's special features.
+    // This approach allows them to be packaged separately as NPM packages.
+    const additionalSrcFolders = [];
+    process.argv.forEach((val, index) => {
+      // if val starts with --include= then add the value to additionalSrcFolders
+      if (val.startsWith('--include=')) {
+        additionalSrcFolders.push(val.split('=')[1]);
+        // remove the value from process.argv
+        process.argv.splice(index, 1);
+      }
+    });
+    const srcFolders = ['src'].concat(additionalSrcFolders);
+    let srcFoldersString = srcFolders.join(',');
+    if (srcFolders.length > 1) {
+      srcFoldersString = `{${srcFoldersString}}`;
+    }
     const commonArgs = [
       '--format', 'node_modules/@openedx/frontend-build/lib/formatter.js',
-      '--ignore', 'src/**/*.json',
+      '--ignore', `${srcFoldersString}/**/*.json`,
+      '--ignore', `${srcFoldersString}/**/*.d.ts`,
       '--out-file', './temp/babel-plugin-formatjs/Default.messages.json',
-      '--', 'src/**/*.js*',
+      '--', `${srcFoldersString}/**/*.{j,t}s*`,
     ];
     process.argv = process.argv.concat(commonArgs);
     ensureConfigOption(presets.formatjs);

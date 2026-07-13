@@ -28,9 +28,9 @@ can extended or overridden where needed.
 
   ``git clone https://github.com/openedx/frontend-build.git``
 
-2. Use node v18.x.
+2. Use node v24.x.
 
-  The current version of the micro-frontend build scripts support node 18.
+  The current version of the micro-frontend build scripts support node 24.
   Using other major versions of node *may* work, but this is unsupported.  For
   convenience, this repository includes an .nvmrc file to help in setting the
   correct node version via `nvm <https://github.com/nvm-sh/nvm>`_.
@@ -155,7 +155,7 @@ frontend-platform:
       dist: The sub-directory of the source code where it puts its build artifact.  Often "dist".
       */
       localModules: [
-        { moduleName: '@openedx/brand', dir: '../src/brand-openedx' }, // replace with your brand checkout
+        { moduleName: '@edx/brand', dir: '../src/brand-openedx' }, // replace with your brand checkout
         { moduleName: '@openedx/paragon/scss/core', dir: '../src/paragon', dist: 'scss/core' },
         { moduleName: '@openedx/paragon/icons', dir: '../src/paragon', dist: 'icons' },
         { moduleName: '@openedx/paragon', dir: '../src/paragon', dist: 'dist' },
@@ -217,6 +217,25 @@ locally. To serve a production build locally:
 4.  Run `npm run serve` to serve your production build assets. It will
     attempt to run the build on the same port specified in the
     `env.config.js` file.
+
+## Local module configuration for TypeScript
+
+#. Create file in repository `tsconfig.json`, with a clause `"extends": "@openedx/frontend-build"`
+#. Set "rootDir" to the root of the source code folders
+#. Set "include" to wildcard patterns specifying the subdirectories/files under rootDir where source code can be found
+#. Include any wildcards under rootDir that should be excluded using "exclude"
+
+```Sample json
+{
+  "extends": "@edx/typescript-config",
+  "compilerOptions": {
+    "rootDir": ".",
+    "outDir": "dist"
+  },
+  "include": ["src/**/*"],
+  "exclude": ["dist", "node_modules"]
+}
+```
 
 ## Development
 

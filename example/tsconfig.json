@@ -1,0 +1,19 @@
+{
+  "extends": "../tsconfig.json",
+  "compilerOptions": {
+    "rootDir": ".",
+    "outDir": "dist",
+    "paths": {
+      "@src/*": ["./src/*"]
+    },
+  },
+  "include": [
+    ".eslintrc.js",
+    "env.config.js",
+    "src"
+  ],
+  "exclude": [
+    "node_modules",
+    "dist",
+  ]
+}
