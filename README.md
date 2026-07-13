@@ -28,9 +28,9 @@ can extended or overridden where needed.
 
   ``git clone https://github.com/openedx/frontend-build.git``
 
-2. Use node v18.x.
+2. Use node v24.x.
 
-  The current version of the micro-frontend build scripts support node 18.
+  The current version of the micro-frontend build scripts support node 24.
   Using other major versions of node *may* work, but this is unsupported.  For
   convenience, this repository includes an .nvmrc file to help in setting the
   correct node version via `nvm <https://github.com/nvm-sh/nvm>`_.
@@ -155,7 +155,7 @@ frontend-platform:
       dist: The sub-directory of the source code where it puts its build artifact.  Often "dist".
       */
       localModules: [
-        { moduleName: '@openedx/brand', dir: '../src/brand-openedx' }, // replace with your brand checkout
+        { moduleName: '@edx/brand', dir: '../src/brand-openedx' }, // replace with your brand checkout
         { moduleName: '@openedx/paragon/scss/core', dir: '../src/paragon', dist: 'scss/core' },
         { moduleName: '@openedx/paragon/icons', dir: '../src/paragon', dist: 'icons' },
         { moduleName: '@openedx/paragon', dir: '../src/paragon', dist: 'dist' },

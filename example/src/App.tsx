@@ -1,12 +1,15 @@
+// @ts-ignore
 import config from 'env.config';
 import Image from './Image';
+// @ts-ignore
 import appleUrl, { ReactComponent as Apple } from './apple.svg';
+// @ts-ignore
 import appleImg from './apple.jpg';
 
 import './style.scss';
+import ParagonPreview from './ParagonPreview';
 
-// eslint-disable-next-line react/function-component-definition
-export default function App() {
+const App = () => {
   const newEnglandApples = ['macintosh', 'granny smith'];
   const allApples = [...newEnglandApples, 'fuji', 'golden delicious'];
   return (
@@ -38,6 +41,9 @@ export default function App() {
       <p>env.config.js integer test: {Number.isInteger(config.INTEGER_VALUE) ? 'It was an integer. Great.' : 'It was not an integer! Why not? '}</p>
       <h2>Right-to-left language handling tests</h2>
       <p className="text-align-right">I&apos;m aligned right, but left in RTL.</p>
+      <ParagonPreview />
     </div>
   );
-}
+};
+
+export default App;

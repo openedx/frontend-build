@@ -1,7 +1,7 @@
 const { babel } = require('../lib/presets');
 
 module.exports = {
-  extends: '@edx/eslint-config',
+  extends: ['@edx/eslint-config'],
   plugins: ['@typescript-eslint'],
   parser: '@typescript-eslint/parser',
   parserOptions: {
@@ -37,10 +37,17 @@ module.exports = {
     'import/no-import-module-export': 'off',
     'react/function-component-definition': [2, { namedComponents: 'arrow-function' }],
   },
+  settings: {
+    'import/resolver': {
+      typescript: {},
+    },
+  },
   globals: {
     newrelic: false,
+    PARAGON_THEME: false,
   },
   ignorePatterns: [
     'module.config.js',
+    'env.config.*',
   ],
 };

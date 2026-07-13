@@ -21,13 +21,13 @@ module.exports = {
   ],
   rootDir: process.cwd(),
   moduleNameMapper: {
-    '\\.svg': path.resolve(__dirname, 'jest/svgrMock.js'),
+    '\\.svg': path.resolve(__dirname, 'jest/svgrMock.jsx'),
     '\\.(jpg|jpeg|png|gif|eot|otf|webp|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$': path.resolve(__dirname, 'jest/fileMock.js'),
     '\\.(css|scss)$': 'identity-obj-proxy',
     'env.config': envConfigPath,
   },
   collectCoverageFrom: [
-    'src/**/*.{js,jsx}',
+    'src/**/*.{js,jsx,ts,tsx}',
   ],
   coveragePathIgnorePatterns: [
     '/node_modules/',
@@ -45,4 +45,7 @@ module.exports = {
     ],
     ...tsjPreset.transform,
   },
+  watchPathIgnorePatterns: [
+    '/node_modules/',
+  ],
 };
